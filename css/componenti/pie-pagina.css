@@ -1,0 +1,56 @@
+/* pie-pagina (06-design/componenti/pie-pagina.md): piè di pagina chiaro con il logo a colori, le due società, le lavorazioni per famiglia,
+   le pagine del sito, la riga legale e la frase sul marchio. Da 768 px la navigazione (colonne e riga finale) si dispone sulla griglia
+   del piè di pagina con display: contents: il landmark resta. */
+.pie-pagina { padding-block: var(--sezione-y) 0; }
+.pie-pagina__griglia { display: grid; gap: var(--blocco-y); }
+.pie-pagina__logo img { height: 5rem; width: auto; }
+.pie-pagina__etichetta {
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-etichetta); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); text-transform: uppercase; color: var(--colore-testo-terziario); margin-bottom: var(--spazio-4);
+}
+.pie-pagina__societa address { display: flex; flex-direction: column; gap: var(--spazio-1); color: var(--colore-testo-secondario); overflow-wrap: anywhere; }
+.pie-pagina__societa address + address { margin-top: var(--spazio-5); padding-top: var(--spazio-5); border-top: var(--filetto); }
+.pie-pagina__ragione { font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-h3); font-stretch: var(--larghezza-carattere-titoli); line-height: var(--interlinea-titoli); color: var(--colore-testo); margin-bottom: var(--spazio-2); }
+.pie-pagina__dato { display: flex; align-items: center; gap: var(--spazio-2); }
+.pie-pagina__dato .icona { color: var(--colore-testo); }
+.pie-pagina__legale { font-size: var(--testo-piccolo); line-height: var(--interlinea-piccolo); }
+.pie-pagina a { color: var(--colore-testo); text-decoration: none; }
+@media (hover: hover) { .pie-pagina a:hover, .pie-pagina__pulsante:hover { text-decoration: underline; text-underline-offset: var(--scarto-sottolineatura); } }
+.pie-pagina__societa a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: var(--scarto-sottolineatura); }
+.pie-pagina__lista { list-style: none; display: grid; gap: var(--spazio-2); }
+.pie-pagina__lista a { display: inline-flex; align-items: center; gap: var(--spazio-2); min-height: 1.5rem; }
+/* il quadratino in uno spazio fisso largo due quadratini: i nomi partono allineati anche dopo il segno doppio */
+.pie-pagina__lista a[data-famiglia]::before {
+  content: ""; flex: none; width: var(--quadratino-larghezza); height: var(--quadrato-famiglia); background: var(--quadratino);
+  margin-right: calc(2 * var(--quadrato-famiglia) + var(--spazio-1) - var(--quadratino-larghezza));
+}
+.pie-pagina__gruppo + .pie-pagina__gruppo { margin-top: var(--spazio-5); }
+.pie-pagina__gruppo > .etichetta--famiglia { margin-bottom: var(--spazio-3); }
+.pie-pagina__nav { display: grid; gap: var(--blocco-y); }
+.pie-pagina__riga {
+  display: flex; flex-wrap: wrap; gap: var(--spazio-2) var(--spazio-5); padding-block: var(--spazio-5); border-top: var(--filetto);
+  list-style: none; font-size: var(--testo-piccolo); color: var(--colore-testo-secondario);
+}
+.pie-pagina__riga a, .pie-pagina__pulsante { color: var(--colore-testo-secondario); font-size: var(--testo-piccolo); display: inline-block; padding-block: var(--spazio-1); }
+.pie-pagina__chiusura { padding-block: var(--spazio-5); border-top: var(--filetto); font-size: var(--testo-piccolo); color: var(--colore-testo-secondario); }
+@media (min-width: 768px) {
+  .pie-pagina__griglia { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); gap: var(--blocco-y) 0; }
+  .pie-pagina__nav { display: contents; }
+  .pie-pagina__logo { grid-column: 1 / span 2; }
+  .pie-pagina__societa { grid-column: 3 / span 6; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--colonne-gap); }
+  .pie-pagina__societa > .pie-pagina__etichetta { grid-column: 1 / -1; }
+  .pie-pagina__societa address + address { margin-top: 0; padding-top: 0; border-top: 0; }
+  .pie-pagina__lavorazioni { grid-column: 1 / span 5; display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--colonne-gap); }
+  .pie-pagina__lavorazioni > .pie-pagina__etichetta { grid-column: 1 / -1; }
+  .pie-pagina__lavorazioni .pie-pagina__gruppo + .pie-pagina__gruppo { margin-top: 0; }
+  .pie-pagina__sito { grid-column: 6 / span 3; }
+  .pie-pagina__riga, .pie-pagina__chiusura { grid-column: 1 / -1; }
+  .pie-pagina__chiusura { margin-top: calc(-1 * var(--blocco-y)); }
+}
+@media (min-width: 1200px) {
+  .pie-pagina__societa { grid-column: 3 / span 3; display: block; padding-right: var(--colonne-gap); }
+  .pie-pagina__societa address + address { margin-top: var(--spazio-5); padding-top: var(--spazio-5); border-top: var(--filetto); }
+  .pie-pagina__lavorazioni { grid-column: 6 / span 2; display: block; padding-right: var(--spazio-5); }
+  .pie-pagina__lavorazioni .pie-pagina__gruppo + .pie-pagina__gruppo { margin-top: var(--spazio-5); }
+  .pie-pagina__sito { grid-column: 8 / span 1; }
+}

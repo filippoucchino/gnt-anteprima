@@ -1,0 +1,15 @@
+/* etichetta (06-design/componenti/etichetta.md): il tipo di sezione sopra l'H2, il nome della famiglia col suo segno, il formato o il tipo */
+.etichetta {
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-etichetta);
+  font-stretch: var(--larghezza-carattere-display); letter-spacing: var(--spaziatura-display); line-height: var(--interlinea-media);
+  text-transform: uppercase;
+}
+.etichetta--sezione { color: var(--colore-testo-terziario); }
+.etichetta--famiglia { color: var(--colore-testo); display: inline-flex; align-items: center; gap: var(--spazio-2); }
+.etichetta--famiglia::before { content: ""; flex: none; width: var(--quadratino-larghezza); height: var(--quadrato-famiglia); background: var(--quadratino); }
+/* sulle campiture e sul blocco di famiglia il fondo è già il segno della famiglia: niente quadratino, che sarebbe un riquadro vuoto */
+.campitura--sede .etichetta--famiglia::before, .campitura--cantiere .etichetta--famiglia::before, .hero__blocco .etichetta--famiglia::before { display: none; }
+.etichetta--neutra {
+  display: inline-block; white-space: nowrap; color: var(--colore-testo-secondario);
+  border: var(--bordo-controllo); border-radius: var(--raggio-pillola); padding: var(--spazio-1) var(--spazio-3);
+}

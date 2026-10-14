@@ -1,0 +1,137 @@
+/* hero (06-design/componenti/hero.md): la prima schermata sul nero con la griglia. Contenuto: --home, --servizio, --cantiere,
+   --prova, --sede, --modulo, --breve; media: --banda (immagine o video in bianco e nero), --scheda (foto reale a colori sulla
+   banda di famiglia), --motivo (ingranaggio rosso a bassa opacità). Nessuna animazione sull'H1 né sull'immagine (elemento principale). */
+.hero { position: relative; isolation: isolate; padding-top: calc(var(--sezione-y) + var(--altezza-intestazione)); padding-bottom: var(--sezione-y); }
+.hero__testa { display: flex; flex-direction: column; align-items: flex-start; }
+.hero__testa > .briciole { margin-bottom: var(--spazio-5); }
+.hero__titolo { color: var(--colore-testo); }
+.hero__riga { width: 100%; margin-top: var(--blocco-y); display: grid; gap: var(--blocco-y); }
+.hero__apertura { color: var(--colore-testo-secondario); max-width: var(--misura-lead); }
+.hero__apertura > p:first-child { font-size: var(--testo-lead); }
+.hero__azione { display: flex; flex-direction: column; align-items: stretch; gap: var(--blocco-y); }
+.hero__prova { display: flex; flex-direction: column; gap: var(--spazio-2); }
+.hero__numero {
+  font-family: var(--font-titoli); font-weight: var(--peso-gigante); font-size: var(--testo-numero); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); line-height: var(--interlinea-display); color: var(--colore-testo);
+}
+.hero__didascalia { font-size: var(--testo-piccolo); line-height: var(--interlinea-piccolo); color: var(--colore-testo-secondario); }
+/* sotto 768 px gli inviti con la prova vengono subito dopo l'H1, l'apertura dopo: pulsante, telefono e numero nella prima finestra */
+@media (max-width: 767px) { .hero__riga > .hero__azione { order: -1; } }
+@media (min-width: 768px) {
+  .hero__riga { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); }
+  .hero__apertura { grid-column: 1 / span 5; padding-right: var(--colonne-gap); }
+  .hero__azione { grid-column: 6 / span 3; }
+  .hero--scheda .hero__titolo, .hero--motivo .hero__titolo { max-width: calc(100% * 6 / var(--colonne)); }
+  .hero--scheda .hero__apertura, .hero--modulo .hero__apertura, .hero--breve .hero__apertura { grid-column: 1 / span 6; }
+  .hero--scheda .hero__azione { grid-column: 1 / span 6; }
+}
+
+/* banda d'immagine o video, a tutta larghezza del contenitore, senza raggio, in bianco e nero. La testa è più stretta delle altre
+   prime schermate (spazi da --spazio-6, apertura in testo base su 5 colonne), così a 1440 × 900 la banda entra di circa 200 px
+   nella prima finestra */
+.hero--banda { padding-top: calc(var(--altezza-intestazione) + var(--spazio-6)); padding-bottom: 0; }
+.hero--banda .hero__riga { margin-top: var(--spazio-6); }
+.hero--banda .hero__azione { gap: var(--spazio-6); }
+.hero__media { margin-top: var(--blocco-y); }
+.hero--banda .hero__media { margin-top: var(--spazio-6); }
+@media (min-width: 768px) {
+  .hero--banda .hero__apertura { max-width: var(--misura-testo); }
+  .hero--banda .hero__apertura > p:first-child { font-size: var(--testo-base); }
+}
+.hero__banda { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background-color: var(--colore-superficie); }
+.hero__banda picture, .hero__banda img, .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__banda img, .hero__video { object-fit: cover; filter: var(--filtro-atmosfera); }
+.hero__video { opacity: 0; transition: opacity var(--durata-2) var(--curva); }
+.hero__video[data-attivo] { opacity: 1; }
+.hero__pausa {
+  position: absolute; right: var(--spazio-5); bottom: var(--spazio-5); z-index: 2;
+  background-color: color-mix(in srgb, var(--colore-nero) calc(var(--velo-comando) * 100%), transparent); color: var(--colore-bianco);
+}
+.hero__blocco {
+  position: absolute; top: 0; left: 0; z-index: 1; width: calc(100% * 2 / 4); min-height: var(--blocco-y); padding: var(--cella-pad);
+  background: var(--fondo-famiglia); color: var(--colore-nero);
+}
+.hero__blocco .etichetta--famiglia { color: var(--colore-nero); }
+.hero--banda .inviti--percorsi { margin-top: var(--blocco-y); }
+@media (min-width: 768px) {
+  .hero__banda { aspect-ratio: 21 / 9; }
+  .hero__blocco { width: calc(100% * 2 / var(--colonne)); }
+}
+
+/* banda di famiglia in fondo alla prima schermata (servizi; nera per parco macchine e chi siamo), con la scheda che ci scende sopra */
+.hero--scheda { padding-bottom: 0; }
+.hero--scheda .hero__testa { padding-bottom: calc(0.4 * (100vw - 2 * var(--margine-pagina))); }
+.hero__famiglia { margin-top: var(--blocco-y); padding-block: var(--cella-pad); }
+.hero__famiglia-griglia { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: var(--spazio-4); align-items: end; }
+.hero__famiglia-griglia > .etichetta--famiglia { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
+.hero__famiglia-numero { grid-column: 1 / -1; grid-row: 3; display: flex; flex-direction: column; gap: var(--spazio-2); }
+.hero__gigante {
+  font-family: var(--font-titoli); font-weight: var(--peso-gigante); font-size: var(--testo-gigante); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); line-height: var(--interlinea-display); color: var(--colore-testo);
+}
+.hero__gigante--parola { font-weight: var(--peso-titoli); font-size: var(--testo-parola); text-transform: uppercase; }
+.hero__famiglia-didascalia { font-size: var(--testo-base); color: var(--colore-testo); }
+.hero__scheda { grid-column: 1 / -1; grid-row: 1; justify-self: end; width: 60%; margin-top: -40%; position: relative; z-index: 1; }
+.hero__scheda img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--raggio-scheda); box-shadow: var(--ombra-scheda); }
+.hero__scheda--disegno img { object-fit: contain; mix-blend-mode: screen; box-shadow: none; }
+.hero__scheda figcaption { margin-top: var(--spazio-3); font-size: var(--testo-piccolo); line-height: var(--interlinea-piccolo); color: var(--colore-testo); }
+.hero__famiglia--nera { background-color: var(--colore-nero); border-top: var(--filetto); }
+.hero__famiglia--nera .hero__gigante { color: var(--colore-grigio-medio); }
+@media (min-width: 768px) {
+  .hero--scheda .hero__testa { padding-bottom: 0; }
+  .hero__famiglia-griglia { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); column-gap: 0; }
+  /* il numero gigante prende 6 colonne: «5000 mm» a 160 px misura 873 px, più delle 5 colonne (810 px) */
+  .hero__famiglia-griglia > .etichetta--famiglia { grid-column: 1 / span 6; grid-row: 1; }
+  .hero__famiglia-numero { grid-column: 1 / span 6; grid-row: 2; }
+  .hero__scheda { grid-column: 7 / span 2; grid-row: 1 / span 2; width: auto; justify-self: stretch; margin-top: -100%; padding-inline: var(--scarto-cella); align-self: start; }
+  .hero__famiglia-didascalia { max-width: var(--misura-lead); }
+}
+
+/* motivo: l'ingranaggio rosso tagliato dal bordo, sopra la griglia e sotto il testo. È lo sfondo di uno strato largo quanto la
+   prima schermata, così la parte che esce dalla finestra si taglia da sola, senza overflow sulla pagina */
+.hero--motivo::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: var(--motivo-opacita);
+  background: url("/gnt-anteprima/img/ingranaggio-sfondo-rosso.svg") no-repeat;
+  background-size: 80vw auto; background-position: right -40vw top calc(-40vw + var(--altezza-intestazione));
+}
+@media (min-width: 768px) {
+  .hero--motivo::before {
+    background-size: var(--motivo-misura) auto;
+    /* nello scarto di background-position le percentuali valgono sulla differenza tra strato e immagine: il bordo del contenitore si calcola in vw */
+    background-position: right calc((100vw - min(100vw - 2 * var(--margine-pagina), var(--contenitore))) / 2 + var(--motivo-scarto)) top calc(var(--altezza-intestazione) + var(--sezione-y));
+  }
+}
+.hero--modulo::before { bottom: auto; height: 100%; }
+
+/* sede: testo su 5 colonne, contatti su superficie scura nelle 3 di destra */
+.hero--sede .hero__testa { display: grid; row-gap: var(--blocco-y); }
+.hero--sede .hero__riga { margin-top: 0; }
+@media (min-width: 768px) {
+  .hero--sede .hero__testa { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); align-items: start; }
+  .hero--sede .hero__colonna { grid-column: 1 / span 5; padding-right: var(--colonne-gap); }
+  .hero--sede .hero__titolo { max-width: none; }
+  .hero--sede .contatti-sede { grid-column: 6 / span 3; }
+}
+.hero--sede .hero__colonna { display: flex; flex-direction: column; align-items: flex-start; }
+.hero--sede .hero__colonna > .briciole { margin-bottom: var(--spazio-5); }
+.hero--sede .hero__colonna > .hero__apertura { margin-top: var(--blocco-y); }
+
+/* modulo: testa nera breve, poi il chiaro con il modulo e la colonna «Cosa ci serve» nella stessa prima schermata */
+.hero--modulo { padding-bottom: 0; }
+/* il chiaro fa parte della prima schermata: comincia a --blocco-y, così il primo campo sta sopra la piega a 1440 × 900 */
+.hero__chiaro { margin-top: var(--blocco-y); padding-block: var(--blocco-y) var(--sezione-y); }
+.hero--modulo .hero__apertura { max-width: var(--misura-testo); }
+/* testa nera breve: il primo campo del modulo sta sopra la piega a 1440 × 900 */
+.hero--modulo .hero__riga { margin-top: var(--spazio-6); }
+.hero--modulo .hero__chiaro { margin-top: var(--spazio-7); }
+.hero__chiaro-griglia { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--blocco-y); }
+.hero__colonna-lato { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spazio-5); }
+.hero__colonna-lato .hero__decoro { display: none; }
+@media (min-width: 768px) {
+  .hero__chiaro-griglia { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); gap: 0; align-items: start; }
+  .hero__chiaro-griglia > .hero__colonna-modulo { grid-column: 1 / span 5; padding-right: var(--colonne-gap); }
+  .hero__chiaro-griglia > .hero__colonna-lato { grid-column: 6 / span 3; }
+}
+@media (min-width: 1200px) {
+  .hero__colonna-lato .hero__decoro { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raggio-scheda); }
+}

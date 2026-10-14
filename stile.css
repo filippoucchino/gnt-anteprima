@@ -1,0 +1,30 @@
+/* Foglio unico dei mockup: i cinque livelli di 06-design/design-system.md §3 nell'ordine, ciascuno senza ridefinire quello sotto.
+   Nel sito (fase 11) un file globale (token, base, layout, movimento) più il file di ogni componente presente nella pagina. */
+@import url("/gnt-anteprima/css/token.css");
+@import url("/gnt-anteprima/css/base.css");
+@import url("/gnt-anteprima/css/layout.css");
+@import url("/gnt-anteprima/css/componenti/etichetta.css");
+@import url("/gnt-anteprima/css/componenti/pulsante.css");
+@import url("/gnt-anteprima/css/componenti/inviti.css");
+@import url("/gnt-anteprima/css/componenti/intestazione.css");
+@import url("/gnt-anteprima/css/componenti/briciole.css");
+@import url("/gnt-anteprima/css/componenti/pie-pagina.css");
+@import url("/gnt-anteprima/css/componenti/hero.css");
+@import url("/gnt-anteprima/css/componenti/griglia-schede.css");
+@import url("/gnt-anteprima/css/componenti/scheda.css");
+@import url("/gnt-anteprima/css/componenti/contatti-sede.css");
+@import url("/gnt-anteprima/css/componenti/tabella.css");
+@import url("/gnt-anteprima/css/componenti/prosa.css");
+@import url("/gnt-anteprima/css/componenti/testo-media.css");
+@import url("/gnt-anteprima/css/componenti/passi.css");
+@import url("/gnt-anteprima/css/componenti/elenco-voci.css");
+@import url("/gnt-anteprima/css/componenti/numeri.css");
+@import url("/gnt-anteprima/css/componenti/galleria.css");
+@import url("/gnt-anteprima/css/componenti/faq.css");
+@import url("/gnt-anteprima/css/componenti/chiusura.css");
+@import url("/gnt-anteprima/css/componenti/facciata.css");
+@import url("/gnt-anteprima/css/componenti/recensione.css");
+@import url("/gnt-anteprima/css/componenti/modulo.css");
+@import url("/gnt-anteprima/css/componenti/cookie.css");
+@import url("/gnt-anteprima/css/movimento.css");
+@import url("/gnt-anteprima/css/utilita.css");

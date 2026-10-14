@@ -1,0 +1,16 @@
+/* recensione (06-design/componenti/recensione.md): la recensione Google di una sede con stelle, testo, nome, data, fonte e i due link;
+   senza il testo copiato dalla scheda, la frase sulle stelle con i due link (caso «dato mancante») */
+.recensione { max-width: calc(100% * 6 / var(--colonne)); }
+.recensione__cella { padding-block: var(--cella-pad); border-block: var(--filetto); display: flex; flex-direction: column; gap: var(--spazio-4); }
+.recensione__stelle { display: flex; gap: var(--spazio-1); color: var(--colore-rosso); }
+.recensione__stelle .icona { fill: currentColor; }
+.recensione__stelle .icona--vuota { fill: none; color: var(--colore-testo-terziario); }
+.recensione__testo { font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-h3); font-stretch: var(--larghezza-carattere-titoli); line-height: var(--interlinea-titoli); color: var(--colore-testo); }
+.recensione__fonte {
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-etichetta); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); text-transform: uppercase; color: var(--colore-testo-terziario); font-style: normal;
+}
+.recensione .inviti { margin-top: var(--blocco-y); }
+.recensione__invito { color: var(--colore-testo-secondario); }
+.recensione__cella .prosa p { font-size: var(--testo-lead); color: var(--colore-testo); }
+@media (max-width: 767px) { .recensione { max-width: none; } }

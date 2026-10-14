@@ -1,0 +1,12 @@
+/* facciata (06-design/componenti/facciata.md): mappa di Google o video self-hosted caricati solo al clic */
+.facciata__cornice { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--raggio-scheda); background-color: var(--colore-superficie); }
+.facciata__cornice > img, .facciata__cornice > iframe, .facciata__cornice > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.facciata__pulsante { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
+.facciata__pulsante:active { transform: translate(-50%, calc(-50% + 1px)); }
+.facciata--video .facciata__pulsante {
+  width: var(--pulsante-video); height: var(--pulsante-video); padding: 0; border-radius: var(--raggio-pillola); background-color: var(--colore-rosso); color: var(--colore-bianco);
+}
+.facciata--video .facciata__pulsante .icona { width: var(--icona-3); height: var(--icona-3); }
+.facciata__stato, .facciata__avviso, .facciata__didascalia { padding-top: var(--spazio-3); font-size: var(--testo-piccolo); line-height: var(--interlinea-piccolo); color: var(--colore-testo-secondario); }
+.facciata__cornice .facciata__stato { position: absolute; left: 0; right: 0; bottom: 0; padding: var(--spazio-3); background-color: var(--colore-superficie); }
+.facciata__azioni { padding-top: var(--spazio-2); }

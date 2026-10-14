@@ -1,0 +1,21 @@
+/* faq (06-design/componenti/faq.md): domande e risposte in fisarmonica su righe a filetti; da 1200 px testa su 3 colonne e domande su 5 */
+.faq__griglia { display: grid; }
+.faq__voci { border-top: var(--filetto); }
+.faq__voce { border-bottom: var(--filetto); }
+.faq__voce > summary {
+  position: relative; display: flex; align-items: center; min-height: var(--spazio-7);
+  padding: var(--spazio-5) var(--spazio-7) var(--spazio-5) 0; transition: background-color var(--durata-1) var(--curva);
+}
+.faq__voce > summary h3 {
+  font-family: var(--font-testo); font-weight: var(--peso-forte); font-size: var(--testo-domanda); font-stretch: normal;
+  line-height: var(--interlinea-media); color: var(--colore-testo);
+}
+.faq__voce > summary .icona { position: absolute; right: 0; top: 50%; margin-top: calc(var(--icona-1) / -2); color: var(--colore-testo); transition: transform var(--durata-2) var(--curva); }
+.faq__voce[open] > summary .icona { transform: rotate(180deg); }
+@media (hover: hover) { .faq__voce > summary:hover { background-color: var(--colore-superficie); } .faq__voce > summary:hover h3 { text-decoration: underline; text-underline-offset: var(--scarto-sottolineatura); text-decoration-thickness: 1px; } }
+.faq__risposta { padding-bottom: var(--spazio-5); max-width: var(--misura-testo); color: var(--colore-testo-secondario); }
+@media (min-width: 1200px) {
+  .faq__griglia { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); align-items: start; }
+  .faq__griglia > .sezione__testa { grid-column: 1 / span 3; width: auto; padding-right: var(--colonne-gap); margin-bottom: 0; }
+  .faq__voci { grid-column: 4 / span 5; }
+}

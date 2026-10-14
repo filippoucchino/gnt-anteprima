@@ -1,0 +1,26 @@
+/* prosa (06-design/componenti/prosa.md): testo corrente; la frase grande che si rivela (movimento in movimento.css); le pagine legali */
+.prosa { max-width: var(--misura-testo); color: var(--colore-testo-secondario); }
+.prosa > * + * { margin-top: var(--spazio-4); }
+.sezione__testa > .prosa > p:first-child { font-size: var(--testo-lead); color: var(--colore-testo); }
+.prosa ul, .prosa ol { list-style: none; display: grid; gap: var(--spazio-2); }
+.prosa ul > li { position: relative; padding-left: var(--spazio-5); }
+.prosa ul > li::before {
+  content: ""; position: absolute; left: 0; top: calc(var(--interlinea-testo) * 0.5em - var(--quadrato-famiglia) / 2);
+  width: var(--quadrato-famiglia); height: var(--quadrato-famiglia); background-color: var(--colore-testo-terziario);
+}
+.prosa blockquote { font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-h3); font-stretch: var(--larghezza-carattere-titoli); line-height: var(--interlinea-titoli); color: var(--colore-testo); }
+.prosa--centrata { margin-inline: auto; text-align: center; }
+.sezione__testa:has(> .prosa--centrata) { align-items: center; text-align: center; margin-inline: auto; }
+.prosa--centrata ul { justify-items: center; }
+
+.prosa--frase { max-width: none; }
+.prosa__frase {
+  max-width: var(--misura-titolo); color: var(--colore-testo);
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-frase);
+  font-stretch: var(--larghezza-carattere-titoli); line-height: var(--interlinea-frase); text-wrap: pretty;
+}
+.prosa__frase .parola { display: inline-block; }
+
+.prosa--legale { max-width: var(--contenitore-stretto); margin-inline: auto; }
+.prosa--legale h2 { font-size: var(--testo-h3); margin-top: var(--blocco-y); }
+.prosa--legale h3 { font-family: var(--font-testo); font-weight: var(--peso-forte); font-size: var(--testo-base); font-stretch: normal; }

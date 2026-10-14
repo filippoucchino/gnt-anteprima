@@ -1,0 +1,162 @@
+/* Livello 1: token. Copia del blocco di 06-design/design-system.md §1.9, senza modifiche: un valore cambia là, poi qui. */
+:root {
+  /* tavolozza: colori del marchio (brand kit), neutri dell'agenzia, colori di codifica delle famiglie */
+  --colore-rosso: #ED1C24;
+  --colore-rosso-scuro: #B5121B;
+  --colore-nero: #231F20;
+  --colore-nero-alto: #2E2A2B;
+  --colore-nero-filetto: #4D494A;
+  --colore-grigio-scuro: #58595B;
+  --colore-grigio-medio: #8E9193;
+  --colore-grigio-chiaro: #D9D9D9;
+  --colore-grigio-fondo: #F4F4F4;
+  --colore-bianco: #FFFFFF;
+  --colore-sede: #2AA7E0;
+  --colore-cantiere: #FFC400;
+  --colore-griglia-campitura: rgb(255 255 255 / 0.4);
+
+  /* colori di contesto: fondo scuro predefinito */
+  --colore-fondo: var(--colore-nero);
+  --colore-superficie: var(--colore-nero-alto);
+  --colore-testo: var(--colore-bianco);
+  --colore-testo-secondario: var(--colore-grigio-chiaro);
+  --colore-testo-terziario: var(--colore-grigio-medio);
+  --colore-filetto: var(--colore-nero-filetto);
+  --colore-bordo-controllo: var(--colore-grigio-medio);
+  --colore-link: var(--colore-bianco);
+  --colore-fuoco: var(--colore-bianco);
+
+  /* tipografia */
+  --font-titoli: "Mona Sans", Verdana, Arial, sans-serif;
+  --font-testo: "Inter", Arial, Helvetica, sans-serif;
+  --larghezza-carattere-titoli: 112.5%;
+  --larghezza-carattere-display: 125%;
+  --testo-gigante: clamp(4rem, 1.771rem + 9.143vw, 10rem);
+  --testo-parola: clamp(2.5rem, 0.643rem + 7.619vw, 7.5rem);
+  --testo-numero: clamp(2.5rem, 1.757rem + 3.048vw, 4.5rem);
+  --testo-h1: clamp(1.75rem, 0.914rem + 3.429vw, 4rem);
+  --testo-frase: clamp(1.625rem, 0.929rem + 2.857vw, 3.5rem);
+  --testo-h2: clamp(1.625rem, 1.114rem + 2.095vw, 3rem);
+  --testo-elenco: clamp(1.5rem, 1.129rem + 1.524vw, 2.5rem);
+  --testo-menu: clamp(1.5rem, 1.361rem + 0.571vw, 1.875rem);
+  --testo-h3: clamp(1.25rem, 1.064rem + 0.762vw, 1.75rem);
+  --testo-lead: clamp(1.125rem, 1.032rem + 0.381vw, 1.375rem);
+  --testo-domanda: clamp(1.0625rem, 0.993rem + 0.286vw, 1.25rem);
+  --testo-base: clamp(1rem, 0.954rem + 0.19vw, 1.125rem);
+  --testo-etichetta: clamp(0.875rem, 0.782rem + 0.381vw, 1.125rem);
+  --testo-macchina: 1.25rem;
+  --testo-pulsante: 1.1875rem;
+  --testo-nav: 0.875rem;
+  --testo-piccolo: 0.875rem;
+  --peso-testo: 400;
+  --peso-forte: 600;
+  --peso-titoli: 500;
+  --peso-gigante: 300;
+  --peso-pulsante: 700;
+  --interlinea-display: 1;
+  --interlinea-titoli: 1.1;
+  --interlinea-frase: 1.2;
+  --interlinea-media: 1.3;
+  --interlinea-testo: 1.6;
+  --interlinea-piccolo: 1.45;
+  --spaziatura-display: 0.03em;
+  --spaziatura-titoli: 0em;
+  --scarto-sottolineatura: 0.15em;
+  --misura-testo: 68ch;
+  --misura-lead: 56ch;
+  --misura-titolo: 67.5rem;
+
+  /* spazi, contenitore, griglia */
+  --spazio-1: 0.25rem; --spazio-2: 0.5rem; --spazio-3: 0.75rem; --spazio-4: 1rem;
+  --spazio-5: 1.5rem; --spazio-6: 2rem; --spazio-7: 3rem; --spazio-8: 4rem; --spazio-9: 6rem;
+  --sezione-y: clamp(3.5rem, 2.014rem + 6.095vw, 7.5rem);
+  --blocco-y: clamp(2rem, 1.257rem + 3.048vw, 4rem);
+  --cella-pad: clamp(1rem, 0.629rem + 1.524vw, 2rem);
+  --scarto-cella: 0.5rem;
+  --colonne-gap: clamp(1.5rem, 0.75rem + 3vw, 4rem);
+  --margine-pagina: clamp(1rem, 0.5rem + 2vw, 2rem);
+  --altezza-intestazione: 4rem;
+  --passo-elenco: 15svh;
+  --quadrato-famiglia: 0.75rem;
+  --miniatura: 6rem;
+  --pulsante-video: 4.5rem;
+  --contenitore: 81rem;
+  --contenitore-stretto: 46rem;
+  --colonne: 8;
+
+  /* forma, superfici, sfumature */
+  --raggio-pillola: 9999px;
+  --raggio-scheda: clamp(1rem, 0.814rem + 0.762vw, 1.5rem);
+  --raggio-campo: 0.5rem;
+  --filetto: 1px solid var(--colore-filetto);
+  --linee-griglia: linear-gradient(to left, var(--colore-filetto) 0 1px, transparent 1px), repeating-linear-gradient(to right, var(--colore-filetto) 0 1px, transparent 1px 12.5%);
+  --bordo-controllo: 1px solid var(--colore-bordo-controllo);
+  --bordo-campo: 1.5px solid var(--colore-bordo-controllo);
+  --linea-attiva: 2px;
+  --ombra-scheda: 0 1.5rem 3rem rgb(35 31 32 / 0.3);
+  --sfumatura-basso: linear-gradient(to top, rgb(35 31 32 / 0.9) 0%, rgb(35 31 32 / 0.72) 25%, rgb(35 31 32 / 0.65) 40%, rgb(35 31 32 / 0) 75%);
+  --sfumatura-lato: linear-gradient(to right, rgb(35 31 32 / 0.9) 0%, rgb(35 31 32 / 0.65) 55%, rgb(35 31 32 / 0) 85%);
+  --fondo-doppio: linear-gradient(to bottom, var(--colore-sede) 0 50%, var(--colore-cantiere) 50% 100%);
+  --filtro-atmosfera: grayscale(1) contrast(1.1);
+  --opacita-rivelazione: 0.4;
+  --motivo-opacita: 0.12;
+  --motivo-misura: 46rem;
+  --motivo-scarto: -14rem;
+  --velo-comando: 0.85;
+  --velo-dialogo: 0.6;
+  --fuoco: 3px solid var(--colore-fuoco);
+  --fuoco-scarto: 2px;
+
+  /* movimento e icone */
+  --durata-1: 200ms;
+  --durata-2: 400ms;
+  --durata-comparsa: 1000ms;
+  --curva: ease-out;
+  --curva-comparsa: cubic-bezier(0.19, 1, 0.22, 1);
+  --icona-1: 1.25rem; --icona-2: 1.5rem; --icona-3: 3rem;
+}
+@media (min-width: 1200px) { :root { --altezza-intestazione: 4.5rem; } }
+.sezione--chiara {
+  --colore-fondo: var(--colore-bianco);
+  --colore-superficie: var(--colore-grigio-fondo);
+  --colore-testo: var(--colore-nero);
+  --colore-testo-secondario: var(--colore-grigio-scuro);
+  --colore-testo-terziario: var(--colore-grigio-scuro);
+  --colore-filetto: var(--colore-grigio-chiaro);
+  --colore-link: var(--colore-rosso-scuro);
+  --colore-fuoco: var(--colore-nero);
+  --filetto: 1px solid var(--colore-filetto);
+  --linee-griglia: linear-gradient(to left, var(--colore-filetto) 0 1px, transparent 1px), repeating-linear-gradient(to right, var(--colore-filetto) 0 1px, transparent 1px 12.5%);
+  --fuoco: 3px solid var(--colore-fuoco);
+}
+.campitura--sede {
+  --colore-fondo: var(--colore-sede);
+  --colore-superficie: var(--colore-sede);
+  --colore-testo: var(--colore-nero);
+  --colore-testo-secondario: var(--colore-nero);
+  --colore-testo-terziario: var(--colore-nero);
+  --colore-filetto: var(--colore-griglia-campitura);
+  --colore-bordo-controllo: var(--colore-nero);
+  --colore-link: var(--colore-nero);
+  --colore-fuoco: var(--colore-nero);
+  --filetto: 1px solid var(--colore-filetto);
+  --linee-griglia: linear-gradient(to left, var(--colore-filetto) 0 1px, transparent 1px), repeating-linear-gradient(to right, var(--colore-filetto) 0 1px, transparent 1px 12.5%);
+  --bordo-controllo: 1px solid var(--colore-bordo-controllo);
+  --fuoco: 3px solid var(--colore-fuoco);
+}
+.campitura--cantiere {
+  --colore-fondo: var(--colore-cantiere);
+  --colore-superficie: var(--colore-cantiere);
+  --colore-testo: var(--colore-nero);
+  --colore-testo-secondario: var(--colore-nero);
+  --colore-testo-terziario: var(--colore-nero);
+  --colore-filetto: var(--colore-griglia-campitura);
+  --colore-bordo-controllo: var(--colore-nero);
+  --colore-link: var(--colore-nero);
+  --colore-fuoco: var(--colore-nero);
+  --filetto: 1px solid var(--colore-filetto);
+  --linee-griglia: linear-gradient(to left, var(--colore-filetto) 0 1px, transparent 1px), repeating-linear-gradient(to right, var(--colore-filetto) 0 1px, transparent 1px 12.5%);
+  --bordo-controllo: 1px solid var(--colore-bordo-controllo);
+  --fuoco: 3px solid var(--colore-fuoco);
+}
+@media (prefers-reduced-motion: reduce) { :root { --durata-1: 0ms; --durata-2: 0ms; --durata-comparsa: 0ms; } }

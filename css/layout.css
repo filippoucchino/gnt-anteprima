@@ -1,0 +1,80 @@
+/* Livello 3: layout. Contenitore, griglia di otto colonne disegnata su ogni fondo, sezioni sul nero, sul chiaro e sulle
+   campiture delle famiglie, testa di sezione, colore della famiglia da data-famiglia (06-design/design-system.md §1.4, §3, §5). */
+
+/* misura e posizione delle linee della griglia: larghe quanto il contenitore; sotto 768 px quattro colonne
+   (la stessa immagine di otto colonne larga il doppio, così le linee cadono ogni quarto del contenitore) */
+:root {
+  --griglia-misura: min(100% - 2 * var(--margine-pagina), var(--contenitore)) 100%;
+  --griglia-posizione: 50% 0;
+}
+@media (max-width: 767px) {
+  :root {
+    --griglia-misura: calc(2 * (100% - 2 * var(--margine-pagina))) 100%;
+    --griglia-posizione: var(--margine-pagina) 0;
+  }
+}
+
+.contenitore { width: min(100% - 2 * var(--margine-pagina), var(--contenitore)); margin-inline: auto; position: relative; }
+.contenitore--stretto { width: min(100% - 2 * var(--margine-pagina), var(--contenitore-stretto)); }
+
+/* ogni blocco a tutta finestra ha il fondo del suo contesto; la griglia si disegna, nel colore del contesto, sui fondi che mostrano
+   il lavoro (prima schermata, elenco fermo, campiture, mosaico, piè di pagina), come nel primario; le sezioni di testo corrente e
+   le fasce dei numeri (prosa, frase, elenchi a righe, contatti, domande, tabelle, moduli, numeri, chiusura) restano su fondo pieno, e
+   dentro i fondi con la griglia i blocchi di testo corrente hanno il fondo del contesto, così le linee si fermano al bordo del testo */
+.sezione, .hero, .hero__famiglia, .pie-pagina, .campitura--sede, .campitura--cantiere {
+  background-color: var(--colore-fondo);
+  color: var(--colore-testo);
+}
+.hero, .hero__famiglia, .pie-pagina, .campitura--sede, .campitura--cantiere,
+.sezione:has(.elenco-voci--fermo, .galleria--mosaico) {
+  background-image: var(--linee-griglia);
+  background-size: var(--griglia-misura);
+  background-position: var(--griglia-posizione);
+  background-repeat: no-repeat;
+}
+.campitura--doppia {
+  background-image: var(--linee-griglia), var(--fondo-doppio);
+  background-size: var(--griglia-misura), 100% 100%;
+  background-position: var(--griglia-posizione), 0 0;
+}
+
+.sezione { padding-block: var(--sezione-y); }
+
+/* due sezioni consecutive sullo stesso fondo (e il piè di pagina dopo una sezione chiara) si separano con un filetto largo quanto il
+   contenitore e la seconda comincia a --blocco-y sotto di esso, così lo spazio non raddoppia; il cambio di fondo basta da solo */
+.sezione--chiara + .sezione--chiara,
+.sezione:not(.sezione--chiara, .campitura--sede, .campitura--cantiere) + .sezione:not(.sezione--chiara, .campitura--sede, .campitura--cantiere),
+main:has(> :last-child.sezione--chiara) + .pie-pagina {
+  padding-top: 0;
+}
+.sezione--chiara + .sezione--chiara > .contenitore,
+.sezione:not(.sezione--chiara, .campitura--sede, .campitura--cantiere) + .sezione:not(.sezione--chiara, .campitura--sede, .campitura--cantiere) > .contenitore,
+main:has(> :last-child.sezione--chiara) + .pie-pagina > .contenitore {
+  border-top: var(--filetto); padding-top: var(--blocco-y);
+}
+
+/* blocchi di testo corrente sopra la griglia: il fondo del contesto copre le linee dietro il testo */
+.hero__apertura, .sezione__testa, .griglia-schede__testa, .griglia-schede__voci, .pie-pagina__societa, .pie-pagina__lavorazioni, .pie-pagina__sito {
+  background-color: var(--colore-fondo);
+}
+
+/* testa della sezione: etichetta del tipo → H2 → introduzione, su 6 colonne */
+.sezione__testa { display: flex; flex-direction: column; align-items: flex-start; gap: var(--spazio-4); margin-bottom: var(--blocco-y); }
+.sezione__testa:last-child { margin-bottom: 0; }
+.sezione__testa > h2 + * { margin-top: var(--spazio-2); }
+.sezione__intro { font-size: var(--testo-lead); color: var(--colore-testo-secondario); max-width: var(--misura-lead); }
+@media (min-width: 768px) { .sezione__testa { width: calc(100% * 6 / var(--colonne)); } }
+
+/* griglia di contenuto sulle colonne del contenitore, senza spazi: lo spazio sta dentro le celle */
+.griglia { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (min-width: 768px) { .griglia { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); } }
+
+/* famiglia di servizi dal JSON (business.services[].group): colore, campitura e quadratino del segno */
+[data-famiglia="sede"] { --colore-famiglia: var(--colore-sede); --fondo-famiglia: var(--colore-sede); }
+[data-famiglia="cantiere"] { --colore-famiglia: var(--colore-cantiere); --fondo-famiglia: var(--colore-cantiere); }
+[data-famiglia="doppia"] { --colore-famiglia: var(--colore-sede); --fondo-famiglia: var(--fondo-doppio); }
+[data-famiglia] { --quadratino: var(--colore-famiglia); --quadratino-larghezza: var(--quadrato-famiglia); }
+[data-famiglia="doppia"] {
+  --quadratino: linear-gradient(to right, var(--colore-sede) 0 var(--quadrato-famiglia), transparent 0 calc(var(--quadrato-famiglia) + var(--spazio-1)), var(--colore-cantiere) 0);
+  --quadratino-larghezza: calc(2 * var(--quadrato-famiglia) + var(--spazio-1));
+}

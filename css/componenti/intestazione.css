@@ -1,0 +1,126 @@
+/* intestazione (06-design/componenti/intestazione.md): barra fissa trasparente sulla prima schermata e scura allo scorrimento
+   (lo strato ::before; il passaggio è in movimento.css), voci in Mona Sans maiuscolo da 1200 px, pannello «Lavorazioni» per famiglia,
+   tendina «Sedi», menu a schermo intero sotto 1200 px. Telefono e preventivo rosso stanno nella barra scura; da 768 px, sulla
+   prima schermata trasparente, il telefono compare e il preventivo si riempie di rosso con lo scorrimento (movimento.css) */
+.vai-al-contenuto {
+  position: absolute; left: var(--margine-pagina); top: var(--spazio-2); z-index: 40;
+  padding: var(--spazio-2) var(--spazio-4); background-color: var(--colore-bianco); color: var(--colore-nero);
+  font-weight: var(--peso-forte); transform: translateY(-300%);
+}
+.vai-al-contenuto:focus { transform: none; outline: 3px solid var(--colore-nero); }
+
+.intestazione {
+  position: sticky; top: 0; z-index: 30; height: var(--altezza-intestazione);
+  margin-bottom: calc(-1 * var(--altezza-intestazione)); color: var(--colore-testo);
+}
+.intestazione::before { content: ""; position: absolute; inset: 0; background-color: var(--colore-nero); border-bottom: var(--filetto); }
+.intestazione__barra { display: flex; align-items: center; gap: var(--spazio-5); height: 100%; }
+.intestazione__simbolo { display: block; flex: none; padding-block: var(--spazio-4); }
+.intestazione__simbolo img { height: var(--spazio-6); width: auto; }
+.intestazione__azioni { display: flex; align-items: center; gap: var(--spazio-3); margin-left: auto; }
+.intestazione__telefono { white-space: nowrap; }
+.intestazione__voci, .intestazione__pannello ul, .intestazione__tendina ul { list-style: none; }
+.intestazione__voce > a, .intestazione__apri {
+  position: relative; display: flex; align-items: center; gap: var(--spazio-1);
+  color: var(--colore-testo); text-decoration: none; font-family: var(--font-titoli); font-weight: var(--peso-titoli);
+}
+.intestazione__apri .icona { transition: transform var(--durata-2) var(--curva); }
+.intestazione__apri[aria-expanded="true"] .icona { transform: rotate(180deg); }
+
+/* pannello «Lavorazioni»: due gruppi per famiglia; tendina «Sedi» */
+.intestazione__gruppo ul { margin-top: var(--spazio-3); border-top: var(--filetto); }
+.intestazione__gruppo li { border-bottom: var(--filetto); }
+.intestazione__gruppo a, .intestazione__tendina a {
+  display: flex; align-items: center; gap: var(--spazio-3); min-height: var(--spazio-7); padding-block: var(--spazio-2);
+  color: var(--colore-testo); text-decoration: none;
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-menu); font-stretch: var(--larghezza-carattere-titoli); line-height: var(--interlinea-titoli);
+}
+.intestazione__gruppo a::before {
+  content: ""; flex: none; width: var(--quadratino-larghezza); height: var(--quadrato-famiglia); background: var(--quadratino);
+  margin-right: calc(2 * var(--quadrato-famiglia) + var(--spazio-1) - var(--quadratino-larghezza));
+}
+.intestazione__gruppo a[aria-current="page"], .intestazione__tendina a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--colore-rosso); text-decoration-thickness: var(--linea-attiva); text-underline-offset: var(--scarto-sottolineatura); }
+@media (hover: hover) { .intestazione__gruppo a:hover, .intestazione__tendina a:hover { text-decoration: underline; text-decoration-color: var(--colore-rosso); text-decoration-thickness: var(--linea-attiva); text-underline-offset: var(--scarto-sottolineatura); } }
+.intestazione__tutte a { font-weight: var(--peso-forte); color: var(--colore-link); }
+
+.intestazione__menu {
+  display: inline-flex; align-items: center; gap: var(--spazio-2); min-height: 2.75rem; min-width: 2.75rem; padding-inline: var(--spazio-2);
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-size: var(--testo-nav); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); text-transform: uppercase;
+}
+.intestazione__menu .icona { width: var(--icona-2); height: var(--icona-2); }
+.intestazione__menu[aria-expanded="true"] .icona--apri, .intestazione__menu[aria-expanded="false"] .icona--chiudi { display: none; }
+.intestazione__preventivo-menu { display: none; }
+
+/* sotto 1200 px: menu a schermo intero sul nero, voci in colonna, gruppi già aperti */
+@media (max-width: 1199px) {
+  .intestazione__nav {
+    position: fixed; top: var(--altezza-intestazione); left: 0; right: 0; bottom: 0; overflow-y: auto; overscroll-behavior: contain;
+    padding: var(--spazio-5) var(--margine-pagina) var(--spazio-8);
+    background-color: var(--colore-nero); background-image: var(--linee-griglia); background-size: var(--griglia-misura); background-position: var(--griglia-posizione); background-repeat: no-repeat;
+    visibility: hidden; opacity: 0; transform: translateY(calc(-1 * var(--spazio-2)));
+    transition: opacity var(--durata-2) var(--curva), transform var(--durata-2) var(--curva), visibility 0s linear var(--durata-2);
+  }
+  .intestazione:has(.intestazione__menu[aria-expanded="true"]) .intestazione__nav {
+    visibility: visible; opacity: 1; transform: none; transition: opacity var(--durata-2) var(--curva), transform var(--durata-2) var(--curva);
+  }
+  .intestazione__voci { max-width: var(--contenitore); margin-inline: auto; }
+  .intestazione__voce { border-bottom: var(--filetto); }
+  .intestazione__voce > a, .intestazione__apri {
+    width: 100%; min-height: var(--spazio-7); padding-block: var(--spazio-3);
+    font-size: var(--testo-menu); font-stretch: var(--larghezza-carattere-titoli); line-height: var(--interlinea-titoli); text-align: left;
+  }
+  .intestazione__apri .icona { margin-left: auto; }
+  .intestazione__pannello, .intestazione__tendina { display: none; padding-bottom: var(--spazio-5); }
+  .intestazione__apri[aria-expanded="true"] + .intestazione__pannello, .intestazione__apri[aria-expanded="true"] + .intestazione__tendina { display: block; }
+  .intestazione__gruppo + .intestazione__gruppo { margin-top: var(--spazio-5); }
+  .intestazione__tutte { margin-top: var(--spazio-4); }
+  .intestazione__tendina a { padding-left: var(--spazio-5); }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .intestazione__pannello { display: none; }
+  .intestazione__apri[aria-expanded="true"] + .intestazione__pannello { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--colonne-gap); }
+  .intestazione__gruppo + .intestazione__gruppo { margin-top: 0; }
+  .intestazione__tutte { grid-column: 1 / -1; }
+}
+@media (max-width: 767px) {
+  /* a 390 px «Chiudi il menu» non entra accanto al telefono: resta l'icona, la parola resta per gli screen reader */
+  .intestazione__menu[aria-expanded="true"] .intestazione__menu-testo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .intestazione__preventivo { display: none; }
+  .intestazione__preventivo-menu { display: flex; width: 100%; margin-top: var(--spazio-6); }
+}
+
+/* da 1200 px: le cinque voci in chiaro nella barra, pannello e tendina sotto la barra */
+@media (min-width: 1200px) {
+  .intestazione__menu { display: none; }
+  .intestazione__nav { margin-left: auto; height: 100%; }
+  .intestazione__voci { display: flex; gap: var(--spazio-5); height: 100%; }
+  .intestazione__voce { display: flex; }
+  .intestazione__voce > a, .intestazione__apri {
+    height: 100%; font-size: var(--testo-nav); font-stretch: var(--larghezza-carattere-display);
+    letter-spacing: var(--spaziatura-display); text-transform: uppercase;
+  }
+  .intestazione__voce > a::after, .intestazione__apri::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--linea-attiva); background-color: var(--colore-rosso);
+    transform: scaleX(0); transform-origin: left; transition: transform var(--durata-2) var(--curva);
+  }
+  .intestazione__voce > a[aria-current="page"]::after, .intestazione__apri[aria-current="page"]::after { transform: scaleX(1); }
+  .intestazione__voce > a:hover::after, .intestazione__apri:hover::after, .intestazione__apri[aria-expanded="true"]::after { transform: scaleX(1); }
+  .intestazione__pannello, .intestazione__tendina {
+    position: absolute; top: 100%; visibility: hidden; opacity: 0; transform: translateY(calc(-1 * var(--spazio-2)));
+    background-color: var(--colore-superficie); border: var(--filetto); border-top: 0; border-radius: 0 0 var(--raggio-scheda) var(--raggio-scheda);
+    padding: var(--cella-pad);
+    transition: opacity var(--durata-2) var(--curva), transform var(--durata-2) var(--curva), visibility 0s linear var(--durata-2);
+  }
+  .intestazione__apri[aria-expanded="true"] + .intestazione__pannello, .intestazione__apri[aria-expanded="true"] + .intestazione__tendina {
+    visibility: visible; opacity: 1; transform: none; transition: opacity var(--durata-2) var(--curva), transform var(--durata-2) var(--curva);
+  }
+  .intestazione__pannello { left: 0; right: 0; display: grid; grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); row-gap: var(--spazio-5); }
+  .intestazione__gruppo:first-child { grid-column: 1 / span 4; padding-right: var(--colonne-gap); }
+  .intestazione__gruppo:nth-child(2) { grid-column: 5 / span 4; }
+  .intestazione__tutte { grid-column: 1 / -1; }
+  .intestazione__voce:has(.intestazione__tendina) { position: relative; }
+  .intestazione__tendina { left: calc(-1 * var(--cella-pad)); min-width: 18rem; }
+  .intestazione__tendina li + li { border-top: var(--filetto); }
+  .intestazione__tendina a { font-family: var(--font-testo); font-weight: var(--peso-forte); font-size: var(--testo-base); font-stretch: normal; }
+}

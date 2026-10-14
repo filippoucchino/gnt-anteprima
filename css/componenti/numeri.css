@@ -1,0 +1,53 @@
+/* numeri (06-design/componenti/numeri.md): numeri giganti del profilo in fasce chiare alternate con la didascalia e la prova;
+   fascia scorrevole (solo home) legata allo scorrimento in movimento.css */
+.numeri { overflow-x: clip; }
+.numeri__fascia { overflow: hidden; margin-top: calc(-1 * var(--sezione-y) / 2); margin-bottom: var(--blocco-y); }
+.numeri__fascia-riga {
+  white-space: nowrap; width: max-content; padding-left: var(--margine-pagina);
+  font-family: var(--font-titoli); font-weight: var(--peso-gigante); font-size: var(--testo-gigante); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); line-height: var(--interlinea-display); color: var(--colore-testo-terziario);
+}
+.numeri__testa { display: grid; gap: var(--blocco-y); margin-bottom: var(--blocco-y); }
+.numeri__testa > .sezione__testa { margin-bottom: 0; width: auto; }
+.numeri__foto { width: 60%; }
+.numeri__foto img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--raggio-scheda); }
+.numeri__foto figcaption { margin-top: var(--spazio-3); font-size: var(--testo-piccolo); line-height: var(--interlinea-piccolo); color: var(--colore-testo-secondario); }
+.numeri__voci { list-style: none; border-top: var(--filetto); }
+.numeri__voce { border-bottom: var(--filetto); padding-block: var(--blocco-y); }
+/* l'ultima fascia chiude la sezione senza filetto: sotto c'è lo spazio della sezione, non una fascia vuota */
+.numeri__voce:last-child { border-bottom: 0; padding-bottom: 0; }
+.numeri__voce > p { display: flex; flex-direction: column; gap: var(--spazio-4); }
+/* fascia con la foto della macchina che prova il numero: sotto 768 px la foto 16:9 dopo il testo, a tutta larghezza; da 768 px sopra il testo */
+.numeri__voce--foto { display: flex; flex-direction: column; gap: var(--spazio-5); }
+.numeri__voce--foto .numeri__foto { order: 1; width: 100%; }
+.numeri__voce--foto .numeri__foto img { aspect-ratio: 16 / 9; }
+.numeri__valore {
+  font-family: var(--font-titoli); font-weight: var(--peso-gigante); font-size: var(--testo-gigante); font-stretch: var(--larghezza-carattere-display);
+  letter-spacing: var(--spaziatura-display); line-height: var(--interlinea-display); color: var(--colore-testo);
+}
+.numeri__valore--lungo { font-size: var(--testo-numero); }
+.numeri__testo { display: flex; flex-direction: column; gap: var(--spazio-2); }
+.numeri__didascalia { font-size: var(--testo-lead); line-height: var(--interlinea-media); color: var(--colore-testo); }
+/* la macchina che prova il numero, nel registro dei titoli: è la prova, non una nota */
+.numeri__prova {
+  font-family: var(--font-titoli); font-weight: var(--peso-titoli); font-stretch: var(--larghezza-carattere-titoli);
+  font-size: var(--testo-macchina); line-height: var(--interlinea-titoli); color: var(--colore-testo);
+}
+@media (min-width: 768px) {
+  .numeri__testa { grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); gap: 0; align-items: start; }
+  .numeri__testa > .sezione__testa { grid-column: 1 / span 6; padding-right: var(--colonne-gap); }
+  .numeri__foto { grid-column: 7 / span 2; width: auto; padding-inline: var(--scarto-cella); }
+  .numeri__voce > p { display: grid; grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); align-items: end; gap: 0; }
+  /* numero su 6 colonne e testo su 2: «5000 mm» a 160 px misura 873 px, più delle 5 colonne (810 px) */
+  .numeri__valore { grid-column: 1 / span 6; grid-row: 1; }
+  .numeri__testo { grid-column: 7 / span 2; grid-row: 1; padding-left: var(--spazio-5); }
+  /* numero a destra: il testo gli sta subito accanto a sinistra, allineato a destra, come il paragrafo di SPEED nel primario */
+  .numeri__voce:nth-child(even) > p { display: flex; flex-direction: row-reverse; justify-content: flex-start; align-items: flex-end; gap: var(--colonne-gap); }
+  .numeri__voce:nth-child(even) .numeri__testo { flex: 0 1 calc(100% * 2 / var(--colonne)); padding: 0; text-align: right; }
+  /* fascia con la foto: numero e testo uno sopra l'altro nelle colonne 1–6, foto 16:9 con la didascalia nelle colonne 7–8,
+     centrati in verticale tra loro */
+  .numeri__voce--foto { display: grid; grid-template-columns: repeat(var(--colonne), minmax(0, 1fr)); align-items: center; gap: 0; }
+  .numeri__voce--foto > p { grid-column: 1 / span 6; grid-row: 1; display: flex; flex-direction: column; gap: var(--spazio-4); }
+  .numeri__voce--foto .numeri__testo { padding-left: 0; }
+  .numeri__voce--foto .numeri__foto { grid-column: 7 / span 2; grid-row: 1; width: auto; padding: 0 0 0 var(--spazio-5); }
+}
