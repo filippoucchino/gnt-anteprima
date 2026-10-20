@@ -1,9 +1,0 @@
-/* briciole (06-design/componenti/briciole.md): percorso della pagina sopra l'H1, nella prima schermata */
-.briciole { max-width: 100%; font-family: var(--font-testo); font-size: var(--testo-piccolo); line-height: var(--interlinea-piccolo); }
-.briciole ol { display: flex; list-style: none; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
-.briciole ol::-webkit-scrollbar { display: none; }
-.briciole li { display: flex; align-items: center; }
-.briciole li + li::before { content: "›" / ""; color: var(--colore-testo-terziario); padding-inline: var(--spazio-2); }
-.briciole a { display: inline-block; padding-block: var(--spazio-1); color: var(--colore-testo-secondario); text-decoration: none; }
-@media (hover: hover) { .briciole a:hover { text-decoration: underline; } }
-.briciole [aria-current="page"] { color: var(--colore-testo); }
