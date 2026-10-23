@@ -2,378 +2,207 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GNT Officine Meccaniche, meccanica industriale Como-Bolzano</title>
-<meta name="description" content="GNT Officine Meccaniche: lavorazioni meccaniche conto terzi, carpenteria e montaggi in cantiere. Officine a Rovello Porro (CO) e Bolzano. Chiedi un preventivo.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="canonical" href="https://filippoucchino.github.io/gnt-anteprima/">
-<meta property="og:title" content="GNT Officine Meccaniche, meccanica industriale Como-Bolzano">
-<meta property="og:description" content="GNT Officine Meccaniche: lavorazioni meccaniche conto terzi, carpenteria e montaggi in cantiere. Officine a Rovello Porro (CO) e Bolzano. Chiedi un preventivo.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://filippoucchino.github.io/gnt-anteprima/">
-<meta property="og:locale" content="it_IT">
-<meta property="og:site_name" content="GNT Officine Meccaniche">
-<meta property="og:image" content="https://filippoucchino.github.io/gnt-anteprima/img/og/home.jpg">
-<meta property="og:image:alt" content="GNT Officine Meccaniche, Rovello Porro e Bolzano">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/gnt-anteprima/img/favicon.ico" sizes="48x48">
-<link rel="icon" href="/gnt-anteprima/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/gnt-anteprima/img/apple-touch-icon.png">
-<meta name="theme-color" content="#231F20">
-<link rel="describedby" href="/gnt-anteprima/llms.txt">
-<link rel="preload" href="/gnt-anteprima/font/antonio-100-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/gnt-anteprima/font/archivo-100-900.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/gnt-anteprima/stile.css">
-<script src="/gnt-anteprima/script.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anteprima homepage | GNT Officine Meccaniche</title>
+<meta name="description" content="Quattro proposte di design per la nuova homepage: aprile e navigale su computer e telefono.">
+<style>
+  :root {
+    --bg: #f4f4f2;
+    --surface: #ffffff;
+    --ink: #1c1c1c;
+    --ink-soft: #4d4d4d;
+    --line: #d6d6d2;
+    --line-strong: #8a8a86;
+    --focus: #1c1c1c;
+    --radius: 6px;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+
+  .wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @media (min-width: 640px) { .wrap { padding-left: 32px; padding-right: 32px; } }
+
+  header { padding-top: 40px; padding-bottom: 32px; }
+  @media (min-width: 900px) { header { padding-top: 56px; padding-bottom: 40px; } }
+
+  .logo { width: 132px; height: auto; margin-bottom: 28px; }
+  @media (min-width: 900px) { .logo { width: 156px; } }
+
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.125rem);
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .intro {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: 1.0625rem;
+  }
+
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 56px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  }
+  @media (min-width: 1100px) {
+    .grid { gap: 32px; }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .card img {
+    width: 100%;
+    aspect-ratio: 1200 / 750;
+    object-fit: cover;
+    border-bottom: 1px solid var(--line);
+    background: var(--line);
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 18px 20px 20px;
+  }
+  .card h2 {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .card p {
+    margin: 0 0 16px;
+    color: var(--ink-soft);
+  }
+  .card-cta {
+    margin-top: auto;
+    font-size: .9375rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .card-cta span {
+    display: inline-block;
+    transition: transform .15s ease;
+  }
+
+  .card:hover {
+    border-color: var(--line-strong);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+    transform: translateY(-2px);
+  }
+  .card:hover .card-cta span { transform: translateX(3px); }
+  .card:hover .card-cta { text-decoration: underline; text-underline-offset: 3px; }
+
+  .card:focus { outline: none; }
+  .card:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 4px;
+    border-color: var(--line-strong);
+  }
+
+  footer {
+    padding-bottom: 32px;
+    color: var(--ink-soft);
+    font-size: .875rem;
+  }
+  footer p { margin: 0; padding-top: 20px; border-top: 1px solid var(--line); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .card-cta span { transition: none; }
+    .card:hover { transform: none; }
+    .card:hover .card-cta span { transform: none; }
+  }
+</style>
 </head>
 <body>
-<a class="vai-al-contenuto" href="#contenuto">Vai al contenuto</a>
-<header class="intestazione">
-  <div class="contenitore intestazione__barra">
-    <a class="intestazione__logo intestazione__logo--completo" href="/gnt-anteprima/"><img src="/gnt-anteprima/img/gnt-logo-negativo.svg" alt="GNT Officine Meccaniche, vai alla home" width="291" height="132"></a>
-    <a class="intestazione__logo intestazione__logo--simbolo" href="/gnt-anteprima/"><img src="/gnt-anteprima/img/gnt-simbolo-negativo.svg" alt="GNT Officine Meccaniche, vai alla home" width="291" height="114"></a>
-    <nav class="intestazione__menu" aria-label="Navigazione principale">
-      <ul class="menu">
-        <li>
-          <a class="menu__voce" href="/gnt-anteprima/lavorazioni-meccaniche/" aria-expanded="false" aria-controls="tendina-lavorazioni">Lavorazioni</a>
-          <div class="tendina tendina--larga" id="tendina-lavorazioni">
-            <div class="tendina__gruppi">
-              <div><span class="etichetta">In sede</span>
-                <ul>
-                  <li><a href="/gnt-anteprima/tornitura/">Tornitura</a></li>
-                  <li><a href="/gnt-anteprima/fresatura-cnc/">Fresatura CNC</a></li>
-                  <li><a href="/gnt-anteprima/saldatura/">Saldatura</a></li>
-                  <li><a href="/gnt-anteprima/taglio-plasma-ossitaglio/">Taglio plasma e ossitaglio</a></li>
-                  <li><a href="/gnt-anteprima/carpenteria-metallica/">Carpenteria metallica</a></li>
-                  <li><a href="/gnt-anteprima/tubistica/">Tubistica</a></li>
-                  <li><a href="/gnt-anteprima/macchine-speciali/">Macchine speciali</a></li>
-                  <li><a href="/gnt-anteprima/revisione-rettifica/">Revisione e rettifica</a></li>
-                </ul>
-              </div>
-              <div><span class="etichetta">In cantiere</span>
-                <ul>
-                  <li><a href="/gnt-anteprima/montaggio-impianti-industriali/">Montaggio impianti</a></li>
-                  <li><a href="/gnt-anteprima/manutenzione-impianti-industriali/">Manutenzione impianti</a></li>
-                </ul>
-              </div>
-            </div>
-            <p class="tendina__tutte"><a href="/gnt-anteprima/lavorazioni-meccaniche/">Tutte le lavorazioni</a></p>
-          </div>
-        </li>
-        <li><a class="menu__voce" href="/gnt-anteprima/parco-macchine/">Parco macchine</a></li>
-        <li>
-          <a class="menu__voce" href="/gnt-anteprima/sedi/" aria-expanded="false" aria-controls="tendina-sedi">Sedi</a>
-          <div class="tendina tendina--stretta" id="tendina-sedi">
-            <ul>
-              <li><a href="/gnt-anteprima/sedi/rovello-porro/">Rovello Porro</a></li>
-              <li><a href="/gnt-anteprima/sedi/bolzano/">Bolzano</a></li>
-            </ul>
-          </div>
-        </li>
-        <li><a class="menu__voce" href="/gnt-anteprima/chi-siamo/">Chi siamo</a></li>
-        <li><a class="menu__voce" href="/gnt-anteprima/contatti/">Contatti</a></li>
-      </ul>
-    </nav>
-    <div class="intestazione__destra">
-      <span class="telefono telefono--intestazione intestazione__telefono"><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="intestazione">02 96750206</a></span>
-      <a class="pulsante pulsante--contorno intestazione__pulsante intestazione__pulsante--lungo" href="/gnt-anteprima/preventivo/" data-track="preventivo" data-posizione="intestazione">Richiedi un preventivo</a>
-      <a class="pulsante pulsante--contorno intestazione__pulsante intestazione__pulsante--breve" href="/gnt-anteprima/preventivo/" data-track="preventivo" data-posizione="intestazione">Preventivo</a>
-      <button class="intestazione__apri" type="button" aria-expanded="false" aria-controls="menu-intero">Menu</button>
-    </div>
-  </div>
-</header>
-<dialog class="menu-intero" id="menu-intero" aria-label="Navigazione principale">
-  <div class="contenitore">
-    <div class="menu-intero__testa">
-      <a class="intestazione__logo intestazione__logo--simbolo" href="/gnt-anteprima/"><img src="/gnt-anteprima/img/gnt-simbolo-negativo.svg" alt="GNT Officine Meccaniche, vai alla home" width="291" height="114"></a>
-      <button class="intestazione__chiudi" type="button">Chiudi il menu</button>
-    </div>
-    <nav class="menu-intero__corpo" aria-label="Navigazione principale">
-      <ul class="menu-intero__primo">
-        <li><a href="/gnt-anteprima/lavorazioni-meccaniche/">Lavorazioni</a>
-          <div class="menu-intero__gruppo"><span class="etichetta">In sede</span>
-            <ul>
-              <li><a href="/gnt-anteprima/tornitura/">Tornitura</a></li>
-              <li><a href="/gnt-anteprima/fresatura-cnc/">Fresatura CNC</a></li>
-              <li><a href="/gnt-anteprima/saldatura/">Saldatura</a></li>
-              <li><a href="/gnt-anteprima/taglio-plasma-ossitaglio/">Taglio plasma e ossitaglio</a></li>
-              <li><a href="/gnt-anteprima/carpenteria-metallica/">Carpenteria metallica</a></li>
-              <li><a href="/gnt-anteprima/tubistica/">Tubistica</a></li>
-              <li><a href="/gnt-anteprima/macchine-speciali/">Macchine speciali</a></li>
-              <li><a href="/gnt-anteprima/revisione-rettifica/">Revisione e rettifica</a></li>
-            </ul>
-          </div>
-          <div class="menu-intero__gruppo"><span class="etichetta">In cantiere</span>
-            <ul>
-              <li><a href="/gnt-anteprima/montaggio-impianti-industriali/">Montaggio impianti</a></li>
-              <li><a href="/gnt-anteprima/manutenzione-impianti-industriali/">Manutenzione impianti</a></li>
-              <li><a href="/gnt-anteprima/lavorazioni-meccaniche/">Tutte le lavorazioni</a></li>
-            </ul>
-          </div>
-        </li>
-        <li><a href="/gnt-anteprima/parco-macchine/">Parco macchine</a></li>
-        <li><a href="/gnt-anteprima/sedi/">Sedi</a>
-          <div class="menu-intero__gruppo">
-            <ul>
-              <li><a href="/gnt-anteprima/sedi/rovello-porro/">Rovello Porro</a></li>
-              <li><a href="/gnt-anteprima/sedi/bolzano/">Bolzano</a></li>
-            </ul>
-          </div>
-        </li>
-        <li><a href="/gnt-anteprima/chi-siamo/">Chi siamo</a></li>
-        <li><a href="/gnt-anteprima/contatti/">Contatti</a></li>
-      </ul>
-      <div class="menu-intero__piede">
-        <span class="telefono telefono--con-orario"><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="intestazione">02 96750206</a><span class="telefono__orario">lunedì–venerdì 8:00–12:00 e 13:00–17:00</span></span>
-        <a class="pulsante pulsante--primario pulsante--largo" href="/gnt-anteprima/preventivo/" data-track="preventivo" data-posizione="intestazione">Richiedi un preventivo</a>
-      </div>
-    </nav>
-  </div>
-</dialog>
-<main id="contenuto">
-<section class="apertura apertura--video apertura--home fondo--nero" data-pieno-dopo-apertura aria-labelledby="titolo-pagina">
-  <div class="contenitore">
-    <div class="apertura__pannello">
-      <h1 class="apertura__h1" id="titolo-pagina"><span class="livello-1">Officina meccanica industriale a Rovello Porro (CO) e Bolzano:</span> <span class="livello-2">lavorazioni conto terzi, carpenteria e cantieri</span></h1>
-      <div class="apertura__testo">
-        <p>GNT Officine Meccaniche: lavorazioni meccaniche conto terzi, carpenteria e montaggi industriali in cantiere. Officine a Rovello Porro (CO) e Bolzano. È il marchio di due società, GNT S.R.L. e GNT BOLZANO S.R.L., ed è l'officina meccanica industriale che lavora per aziende manifatturiere e stabilimenti: non un'autofficina, non una delle altre aziende che in rete portano la sigla GNT.</p>
-        <p>Un'unica officina per pezzi a disegno, carpenteria e lavori in cantiere: GNT lavora il pezzo in sede, fino a 5 metri di lunghezza, e lo monta nello stabilimento del cliente con le proprie squadre. Invia il disegno per un preventivo.</p>
-      </div>
-      <p class="apertura__percorsi"><a href="/gnt-anteprima/lavorazioni-meccaniche/">Lavorazioni in sede</a> · <a href="/gnt-anteprima/montaggio-impianti-industriali/">Lavori in cantiere</a></p>
-      <div class="inviti">
-        <a class="pulsante pulsante--primario" href="/gnt-anteprima/preventivo/" data-track="preventivo" data-posizione="hero">Richiedi un preventivo</a>
-        <span class="telefono telefono--con-orario"><span class="telefono__etichetta visivamente-nascosto">Telefono</span><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="hero">02 96750206</a><span class="telefono__orario">lunedì–venerdì 8:00–12:00 e 13:00–17:00</span></span>
-      </div>
-    </div>
-    <div class="video video--apertura video--apertura-home apertura__video" style="--fuoco: 70% 45%">
-      <img class="video__poster" src="/gnt-anteprima/img/tornitura-pezzo-lungo-truciolo-16x9-1600.webp" srcset="/gnt-anteprima/img/tornitura-pezzo-lungo-truciolo-16x9-800.webp 800w, /gnt-anteprima/img/tornitura-pezzo-lungo-truciolo-16x9-1200.webp 1200w, /gnt-anteprima/img/tornitura-pezzo-lungo-truciolo-16x9-1600.webp 1600w, /gnt-anteprima/img/tornitura-pezzo-lungo-truciolo-16x9-1920.webp 1920w" sizes="100vw" width="1920" height="1080" alt="Albero lungo in lavorazione su un tornio parallelo con lunetta, il truciolo che si stacca dall'utensile" loading="eager" fetchpriority="high" decoding="async">
-      <video class="video__file" muted playsinline loop preload="none" aria-hidden="true" tabindex="-1" data-webm="/video/tornitura-pezzo-lungo-truciolo.webm" data-mp4="/video/tornitura-pezzo-lungo-truciolo.mp4" width="1280" height="720"></video>
-      <button class="video__pausa" type="button" aria-label="Metti in pausa il video" aria-pressed="false" data-pausa="Pausa" data-riprendi="Riprendi" data-aria-pausa="Metti in pausa il video" data-aria-riprendi="Riprendi il video">Pausa</button>
-    </div>
-  </div>
-</section>
+  <header class="wrap">
+    <img class="logo" src="media/logo/svg/gnt-logo-colori.svg" width="292" height="132" alt="GNT Officine Meccaniche">
+    <h1>Anteprima della nuova homepage</h1>
+    <p class="intro">Qui trovi quattro proposte di design per la homepage del nuovo sito. Apri ogni versione e navigala fino in fondo, prima su computer e poi su telefono: così puoi confrontarle e scegliere quella che senti più vicina all'azienda.</p>
+  </header>
 
-<section class="sezione sezione--ampia sezione--rada fondo--nero" aria-labelledby="sez-macchine">
-  <div class="contenitore griglia griglia--ampia">
-    <div class="sezione__testa col-12">
-      <h2 id="sez-macchine">Pezzi fino a 5 metri: le macchine</h2>
-      <p>Ogni capacità dichiarata da GNT ha la macchina che la prova, nell'officina di Rovello Porro. Quattro numeri, quattro macchine, tutte descritte con le loro corse nella pagina del <a class="peso" href="/gnt-anteprima/parco-macchine/">parco macchine con le corse dichiarate</a>.</p>
-    </div>
-    <ul class="numero-gigante numero-gigante--barra col-12">
-      <li class="numero-gigante__riga" style="--proporzione: 1">
-        <p class="numero-gigante__valore"><strong>5000<span class="numero-gigante__unita">mm</span></strong></p>
-        <p class="numero-gigante__macchina">tra le punte con lunetta: <a href="/gnt-anteprima/parco-macchine/">tornio parallelo con visualizzatore da <span class="misura">5000 mm</span></a></p>
-        <div class="numero-gigante__barra-riga"><div class="numero-gigante__barra"></div></div>
+  <main class="wrap">
+    <ul class="grid">
+      <li>
+        <a class="card" href="materia/">
+          <img src="anteprime/materia.jpg" width="1200" height="750" alt="Prima schermata della versione Materia: foto di un pezzo lavorato in acciaio a tutta pagina, titolo bianco su toni scuri e caldi.">
+          <div class="card-body">
+            <h2>Materia</h2>
+            <p>Le foto vere dell'officina parlano per prime, su colori caldi di cemento, acciaio e bronzo.</p>
+            <span class="card-cta">Apri la versione <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
       </li>
-      <li class="numero-gigante__riga" style="--proporzione: 0.14">
-        <p class="numero-gigante__valore"><strong>700<span class="numero-gigante__unita">mm</span></strong></p>
-        <p class="numero-gigante__macchina">di diametro: <a href="/gnt-anteprima/parco-macchine/">asse X dello stesso tornio parallelo</a></p>
-        <div class="numero-gigante__barra-riga"><div class="numero-gigante__barra"></div></div>
+      <li>
+        <a class="card" href="contorno/">
+          <img src="anteprime/contorno.jpg" width="1200" height="750" alt="Prima schermata della versione Contorno: fondo nero, titolo bianco e rosso a sinistra, foto dell'officina a destra.">
+          <div class="card-body">
+            <h2>Contorno</h2>
+            <p>Il logo di GNT Officine Meccaniche diventa la grammatica del sito: nero, rosso e titoli larghi e decisi.</p>
+            <span class="card-cta">Apri la versione <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
       </li>
-      <li class="numero-gigante__riga" style="--proporzione: 0.76">
-        <p class="numero-gigante__valore"><strong>3800<span class="numero-gigante__unita">× 990 × 1600 mm</span></strong></p>
-        <p class="numero-gigante__macchina">di corsa: <a href="/gnt-anteprima/parco-macchine/">fresa Mecof con controllo Selca S4000</a></p>
-        <div class="numero-gigante__barra-riga"><div class="numero-gigante__barra"></div></div>
+      <li>
+        <a class="card" href="linea-di-produzione/">
+          <img src="anteprime/linea-di-produzione.jpg" width="1200" height="750" loading="lazy" decoding="async" alt="Prima schermata della versione Linea di produzione: fondo chiaro, titolo scuro con evidenziatura gialla, foto del tornio CNC a destra.">
+          <div class="card-body">
+            <h2>Linea di produzione</h2>
+            <p>Il sito come una linea di lavorazione: scorrendo, il pezzo avanza di stazione in stazione.</p>
+            <span class="card-cta">Apri la versione <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
       </li>
-      <li class="numero-gigante__riga" style="--proporzione: 0.6">
-        <p class="numero-gigante__valore"><strong>1500<span class="numero-gigante__unita">× 3000 mm</span></strong></p>
-        <p class="numero-gigante__macchina">di tavola per lamiere da <span class="misura">1 a 20 mm</span>: <a href="/gnt-anteprima/parco-macchine/">banco di taglio al plasma da <span class="misura">120 A</span></a></p>
-        <div class="numero-gigante__barra-riga"><div class="numero-gigante__barra"></div><span class="numero-gigante__nota">lato lungo della tavola: 3000 mm</span></div>
+      <li>
+        <a class="card" href="costruttivista/">
+          <img src="anteprime/costruttivista.jpg" width="1200" height="750" loading="lazy" decoding="async" alt="Prima schermata della versione Costruttivista: diagonale rossa su fondo nero, titolo bianco stretto e fotomontaggio in bianco e nero dell'officina.">
+          <div class="card-body">
+            <h2>Costruttivista</h2>
+            <p>Diagonali, cuneo rosso e fotomontaggio: la linea tra Rovello Porro e Bolzano diventa geometria.</p>
+            <span class="card-cta">Apri la versione <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
       </li>
     </ul>
-    <figure class="foto foto--4-3 foto--asta foto--asta-destra compare col-8" style="--fuoco: 50% 32%; --asta-x-s: 55%; --asta-y-s: 21%; --asta-x-l: 55%; --asta-y-l: 21%">
-      <div class="foto__riquadro">
-        <img src="/gnt-anteprima/img/fresa-mecof-controllo-selca-s4000-4x3-800.webp" srcset="/gnt-anteprima/img/fresa-mecof-controllo-selca-s4000-4x3-400.webp 400w, /gnt-anteprima/img/fresa-mecof-controllo-selca-s4000-4x3-800.webp 800w, /gnt-anteprima/img/fresa-mecof-controllo-selca-s4000-4x3-1070.webp 1070w" sizes="(min-width: 1024px) 60vw, 100vw" width="1070" height="802" alt="Fresa a portale Mecof con controllo Selca S4000, corsa 3800 mm" loading="lazy" decoding="async">
-        <span class="foto__asta" aria-hidden="true"></span><span class="foto__linea" aria-hidden="true"></span>
-      </div>
-      <figcaption class="foto__didascalia">Fresa Mecof, corsa 3800 × 990 × 1600 mm, officina di Rovello Porro</figcaption>
-    </figure>
-  </div>
-</section>
+  </main>
 
-<section class="sezione sezione--ferma fondo--chiaro" aria-labelledby="sez-officina">
-  <div class="contenitore griglia">
-    <div class="sezione__testa col-5">
-      <h2 id="sez-officina">Cosa fate in officina?</h2>
-      <p>In officina GNT esegue otto lavorazioni a disegno, per pezzi singoli, piccoli lotti e pezzi grandi, nella sede di Rovello Porro: ogni scheda riporta la capacità chiave e porta alla pagina del servizio. Tutte le schede sono raccolte nella pagina di <a class="peso" href="/gnt-anteprima/lavorazioni-meccaniche/">tutte le lavorazioni meccaniche conto terzi</a>.</p>
-      <figure class="foto foto--4-3 foto--asta" style="--fuoco: 50% 30%; --asta-x-s: 41%; --asta-y-s: 27%; --asta-x-l: 41%; --asta-y-l: 27%">
-        <div class="foto__riquadro">
-          <img src="/gnt-anteprima/img/componente-meccanico-fresato-dettaglio-4x3-800.webp" srcset="/gnt-anteprima/img/componente-meccanico-fresato-dettaglio-4x3-400.webp 400w, /gnt-anteprima/img/componente-meccanico-fresato-dettaglio-4x3-800.webp 800w, /gnt-anteprima/img/componente-meccanico-fresato-dettaglio-4x3-1200.webp 1200w" sizes="(min-width: 1024px) 40vw, 100vw" width="1200" height="900" alt="Componente meccanico fresato a croce con foro centrale sul banco dell'officina GNT di Rovello Porro" loading="lazy" decoding="async">
-          <span class="foto__asta" aria-hidden="true"></span><span class="foto__linea" aria-hidden="true"></span>
-        </div>
-        <figcaption class="foto__didascalia">Componente fresato a disegno, officina GNT di Rovello Porro</figcaption>
-      </figure>
-    </div>
-    <ul class="riga-servizio riga-servizio--colonna riga-servizio--cascata col-7">
-      <li class="riga-servizio__riga compare" style="--i: 0"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/tornitura/">Tornitura conto terzi fino a 5 metri</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">tornio CNC Doosan Puma 3100 e torni paralleli con lunetta, pezzi fino a <span class="misura">5000 mm</span> tra le punte</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 1"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/fresatura-cnc/">Fresatura CNC con corsa 3800 mm</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">fresa Mecof con corsa <span class="misura">3800 × 990 × 1600 mm</span>, centri di lavoro a 2 e 3 assi</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 2"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/saldatura/">Saldatura MIG e TIG in officina e in cantiere</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">saldatura MIG e TIG, manuale e semiautomatica di acciaio al carbonio</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 3"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/taglio-plasma-ossitaglio/">Ossitaglio e taglio al plasma di lamiere</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">taglio al plasma da <span class="misura">1 a 20 mm</span> su tavola <span class="misura">1500 × 3000 mm</span>, ossitaglio oltre</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 4"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/carpenteria-metallica/">Carpenteria metallica industriale</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">carpenteria metallica medio-pesante, strutture, basamenti, telai e supporti</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 5"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/tubistica/">Tubistica: prefabbricazione e montaggio</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">tubistica industriale, tubazioni flangiate prefabbricate e montate in impianto</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 6"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/macchine-speciali/">Costruzione di macchine speciali</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">componenti e apparecchiature su misura, dal pezzo alla macchina</p></li>
-      <li class="riga-servizio__riga compare" style="--i: 7"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/revisione-rettifica/">Revisione e rettifica di pezzi meccanici</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">alberi, boccole e sedi usurati ripristinati o rifatti</p></li>
-    </ul>
-  </div>
-</section>
-
-<section class="sezione fondo--lamiera" aria-labelledby="sez-cantiere">
-  <div class="contenitore griglia">
-    <div class="col-6">
-      <div class="sezione__testa">
-        <h2 id="sez-cantiere">Venite nel mio stabilimento?</h2>
-        <p>Sì: in cantiere le squadre GNT montano, smontano e mantengono impianti industriali, partendo da Rovello Porro per la Lombardia e il Nord Italia e da Bolzano per l'Alto Adige e il Trentino. L'officina resta dietro al cantiere per rifare i pezzi.</p>
-      </div>
-      <ul class="riga-servizio riga-servizio--colonna riga-servizio--cascata testo__dopo">
-        <li class="riga-servizio__riga compare" style="--i: 0"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/montaggio-impianti-industriali/">Montaggio e smontaggio di impianti industriali</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">montaggio di impianti industriali, linee e macchinari, trasferimenti, montaggi meccanici di carpenterie e tubazioni</p></li>
-        <li class="riga-servizio__riga compare" style="--i: 1"><h3 class="riga-servizio__nome"><a href="/gnt-anteprima/manutenzione-impianti-industriali/">Manutenzione meccanica di impianti</a></h3><span class="riga-servizio__sep">: </span><p class="riga-servizio__descrizione">manutenzione industriale programmata e su guasto, installazione di apparecchiature</p></li>
-      </ul>
-      <p class="testo__dopo">Saldatura e tubistica si fanno anche in cantiere, sull'impianto del cliente.</p>
-    </div>
-    <figure class="foto foto--16-9 foto--fascia compare col-6" style="--fuoco: 50% 60%">
-      <div class="foto__riquadro">
-        <img src="/gnt-anteprima/img/montaggio-linea-di-produzione-stabilimento-cliente-16x9-1200.webp" srcset="/gnt-anteprima/img/montaggio-linea-di-produzione-stabilimento-cliente-16x9-800.webp 800w, /gnt-anteprima/img/montaggio-linea-di-produzione-stabilimento-cliente-16x9-1200.webp 1200w, /gnt-anteprima/img/montaggio-linea-di-produzione-stabilimento-cliente-16x9-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw" width="1600" height="900" alt="Montatori al lavoro su una linea in uno stabilimento del cliente" loading="lazy" decoding="async">
-      </div>
-    </figure>
-  </div>
-</section>
-
-<section class="sezione sezione--densa fondo--chiaro" aria-labelledby="sez-settori">
-  <div class="contenitore griglia griglia--stretta">
-    <div class="sezione__testa col-12">
-      <h2 id="sez-settori">Lavorate nel mio settore?</h2>
-      <p>GNT lavora per cinque settori industriali; i nomi dei clienti si pubblicano solo con la loro autorizzazione scritta, e fino ad allora ogni referenza è un segnaposto dichiarato con il solo settore.</p>
-    </div>
-    <ul class="settori col-12">
-      <li><span class="settori__nome">Siderurgia e acciaierie</span><span class="settori__sep">: </span><span class="settori__servizi">tornitura, fresatura, montaggi e manutenzione di impianti</span></li>
-      <li><span class="settori__nome">Componenti automotive</span><span class="settori__sep">: </span><span class="settori__servizi">tornitura e fresatura di pezzi a disegno</span></li>
-      <li><span class="settori__nome">Film plastici e packaging</span><span class="settori__sep">: </span><span class="settori__servizi">montaggi e manutenzione di impianti</span></li>
-      <li><span class="settori__nome">Sollevamento e movimentazione</span><span class="settori__sep">: </span><span class="settori__servizi">carpenteria e macchine speciali</span></li>
-      <li><span class="settori__nome">Costruttori di macchine e impianti</span><span class="settori__sep">: </span><span class="settori__servizi">carpenteria, macchine speciali, fresatura</span></li>
-    </ul>
-  </div>
-</section>
-
-<section class="sezione fondo--lamiera" aria-labelledby="sez-sedi">
-  <div class="contenitore griglia">
-    <div class="sezione__testa col-12">
-      <h2 id="sez-sedi">Due società, due officine</h2>
-      <p>GNT Officine Meccaniche sono due società con due officine: GNT S.R.L. a Rovello Porro (CO), nell'area industriale di Saronno, e GNT BOLZANO S.R.L. a Bolzano. Le lavorazioni in officina viaggiano in tutta Italia; i cantieri partono dalla sede più vicina. Le due sono descritte nella pagina delle <a class="peso" href="/gnt-anteprima/sedi/">due sedi</a>.</p>
-    </div>
-    <address class="blocco-sede blocco-sede--standard col-6">
-      <p class="blocco-sede__titolo"><strong>GNT S.R.L.</strong>, <a href="/gnt-anteprima/sedi/rovello-porro/">officina di Rovello Porro (CO)</a></p>
-      <p class="blocco-sede__riga"><span class="telefono"><span class="telefono__etichetta visivamente-nascosto">Telefono</span><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="dopo-prova">02 96750206</a></span></p>
-      <p class="blocco-sede__riga">Via Giovanni Battista Grassi 5, 22070 Rovello Porro (CO)</p>
-      <p class="blocco-sede__riga">lunedì–venerdì 8:00–12:00 e 13:00–17:00</p>
-    </address>
-    <address class="blocco-sede blocco-sede--standard col-6">
-      <p class="blocco-sede__titolo"><strong>GNT BOLZANO S.R.L.</strong>, <a href="/gnt-anteprima/sedi/bolzano/">sede di Bolzano</a></p>
-      <p class="blocco-sede__riga"><span class="telefono__etichetta visivamente-nascosto">Email</span><a class="blocco-sede__email-testa" href="mailto:info@gntbolzano.com" data-track="email" data-sede="bolzano" data-posizione="dopo-prova">info@gntbolzano.com</a></p>
-      <p class="blocco-sede__riga">Via Louis Braille 12, 39100 Bolzano</p>
-    </address>
-    <p class="col-12">Chi è GNT, da quando e con quante persone è nella pagina su <a class="peso" href="/gnt-anteprima/chi-siamo/">chi è GNT Officine Meccaniche</a>.</p>
-  </div>
-</section>
-
-<section class="sezione chiusura fondo--chiaro" aria-labelledby="sez-preventivo">
-  <div class="contenitore griglia">
-    <div class="col-7">
-      <div class="chiusura__testo">
-        <h2 id="sez-preventivo">Come chiedere un preventivo</h2>
-        <p>Per rispondere GNT ha bisogno del disegno o delle foto del pezzo (PDF, DXF, STEP), del materiale, della quantità, delle tolleranze se critiche e della data di consegna desiderata; per i cantieri, luogo, tipo di impianto, periodo e foto. La richiesta arriva all'officina di Rovello Porro, che risponde per email o telefono in orario d'ufficio.</p>
-      </div>
-      <div class="inviti">
-        <a class="pulsante pulsante--primario" href="/gnt-anteprima/preventivo/" data-track="preventivo" data-posizione="fine-pagina">Richiedi un preventivo</a>
-        <span class="telefono"><span class="telefono__etichetta visivamente-nascosto">Telefono</span><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="fine-pagina">02 96750206</a></span>
-        <a class="peso" href="/gnt-anteprima/contatti/">Telefono, email e PEC</a>
-      </div>
-    </div>
-    <address class="blocco-sede blocco-sede--ridotto chiusura__prova col-5">
-      <p class="blocco-sede__titolo"><strong>GNT S.R.L.</strong></p>
-      <p class="blocco-sede__riga"><span class="telefono"><span class="telefono__etichetta visivamente-nascosto">tel.</span><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="fine-pagina">02 96750206</a></span></p>
-      <p class="blocco-sede__riga">Via Giovanni Battista Grassi 5, 22070 Rovello Porro (CO)</p>
-      <p class="blocco-sede__riga"><a class="peso" href="/gnt-anteprima/sedi/rovello-porro/">Officina di Rovello Porro (CO)</a></p>
-    </address>
-  </div>
-</section>
-</main>
-<footer class="pie-pagina">
-  <div class="contenitore">
-    <div class="pie-pagina__societa">
-      <span class="etichetta">Le due società</span>
-      <address class="blocco-sede blocco-sede--standard">
-        <p class="blocco-sede__titolo"><strong>GNT S.R.L.</strong></p>
-        <p class="blocco-sede__riga"><span class="telefono"><span class="telefono__etichetta">tel.</span><a class="telefono__numero" href="tel:+390296750206" data-track="telefono" data-sede="rovello-porro" data-posizione="piede">02 96750206</a></span></p>
-        <p class="blocco-sede__riga"><a href="mailto:info@gntmeccanica.com" data-track="email" data-sede="rovello-porro" data-posizione="piede">info@gntmeccanica.com</a></p>
-        <p class="blocco-sede__riga">Via Giovanni Battista Grassi 5,<br>22070 Rovello Porro (CO)</p>
-        <p class="blocco-sede__riga">lunedì–venerdì 8:00–12:00 e 13:00–17:00</p>
-        <p class="blocco-sede__riga"><a class="peso" href="https://maps.google.com/?cid=17823239851074516820" target="_blank" rel="noopener" data-track="indicazioni" data-sede="rovello-porro" data-posizione="piede">Indicazioni stradali</a></p>
-        <p class="blocco-sede__legale">P.IVA 03702720131 · REA CO-328628 · PEC gntsrlmeccanica@pec.it</p>
-      </address>
-      <address class="blocco-sede blocco-sede--standard">
-        <p class="blocco-sede__titolo"><strong>GNT BOLZANO S.R.L.</strong></p>
-        <p class="blocco-sede__riga"><a class="blocco-sede__email-testa" href="mailto:info@gntbolzano.com" data-track="email" data-sede="bolzano" data-posizione="piede">info@gntbolzano.com</a></p>
-        <p class="blocco-sede__riga">Via Louis Braille 12,<br>39100 Bolzano</p>
-        <p class="blocco-sede__legale">P.IVA 03129960211 · REA BZ-234580 · PEC gntbolzanosrl@legalmail.it</p>
-      </address>
-    </div>
-    <div class="pie-pagina__sotto">
-      <div class="pie-pagina__logo"><img src="/gnt-anteprima/img/gnt-logo-negativo.svg" alt="GNT Officine Meccaniche" width="291" height="132"></div>
-      <nav class="pie-pagina__colonna pie-pagina__lavorazioni" aria-label="Collegamenti del piè di pagina">
-        <span class="etichetta">Lavorazioni</span>
-        <div class="pie-pagina__gruppi">
-          <div><span class="etichetta">In sede</span>
-            <ul>
-              <li><a href="/gnt-anteprima/tornitura/">Tornitura</a></li>
-              <li><a href="/gnt-anteprima/fresatura-cnc/">Fresatura CNC</a></li>
-              <li><a href="/gnt-anteprima/saldatura/">Saldatura</a></li>
-              <li><a href="/gnt-anteprima/taglio-plasma-ossitaglio/">Taglio plasma e ossitaglio</a></li>
-              <li><a href="/gnt-anteprima/carpenteria-metallica/">Carpenteria metallica</a></li>
-              <li><a href="/gnt-anteprima/tubistica/">Tubistica</a></li>
-              <li><a href="/gnt-anteprima/macchine-speciali/">Macchine speciali</a></li>
-              <li><a href="/gnt-anteprima/revisione-rettifica/">Revisione e rettifica</a></li>
-            </ul>
-          </div>
-          <div><span class="etichetta">In cantiere</span>
-            <ul>
-              <li><a href="/gnt-anteprima/montaggio-impianti-industriali/">Montaggio impianti</a></li>
-              <li><a href="/gnt-anteprima/manutenzione-impianti-industriali/">Manutenzione impianti</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <nav class="pie-pagina__colonna pie-pagina__sito" aria-label="Pagine del sito">
-        <span class="etichetta">Il sito</span>
-        <ul>
-          <li><a href="/gnt-anteprima/parco-macchine/">Parco macchine</a></li>
-          <li><a href="/gnt-anteprima/sedi/">Sedi</a></li>
-          <li><a href="/gnt-anteprima/chi-siamo/">Chi siamo</a></li>
-          <li><a href="/gnt-anteprima/contatti/">Contatti</a></li>
-          <li><a href="/gnt-anteprima/preventivo/">Richiedi un preventivo</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="pie-pagina__finale">
-      <ul>
-        <li><a href="/gnt-anteprima/privacy/">Privacy</a></li>
-        <li><a href="/gnt-anteprima/cookie-policy/">Cookie policy</a></li>
-        <li><button type="button" data-track="cookie-preferenze">Preferenze cookie</button></li>
-        <li><a href="/gnt-anteprima/note-legali/">Note legali</a></li>
-      </ul>
-      <p>GNT Officine Meccaniche è il marchio delle due società GNT S.R.L. e GNT BOLZANO S.R.L.</p>
-    </div>
-  </div>
-</footer>
-<div class="cookie cookie--aperto" role="region" aria-label="Cookie e misurazione delle visite">
-  <div class="cookie__corpo">
-    <p class="cookie__titolo">Cookie e misurazione delle visite</p>
-    <p class="cookie__testo">Questo sito usa cookie necessari al funzionamento e, se accetti, strumenti di statistica (Google Analytics, Microsoft Clarity) per capire quali pagine vengono lette. Puoi cambiare idea quando vuoi da «Preferenze cookie» nel piè di pagina. <a href="/gnt-anteprima/cookie-policy/">Cookie policy</a> · <a href="/gnt-anteprima/privacy/">Privacy</a></p>
-    <div class="cookie__pulsanti">
-      <button class="pulsante pulsante--contorno" type="button">Accetta tutti</button>
-      <button class="pulsante pulsante--contorno" type="button">Solo necessari</button>
-      <button class="cookie__scegli" type="button">Scegli</button>
-    </div>
-  </div>
-</div>
+  <footer class="wrap">
+    <p>Pagine di anteprima riservate, escluse dai motori di ricerca.</p>
+  </footer>
 </body>
 </html>
