@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GNT Officine Meccaniche | Lavorazioni e servizi industriali</title>
+<meta name="description" content="GNT Officine Meccaniche esegue tornitura, fresatura CNC e carpenteria nella sede di Rovello Porro. Dalle sedi di Rovello Porro e Bolzano svolge montaggi, installazioni e manutenzioni meccaniche industriali.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* =========================================================
+   TOKEN · design system «Linea di produzione» (fase 04)
+   ========================================================= */
+:root{
+  --c-pavimento:#E3E6E4; --c-banco:#F4F5F3; --c-bianco:#FFFFFF; --c-carter:#C9CFCC;
+  --c-acciaio:#6B7378; --c-grafite:#4A5258; --c-antracite:#1C2125; --c-antracite-2:#2A3136;
+  --c-nebbia:#B9C0C4; --c-segnale:#F5C400; --c-rosso-gnt:#ED1C24; --c-rosso-azione:#D7141D;
+  --c-rosso-azione-2:#A80F16; --c-ok:#1E7347;
+
+  --f-sans:"IBM Plex Sans","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",Consolas,"Liberation Mono","Courier New",monospace;
+  --t-display:clamp(2.5rem, 1.55rem + 4.3vw, 5.25rem);
+  --t-1:clamp(2rem, 1.45rem + 2.6vw, 3.25rem);
+  --t-2:clamp(1.5rem, 1.25rem + 1.1vw, 2.125rem);
+  --t-3:1.25rem; --t-corpo:1.0625rem; --t-piccolo:.9375rem; --t-etichetta:.75rem;
+
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+  --margine:16px; --gutter:16px; --max:1320px;
+
+  --r-sbavato:2px; --r-asola:999px; --bordo-campo:1.5px; --corsia:4px;
+
+  --d-1:120ms; --d-2:240ms; --d-3:480ms; --d-4:800ms;
+  --e-nastro:cubic-bezier(.65,0,.35,1);
+  --e-arrivo:cubic-bezier(.16,1,.3,1);
+
+  --ombra-cabina:0 16px 40px rgba(28,33,37,.22);
+  --testata-h:68px;
+  color-scheme:light;
+}
+@media (min-width:600px){ :root{ --margine:32px; --gutter:24px; } }
+@media (min-width:960px){ :root{ --margine:48px; --gutter:24px; --testata-h:76px; } }
+
+/* =========================================================
+   BASE
+   ========================================================= */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{ margin:0; background:var(--c-pavimento); color:var(--c-antracite); font-family:var(--f-sans); font-size:var(--t-corpo); line-height:1.6; overflow-x:clip; -webkit-font-smoothing:antialiased; }
+main{ display:block; overflow-x:clip; }
+main:focus{ outline:none; }
+img{ max-width:100%; display:block; }
+h1,h2,h3{ margin:0; line-height:1.08; font-weight:600; letter-spacing:-.015em; }
+p{ margin:0; }
+a{ color:inherit; }
+button{ font:inherit; color:inherit; }
+:focus-visible{ outline:3px solid var(--c-antracite); outline-offset:3px; }
+.scuro :focus-visible, .scuro:focus-visible{ outline-color:var(--c-segnale); }
+.mono{ font-family:var(--f-mono); }
+.etichetta{ font-family:var(--f-mono); font-size:var(--t-etichetta); font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+.sr{ position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.contenitore{ width:100%; max-width:var(--max); margin-inline:auto; padding-inline:var(--margine); }
+.salta{ position:absolute; left:var(--s-4); top:-60px; z-index:100; background:var(--c-antracite); color:#fff; padding:var(--s-2) var(--s-4); border-radius:var(--r-sbavato); }
+.salta:focus{ top:var(--s-4); }
+section[id], article[id]{ scroll-margin-top:var(--testata-h); }
+
+/* =========================================================
+   BARRA DEL MOCKUP (non fa parte del sito)
+   ========================================================= */
+.prova{ background:#0F1316; color:#fff; font-size:.875rem; }
+.prova__riga{ display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-4); align-items:center; justify-content:space-between; padding-block:var(--s-2); }
+.prova__riga .etichetta{ color:var(--c-nebbia); }
+.prova__comandi{ display:flex; flex-wrap:wrap; gap:var(--s-2); }
+.interruttore{ display:inline-flex; align-items:center; gap:var(--s-3); background:transparent; border:1px solid var(--c-acciaio); color:#fff; border-radius:var(--r-asola); padding:6px 14px 6px 6px; cursor:pointer; min-height:44px; font-size:.875rem; }
+.interruttore__binario{ width:40px; height:24px; border-radius:var(--r-asola); background:var(--c-antracite-2); border:1.5px solid var(--c-nebbia); position:relative; flex:none; }
+.interruttore__binario::after{ content:""; position:absolute; top:3px; left:3px; width:15px; height:15px; border-radius:50%; background:var(--c-nebbia); transition:transform var(--d-2) var(--e-nastro), background var(--d-2); }
+.interruttore[aria-pressed="true"] .interruttore__binario{ background:var(--c-segnale); border-color:var(--c-segnale); }
+.interruttore[aria-pressed="true"] .interruttore__binario::after{ transform:translateX(16px); background:var(--c-antracite); }
+
+/* =========================================================
+   COMPONENTI DEL DESIGN SYSTEM
+   ========================================================= */
+/* Pulsanti */
+.pulsante{ --pb:var(--c-rosso-azione); --pt:#fff; --pa:var(--c-rosso-azione-2); --pbordo:transparent;
+  position:relative; isolation:isolate; overflow:hidden; display:inline-flex; align-items:center; justify-content:center; gap:var(--s-3);
+  min-height:48px; padding:0 var(--s-3) 0 var(--s-5); border-radius:var(--r-asola); border:2px solid var(--pbordo); background:var(--pb); color:var(--pt);
+  font-weight:600; font-size:1rem; line-height:1.2; text-decoration:none; cursor:pointer; white-space:nowrap; transition:transform var(--d-1) var(--e-nastro), color var(--d-2); -webkit-tap-highlight-color:transparent; }
+.pulsante::before{ content:""; position:absolute; inset:0; z-index:-1; background:var(--pa); transform:scaleX(0); transform-origin:left center; transition:transform var(--d-3) var(--e-nastro); }
+.pulsante__freccia{ width:32px; height:32px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.18); flex:none; transition:transform var(--d-3) var(--e-nastro); }
+.pulsante__freccia svg{ width:16px; height:16px; }
+.pulsante:hover::before{ transform:scaleX(1); }
+.pulsante:hover .pulsante__freccia{ transform:translateX(4px); }
+.pulsante:active{ transform:translateY(1px) scale(.985); }
+.pulsante--scuro{ --pb:var(--c-segnale); --pt:var(--c-antracite); --pa:#fff; }
+.pulsante--scuro .pulsante__freccia{ background:var(--c-antracite); color:var(--c-segnale); }
+.pulsante--piccolo{ min-height:40px; font-size:.9375rem; padding-left:var(--s-4); padding-right:6px; }
+.pulsante--piccolo .pulsante__freccia{ width:28px; height:28px; }
+.pulsante--grande{ min-height:60px; font-size:1.125rem; padding-left:var(--s-6); padding-right:var(--s-2); }
+.pulsante--grande .pulsante__freccia{ width:44px; height:44px; }
+.pulsante--senza-icona{ padding-inline:var(--s-5); }
+.riga-pulsanti{ display:flex; flex-wrap:wrap; gap:var(--s-4) var(--s-5); align-items:center; }
+
+/* Link */
+.link{ text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:4px; text-decoration-color:var(--c-acciaio);
+  background-image:linear-gradient(var(--c-segnale),var(--c-segnale)); background-size:0% 40%; background-position:0 88%; background-repeat:no-repeat; transition:background-size var(--d-3) var(--e-nastro); }
+.link:hover{ background-size:100% 40%; text-decoration-color:var(--c-antracite); }
+.scuro .link{ color:#fff; text-decoration-color:var(--c-nebbia); }
+.scuro .link:hover{ color:var(--c-antracite); }
+.link-freccia{ display:inline-flex; align-items:center; gap:var(--s-2); font-weight:600; text-decoration:none; color:var(--c-antracite); min-height:44px; }
+.link-freccia__testo{ border-bottom:2px solid var(--c-antracite); padding-bottom:2px; }
+.link-freccia svg{ width:18px; height:18px; flex:none; transition:transform var(--d-3) var(--e-nastro); }
+.link-freccia:hover svg{ transform:translateX(6px); }
+.link-freccia:hover .link-freccia__testo{ border-bottom-color:var(--c-segnale); }
+.scuro .link-freccia{ color:#fff; }
+.scuro .link-freccia__testo{ border-bottom-color:var(--c-segnale); }
+
+/* Etichette di stazione */
+.tag{ display:inline-flex; align-items:center; gap:var(--s-2); font-family:var(--f-mono); font-size:var(--t-etichetta); font-weight:500; letter-spacing:.08em; text-transform:uppercase; padding:5px 12px 5px 8px; border-radius:var(--r-asola); border:1.5px solid var(--c-antracite); color:var(--c-antracite); line-height:1.3; }
+.tag::before{ content:""; width:10px; height:10px; border-radius:50%; border:2px solid currentColor; flex:none; }
+.tag--attiva{ background:var(--c-segnale); border-color:var(--c-segnale); }
+.tag--attiva::before{ background:var(--c-antracite); border-color:var(--c-antracite); }
+.scuro .tag{ color:#fff; border-color:var(--c-nebbia); }
+.scuro .tag--attiva{ color:var(--c-antracite); border-color:var(--c-segnale); }
+
+/* Testata */
+.testata{ position:sticky; top:0; z-index:40; background:var(--c-banco); }
+.testata__riga{ height:calc(var(--testata-h) - var(--corsia)); display:flex; align-items:center; gap:var(--s-5); }
+.testata__logo{ display:flex; align-items:center; flex:none; min-height:44px; }
+.testata__logo img{ height:34px; width:auto; }
+@media (min-width:960px){ .testata__logo img{ height:40px; } }
+.testata__riga > nav{ margin-left:auto; }
+.testata__menu{ display:none; list-style:none; margin:0; padding:0; gap:var(--s-1); }
+.testata__menu a{ display:inline-flex; align-items:center; min-height:44px; padding-inline:var(--s-3); text-decoration:none; font-weight:500; font-size:.96875rem; position:relative; white-space:nowrap; }
+.testata__menu a::after{ content:""; position:absolute; left:var(--s-3); right:var(--s-3); bottom:6px; height:var(--corsia); background:var(--c-segnale); transform:scaleX(0); transform-origin:left; transition:transform var(--d-3) var(--e-nastro); }
+.testata__menu a:hover::after{ transform:scaleX(1); }
+.testata__azioni{ display:flex; align-items:center; gap:var(--s-2); margin-left:auto; }
+.testata__cta-lungo{ display:none; }
+.bottone-menu{ display:inline-flex; align-items:center; gap:var(--s-2); min-height:44px; min-width:44px; padding:0 var(--s-3); border:1.5px solid var(--c-antracite); border-radius:var(--r-asola); background:transparent; cursor:pointer; font-weight:600; font-size:.9375rem; }
+.bottone-menu__icona{ width:18px; height:12px; display:grid; align-content:space-between; }
+.bottone-menu__icona i{ display:block; height:2px; background:currentColor; border-radius:1px; }
+.bottone-menu__icona i:nth-child(2){ width:70%; }
+@media (min-width:1180px){
+  .testata__menu{ display:flex; }
+  .testata__azioni{ margin-left:var(--s-3); }
+  .testata__cta-lungo{ display:inline-flex; }
+  .testata__cta-corto, .bottone-menu{ display:none; }
+}
+.nastrino{ height:var(--corsia); background:var(--c-carter); position:relative; }
+.nastrino__pieno{ position:absolute; inset:0 auto 0 0; width:100%; background:var(--c-antracite); transform-origin:left; transform:scaleX(var(--avanz,0)); }
+.nastrino__carrello{ position:absolute; top:-3px; left:calc(var(--avanz,0) * (100% - 22px)); width:22px; height:10px; border-radius:var(--r-asola); background:var(--c-segnale); border:2px solid var(--c-antracite); }
+
+/* Menu del telefono */
+.menu-tel{ position:fixed; inset:0; z-index:90; background:var(--c-antracite); color:#fff; display:flex; flex-direction:column; transform:translateX(100%); visibility:hidden; transition:transform var(--d-3) var(--e-nastro), visibility 0s linear var(--d-3); overflow-y:auto; }
+.menu-tel.is-aperto{ transform:none; visibility:visible; transition:transform var(--d-3) var(--e-arrivo), visibility 0s; }
+.menu-tel__testa{ display:flex; align-items:center; justify-content:space-between; padding:var(--s-3) var(--margine); border-bottom:var(--corsia) solid var(--c-segnale); min-height:var(--testata-h); }
+.menu-tel__testa img{ height:34px; width:auto; }
+.menu-tel__chiudi{ display:inline-flex; align-items:center; gap:var(--s-2); min-height:44px; padding:0 var(--s-4); border-radius:var(--r-asola); border:1.5px solid var(--c-nebbia); background:transparent; color:#fff; cursor:pointer; font-weight:600; }
+.menu-tel__lista{ list-style:none; margin:0; padding:var(--s-5) var(--margine); display:grid; position:relative; }
+.menu-tel__lista::before{ content:""; position:absolute; left:calc(var(--margine) + 9px); top:var(--s-7); bottom:var(--s-7); width:var(--corsia); background:var(--c-segnale); }
+.menu-tel__lista a{ display:grid; grid-template-columns:22px 1fr; gap:var(--s-4); align-items:center; text-decoration:none; padding-block:var(--s-4); font-size:1.5rem; font-weight:600; letter-spacing:-.01em; position:relative; line-height:1.2; }
+.menu-tel__lista a::before{ content:""; width:22px; height:22px; border-radius:50%; background:var(--c-antracite); border:4px solid var(--c-segnale); box-sizing:border-box; }
+.menu-tel__lista a:hover::before, .menu-tel__lista a:focus-visible::before{ background:var(--c-segnale); }
+.menu-tel__piede{ margin-top:auto; padding:var(--s-5) var(--margine) var(--s-6); display:grid; gap:var(--s-5); border-top:1px solid var(--c-antracite-2); }
+.menu-tel__sedi{ display:flex; flex-wrap:wrap; gap:var(--s-5); color:var(--c-nebbia); font-size:var(--t-piccolo); }
+.menu-tel__sedi b{ color:#fff; display:block; font-weight:600; }
+.js-moto .menu-tel.is-aperto .menu-tel__lista li{ animation:arriva var(--d-3) var(--e-arrivo) both; }
+.js-moto .menu-tel.is-aperto .menu-tel__lista li:nth-child(2){ animation-delay:60ms; }
+.js-moto .menu-tel.is-aperto .menu-tel__lista li:nth-child(3){ animation-delay:120ms; }
+.js-moto .menu-tel.is-aperto .menu-tel__lista li:nth-child(4){ animation-delay:180ms; }
+.js-moto .menu-tel.is-aperto .menu-tel__lista li:nth-child(5){ animation-delay:240ms; }
+@keyframes arriva{ from{ opacity:0; transform:translateX(40px); } to{ opacity:1; transform:none; } }
+
+/* Pezzo in vista */
+.pezzo{ display:block; width:100%; height:auto; overflow:visible; }
+
+/* Nastro di linea (generalizzato a --n stazioni) */
+.nastro{ position:relative; background:var(--c-antracite); color:#fff; border-block:var(--corsia) solid var(--c-segnale); --pos:0; --belt:0px; }
+.nastro__piano{ position:relative; height:150px;
+  background:linear-gradient(90deg, transparent calc(50% - .5px), #3A4247 calc(50% - .5px), #3A4247 calc(50% + .5px), transparent calc(50% + .5px)) 0 0 / calc(100% / var(--n)) 70% repeat-x; }
+.nastro__cinghia{ position:absolute; left:0; right:0; bottom:8px; height:16px;
+  background:radial-gradient(circle at 12px 50%, #59636A 0 4px, #2A3136 4.5px 6px, transparent 6.5px) var(--belt) 0/24px 100% repeat-x, linear-gradient(#20262A,#20262A);
+  border-block:1px solid #3A4247; }
+.nastro__pezzo{ position:absolute; bottom:16px; left:calc((var(--pos) + .5) / var(--n) * 100%); width:200px; transform:translateX(-50%); }
+.nastro__testa{ position:absolute; top:0; left:calc((var(--attiva-n,0) + .5) / var(--n) * 100%); transform:translateX(-50%); width:2px; height:10px; background:var(--c-segnale); }
+.nastro__nodi{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(var(--n),minmax(0,1fr)); border-top:1px solid #3A4247; }
+.nastro__nodi button, .nastro__nodi .nastro__nodo-fisso{ width:100%; display:flex; align-items:center; justify-content:center; gap:var(--s-2); min-height:44px; background:transparent; border:0; color:var(--c-nebbia); cursor:pointer; font-family:var(--f-mono); font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; padding:var(--s-2) 4px; line-height:1.25; text-align:left; }
+.nastro__nodi .nastro__nodo-fisso{ cursor:default; }
+.nastro__nodi .nodo{ width:12px; height:12px; border-radius:50%; border:2px solid var(--c-nebbia); flex:none; transition:background var(--d-2), border-color var(--d-2); }
+.nastro__nodi button:hover{ color:#fff; }
+.nastro__nodi [aria-current="step"]{ color:var(--c-segnale); }
+.nastro__nodi [aria-current="step"] .nodo{ background:var(--c-segnale); border-color:var(--c-segnale); }
+.nastro__nodi .is-fatto .nodo{ background:var(--c-nebbia); }
+.nastro__statici{ display:none; grid-template-columns:repeat(var(--n),minmax(0,1fr)); align-items:end; height:100%; padding:var(--s-3) 0 26px; }
+.nastro--statico .nastro__statici{ display:grid; }
+.nastro--statico .nastro__pezzo, .nastro--statico .nastro__testa{ display:none; }
+@media (max-width:599px){
+  .nastro__piano{ height:78px; }
+  .nastro__pezzo{ width:96px; bottom:20px; }
+  .nastro__cinghia{ height:12px; bottom:6px; }
+  .nastro__nodi button, .nastro__nodi .nastro__nodo-fisso{ font-size:.6875rem; gap:5px; letter-spacing:0; }
+  .nastro__nodi .nodo{ width:10px; height:10px; }
+}
+
+/* Chip dato */
+.dati-chip{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:var(--s-2); }
+.dati-chip li{ display:inline-grid; background:var(--c-banco); border-radius:var(--r-sbavato); padding:6px 12px 7px; border-left:3px solid var(--c-antracite); line-height:1.3; }
+.dati-chip span{ font-family:var(--f-mono); font-size:.6875rem; letter-spacing:.06em; text-transform:uppercase; color:var(--c-grafite); }
+.dati-chip b{ font-family:var(--f-mono); font-weight:500; font-size:.875rem; }
+
+/* Arrivo dal nastro */
+.js-moto [data-arrivo]{ transition:transform var(--d-4) var(--e-arrivo), opacity var(--d-3) linear; transition-delay:calc(var(--i,0) * 90ms); }
+.js-moto [data-arrivo]:not(.is-dentro){ transform:translateX(72px); opacity:0; }
+
+/* Sezioni */
+.sezione-home{ padding-block:var(--s-9); }
+@media (min-width:1280px){ .sezione-home{ padding-block:var(--s-10); } }
+.sezione-home__testa{ display:grid; gap:var(--s-3); margin-bottom:var(--s-7); max-width:62ch; }
+.sezione-home__testa .etichetta{ color:var(--c-grafite); display:flex; align-items:center; gap:var(--s-3); }
+.sezione-home__testa .etichetta::before{ content:""; width:14px; height:14px; border-radius:50%; border:3px solid var(--c-antracite); background:var(--c-segnale); flex:none; }
+.sezione-home__testa h2{ font-size:var(--t-1); }
+.sezione-home__testa p:not(.etichetta){ color:var(--c-grafite); }
+.scuro .sezione-home__testa .etichetta{ color:var(--c-segnale); }
+.scuro .sezione-home__testa .etichetta::before{ border-color:var(--c-segnale); background:var(--c-antracite); }
+.scuro .sezione-home__testa p:not(.etichetta){ color:var(--c-nebbia); }
+
+/* =========================================================
+   EROE
+   ========================================================= */
+.eroe{ display:grid; grid-template-columns:1fr; background:var(--c-banco); }
+.eroe__testo{ padding:var(--s-7) var(--margine); display:grid; gap:var(--s-5); align-content:center; }
+.eroe__testo > .etichetta{ color:var(--c-grafite); }
+.eroe__titolo{ font-size:clamp(2.25rem, 1.4rem + 2.9vw, 3.875rem); line-height:1.02; letter-spacing:-.025em; max-width:17ch; }
+.eroe__marchio{ display:block; font-size:var(--t-3); letter-spacing:-.005em; line-height:1.2; margin-bottom:.45em; }
+@media (min-width:960px){ .eroe__marchio{ font-size:var(--t-2); } }
+.eroe__titolo em{ font-style:normal; background:linear-gradient(transparent 62%, var(--c-segnale) 62%, var(--c-segnale) 92%, transparent 92%); padding-inline:.04em; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.eroe__lead{ font-size:1.125rem; line-height:1.6; max-width:60ch; color:var(--c-grafite); }
+.eroe__collegamenti{ display:flex; flex-wrap:wrap; gap:var(--s-1) var(--s-5); }
+.eroe__foto{ position:relative; background:#050607; min-height:360px; margin:0; }
+.eroe__foto img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:30% 40%; }
+.eroe__foto figcaption{ position:absolute; left:var(--s-4); bottom:var(--s-4); background:var(--c-antracite); color:#fff; padding:6px 10px; border-left:var(--corsia) solid var(--c-segnale); }
+@media (min-width:960px){
+  .eroe{ grid-template-columns:minmax(0,6fr) minmax(0,5fr); min-height:min(calc(100svh - var(--testata-h)), 820px); }
+  .eroe__testo{ padding:var(--s-8) var(--s-7) var(--s-8) max(var(--margine), calc((100vw - var(--max)) / 2 + var(--margine))); }
+  .eroe__foto{ min-height:auto; }
+}
+
+/* =========================================================
+   LA LINEA (firma) · Officina e Cantiere
+   ========================================================= */
+.linea{ --n:4; position:relative; background:var(--c-pavimento); }
+.linea + .linea{ border-top:1px solid var(--c-carter); }
+.linea__intro{ padding-block:var(--s-8) var(--s-5); display:grid; gap:var(--s-4) var(--s-7); grid-template-columns:1fr; }
+@media (min-width:960px){ .linea__intro{ grid-template-columns:minmax(0,6fr) minmax(0,6fr); align-items:end; } }
+.linea__intro .etichetta{ color:var(--c-grafite); display:flex; align-items:center; gap:var(--s-3); margin-bottom:var(--s-3); }
+.linea__intro .etichetta::before{ content:""; width:14px; height:14px; border-radius:50%; border:3px solid var(--c-antracite); background:var(--c-segnale); flex:none; }
+.linea__intro h2{ font-size:var(--t-1); max-width:20ch; }
+.linea__intro-testo{ display:grid; gap:var(--s-2); justify-items:start; }
+.linea__intro-testo p{ color:var(--c-grafite); max-width:58ch; }
+.stazione{ display:grid; gap:var(--s-5); padding:var(--s-6) var(--margine) var(--s-7); grid-template-columns:1fr; }
+.stazione + .stazione{ border-top:1px solid var(--c-carter); }
+.stazione__testo{ display:grid; gap:var(--s-4); align-content:start; justify-items:start; container-type:inline-size; }
+.stazione__testo > *{ max-width:100%; }
+.stazione__nome{ font-size:min(clamp(2.75rem, 1.6rem + 4.6vw, 6.5rem), 14cqi); font-weight:600; line-height:.92; letter-spacing:-.04em; display:inline-block; }
+.stazione__nome::after{ content:""; display:block; height:clamp(6px,.6vw,10px); margin-top:.12em; background:var(--c-segnale); transform-origin:left; }
+.stazione__titolo{ font-size:var(--t-2); line-height:1.15; max-width:22ch; }
+.stazione__testo > p.stazione__desc{ color:var(--c-grafite); max-width:46ch; }
+.stazione__foto{ margin:0; position:relative; background:var(--c-antracite); min-height:260px; }
+.stazione__foto img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.stazione__foto figcaption{ position:absolute; left:0; bottom:0; background:var(--c-antracite); color:#fff; padding:6px 12px; max-width:100%; }
+@media (min-width:600px){ .stazione__foto{ min-height:360px; } }
+@media (min-width:960px){
+  .stazione{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--s-7); padding-inline:max(var(--margine), calc((100vw - var(--max)) / 2 + var(--margine))); }
+  .stazione__foto{ min-height:440px; }
+}
+
+/* modo «fermo» (riduci il movimento o senza JavaScript) */
+.linea.is-statica .linea__palco{ display:flex; flex-direction:column; }
+.linea.is-statica .linea__intro{ order:0; }
+.linea.is-statica .nastro{ order:1; }
+.linea.is-statica .linea__finestra{ order:2; }
+
+/* modo «impilato» (telefono e tablet) */
+.linea.is-impilata .nastro{ position:sticky; bottom:0; z-index:5; }
+.js-moto .linea.is-impilata .stazione__testo, .js-moto .linea.is-impilata .stazione__foto{ transition:transform var(--d-4) var(--e-arrivo), opacity var(--d-3) linear; }
+.js-moto .linea.is-impilata .stazione:not(.is-dentro) .stazione__testo{ transform:translateX(56px); opacity:0; }
+.js-moto .linea.is-impilata .stazione:not(.is-dentro) .stazione__foto{ transform:translateX(96px); opacity:0; }
+.js-moto .linea.is-impilata .stazione:not(.is-dentro) .stazione__nome::after{ transform:scaleX(0); }
+.js-moto .linea.is-impilata .stazione__nome::after{ transition:transform var(--d-4) var(--e-nastro) 200ms; }
+
+/* modo «fissato» (computer) */
+.linea.is-fissata{ height:calc(var(--n) * 100svh); }
+.linea.is-fissata .linea__palco{ position:sticky; top:var(--testata-h); height:calc(100svh - var(--testata-h)); display:grid; grid-template-rows:auto minmax(0,1fr) auto; overflow:hidden; }
+.linea.is-fissata .linea__intro{ padding-block:var(--s-5) var(--s-3); }
+.linea.is-fissata .linea__intro h2{ font-size:var(--t-2); max-width:24ch; }
+.linea.is-fissata .linea__intro .etichetta{ margin-bottom:var(--s-2); }
+.linea.is-fissata .linea__intro-testo p{ font-size:var(--t-piccolo); line-height:1.5; }
+.linea.is-fissata .linea__finestra{ overflow:hidden; min-height:0; }
+.linea.is-fissata .linea__binario{ display:flex; width:calc(var(--n) * 100%); height:100%; transform:translateX(calc(var(--pos,0) / var(--n) * -100%)); will-change:transform; }
+.linea.is-fissata .stazione{ flex:0 0 calc(100% / var(--n)); height:100%; border:0; padding-block:var(--s-3) var(--s-5); align-items:stretch; }
+.linea.is-fissata .stazione__testo{ align-content:center; }
+.linea.is-fissata .stazione__foto{ min-height:0; height:100%; }
+.linea.is-fissata .stazione__nome::after{ transform:scaleX(var(--riempi,1)); }
+.linea.is-fissata .stazione__nome{ font-size:min(clamp(2.75rem, 1rem + 4vw, 5.75rem), 14cqi); }
+@media (min-width:960px) and (max-height:940px){
+  .linea.is-fissata .stazione__nome{ font-size:min(clamp(2.5rem, 1rem + 3.2vw, 4.5rem), 14cqi); }
+  .linea.is-fissata .stazione__titolo{ font-size:clamp(1.25rem, .9rem + .9vw, 1.75rem); }
+  .linea.is-fissata .stazione__testo{ gap:var(--s-3); }
+  .linea.is-fissata .nastro__piano{ height:112px; }
+  .linea.is-fissata .nastro__pezzo{ width:150px; }
+}
+@media (min-width:960px) and (max-height:820px){
+  .linea.is-fissata .stazione__nome{ font-size:min(clamp(2.25rem, 1rem + 2.6vw, 3.75rem), 14cqi); }
+  .linea.is-fissata .stazione__titolo{ font-size:var(--t-3); }
+  .linea.is-fissata .stazione__testo{ gap:var(--s-3); }
+  .linea.is-fissata .nastro__piano{ height:88px; }
+  .linea.is-fissata .nastro__pezzo{ width:116px; }
+  .linea.is-fissata .linea__intro{ padding-block:var(--s-3) var(--s-2); }
+  .linea.is-fissata .linea__intro h2{ font-size:var(--t-3); }
+  .linea.is-fissata .stazione{ padding-block:var(--s-2) var(--s-3); }
+  .linea.is-fissata .stazione__desc{ font-size:var(--t-piccolo); line-height:1.5; }
+}
+/* schermi bassi: colonna del testo più larga; sotto gli 820 px (es. 1366 × 680) anche parola grande e nastro più compatti */
+@media (min-width:960px) and (max-height:940px){
+  .linea.is-fissata .stazione{ grid-template-columns:minmax(0,6fr) minmax(0,6fr); }
+  .linea.is-fissata .stazione__titolo{ max-width:none; }
+  .linea.is-fissata .stazione__testo > p.stazione__desc{ max-width:60ch; }
+}
+@media (min-width:960px) and (max-height:820px){
+  .linea.is-fissata .stazione__testo{ gap:var(--s-2); }
+  .linea.is-fissata .stazione__nome{ font-size:min(2.5rem, 14cqi); }
+  .linea.is-fissata .nastro__piano{ height:64px; }
+  .linea.is-fissata .nastro__pezzo{ width:72px; }
+}
+
+/* =========================================================
+   PONTE OFFICINA–CANTIERE (componente nuovo)
+   ========================================================= */
+.ponte__coppia{ display:grid; gap:var(--gutter); grid-template-columns:1fr; }
+@media (min-width:760px){ .ponte__coppia{ grid-template-columns:1fr 1fr; } }
+.ponte__lato{ background:var(--c-banco); border-radius:var(--r-sbavato); overflow:hidden; display:grid; grid-template-rows:auto 1fr; }
+.ponte__foto{ margin:0; aspect-ratio:16/9; background:#000; overflow:hidden; position:relative; }
+.ponte__foto img{ width:100%; height:100%; object-fit:cover; }
+@media (min-width:960px){ .ponte__foto{ aspect-ratio:21/9; } }
+.ponte__foto--contieni img{ object-fit:contain; padding:var(--s-3); }
+.ponte__corpo{ padding:var(--s-5); display:grid; gap:var(--s-3); align-content:start; justify-items:start; }
+.ponte__corpo .ponte__cosa{ font-size:var(--t-3); font-weight:600; line-height:1.3; max-width:30ch; }
+.nastro--ponte{ margin-top:var(--gutter); }
+.nastro--ponte .nastro__piano{ height:132px; }
+.nastro--ponte .nastro__pezzo{ width:170px; }
+@media (max-width:599px){ .nastro--ponte .nastro__piano{ height:84px; } .nastro--ponte .nastro__pezzo{ width:104px; } }
+.ponte__nota{ margin-top:var(--s-5); color:var(--c-grafite); font-size:var(--t-piccolo); max-width:70ch; }
+
+/* =========================================================
+   MACCHINARI
+   ========================================================= */
+.cifre{ display:grid; gap:1px; grid-template-columns:repeat(2,minmax(0,1fr)); background:var(--c-carter); border-block:1px solid var(--c-carter); margin-bottom:var(--s-7); }
+@media (min-width:960px){ .cifre{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
+.cifra{ background:var(--c-pavimento); padding:var(--s-5) var(--s-4) var(--s-5) 0; display:grid; gap:var(--s-2); align-content:start; }
+.cifre .cifra:nth-child(even){ padding-left:var(--s-4); }
+@media (min-width:960px){ .cifre .cifra:not(:first-child){ padding-left:var(--s-4); } }
+.cifra__valore{ font-family:var(--f-mono); font-weight:500; font-size:clamp(1.875rem,1.3rem + 2.2vw,3.25rem); line-height:1; letter-spacing:-.03em; color:var(--c-antracite); white-space:nowrap; }
+.cifra__valore small{ font-size:.4em; letter-spacing:0; margin-left:4px; color:var(--c-grafite); }
+.cifra p:not(.cifra__valore){ font-size:var(--t-piccolo); color:var(--c-grafite); line-height:1.45; }
+.binario-schede{ display:grid; gap:var(--gutter); }
+@media (max-width:599px){
+  .binario-schede{ grid-auto-flow:column; grid-auto-columns:84%; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:var(--s-4); margin-inline:calc(-1 * var(--margine)); padding-inline:var(--margine); scroll-padding-inline:var(--margine); }
+  .binario-schede > *{ scroll-snap-align:start; }
+}
+@media (min-width:600px){ .binario-schede{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (min-width:1180px){ .binario-schede{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
+.scheda{ background:var(--c-banco); border-radius:var(--r-sbavato); display:grid; grid-template-rows:auto 1fr; overflow:hidden; }
+.scheda__foto{ aspect-ratio:4/3; background:var(--c-antracite); position:relative; overflow:hidden; margin:0; }
+.scheda__foto img{ width:100%; height:100%; object-fit:cover; }
+.scheda__foto .tag{ position:absolute; top:var(--s-3); left:var(--s-3); background:var(--c-banco); }
+.scheda__corpo{ padding:var(--s-5); display:grid; gap:var(--s-4); align-content:start; }
+.scheda__nome{ font-size:var(--t-3); font-weight:600; line-height:1.25; }
+.scheda__nome span{ display:block; font-family:var(--f-mono); font-size:var(--t-etichetta); letter-spacing:.08em; text-transform:uppercase; color:var(--c-grafite); font-weight:500; margin-bottom:4px; }
+.righe-dati{ margin:0; display:grid; font-size:var(--t-piccolo); }
+.righe-dati div{ display:flex; justify-content:space-between; gap:var(--s-4); padding-block:8px; border-top:1px solid var(--c-carter); }
+.righe-dati dt{ color:var(--c-grafite); }
+.righe-dati dd{ margin:0; font-family:var(--f-mono); font-weight:500; text-align:right; }
+.macchinari__nota{ margin-top:var(--s-6); max-width:72ch; color:var(--c-grafite); font-size:var(--t-piccolo); border-left:var(--corsia) solid var(--c-segnale); padding-left:var(--s-3); }
+
+/* =========================================================
+   SETTORI (componente nuovo: elenco di linea)
+   ========================================================= */
+.settori{ background:var(--c-banco); }
+.settori__griglia{ display:grid; gap:var(--s-7); grid-template-columns:1fr; }
+@media (min-width:960px){ .settori__griglia{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); } .settori .sezione-home__testa{ position:sticky; top:calc(var(--testata-h) + var(--s-6)); align-self:start; margin-bottom:0; } }
+.elenco-linea{ list-style:none; margin:0; padding:0; border-top:1.5px solid var(--c-antracite); }
+.elenco-linea li{ display:grid; grid-template-columns:auto 1fr auto; gap:var(--s-4); align-items:center; padding-block:var(--s-5); border-bottom:1px solid var(--c-carter); position:relative; }
+.elenco-linea .mono{ font-size:.75rem; color:var(--c-grafite); letter-spacing:.06em; min-width:3.2em; }
+.elenco-linea b{ font-size:clamp(1.25rem, 1.05rem + .9vw, 1.75rem); font-weight:600; line-height:1.2; letter-spacing:-.01em; }
+.elenco-linea li::after{ content:""; width:16px; height:16px; border-radius:50%; border:3px solid var(--c-antracite); background:var(--c-segnale); }
+.elenco-linea li::before{ content:""; position:absolute; left:0; bottom:-1px; height:var(--corsia); width:100%; background:var(--c-segnale); transform:scaleX(0); transform-origin:left; transition:transform var(--d-4) var(--e-nastro); transition-delay:calc(var(--i,0) * 90ms + 200ms); }
+.js-moto .elenco-linea li.is-dentro::before{ transform:scaleX(1); }
+.js-moto .elenco-linea li.is-dentro::before{ animation:corsia-via 1ms linear calc(var(--i,0) * 90ms + 1400ms) forwards; }
+@keyframes corsia-via{ to{ opacity:0; } }
+
+/* =========================================================
+   SEDI
+   ========================================================= */
+.sedi{ background:var(--c-antracite); color:#fff; }
+.tracciato{ position:relative; margin-bottom:var(--s-6); }
+.tracciato svg{ width:100%; height:auto; display:block; }
+.tracciato__linea{ stroke-dasharray:1000; stroke-dashoffset:0; }
+.js-moto .tracciato:not(.is-dentro) .tracciato__linea{ stroke-dashoffset:1000; }
+.js-moto .tracciato__linea{ transition:stroke-dashoffset 1400ms var(--e-nastro) 200ms; }
+.tracciato__nomi{ display:flex; justify-content:space-between; margin-top:6px; color:#fff; }
+.sedi-griglia{ display:grid; gap:var(--gutter); grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); }
+.sede{ background:var(--c-antracite-2); border-radius:var(--r-sbavato); padding:var(--s-5); display:grid; gap:var(--s-4); border-top:var(--corsia) solid var(--c-segnale); align-content:start; }
+.sede__sigla{ color:var(--c-segnale); }
+.sede h3{ font-size:var(--t-2); line-height:1.15; }
+.sede__ruolo{ color:var(--c-nebbia); }
+.sede dl{ margin:0; display:grid; gap:var(--s-3); }
+.sede dl div{ display:grid; gap:2px; }
+.sede dt{ font-family:var(--f-mono); font-size:var(--t-etichetta); letter-spacing:.06em; text-transform:uppercase; color:var(--c-nebbia); }
+.sede dd{ margin:0; }
+.sede dd a{ color:#fff; }
+.sedi__chi{ margin-top:var(--s-6); display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-4); align-items:center; color:var(--c-nebbia); }
+
+/* =========================================================
+   RICHIESTA (componente nuovo: pannelli di richiesta)
+   ========================================================= */
+.richiesta{ background:var(--c-carter); }
+.richiesta__griglia{ display:grid; gap:var(--gutter); grid-template-columns:1fr; }
+@media (min-width:760px){ .richiesta__griglia{ grid-template-columns:1fr 1fr; } }
+.pannello{ background:var(--c-banco); border-radius:var(--r-sbavato); overflow:hidden; display:grid; grid-template-rows:auto 1fr; }
+.pannello__testa{ background:var(--c-antracite); color:#fff; display:grid; grid-template-columns:1fr 132px; gap:var(--s-4); align-items:end; padding:var(--s-5) var(--s-5) 0; border-bottom:var(--corsia) solid var(--c-segnale); }
+.pannello__testa .etichetta{ color:var(--c-segnale); }
+.pannello__titolo{ font-size:var(--t-3); font-weight:600; line-height:1.25; margin:var(--s-2) 0 var(--s-5); }
+.pannello__pezzo{ align-self:end; padding-bottom:4px; }
+.pannello__corpo{ padding:var(--s-5); display:grid; gap:var(--s-4); align-content:start; }
+.pannello__corpo > p{ font-size:var(--t-piccolo); color:var(--c-grafite); }
+.passi{ list-style:none; margin:0; padding:0; display:grid; position:relative; }
+.passi li{ display:grid; grid-template-columns:24px 1fr; gap:var(--s-3); align-items:center; padding-block:var(--s-2); position:relative; }
+.passi li::before{ content:""; width:18px; height:18px; border-radius:50%; border:2.5px solid var(--c-antracite); justify-self:center; z-index:1; box-shadow:inset 0 0 0 3px var(--c-segnale); background:var(--c-antracite); }
+.passi li:not(:last-child)::after{ content:""; position:absolute; left:11px; top:calc(50% + 9px); height:calc(100% - 18px); width:2px; background:var(--c-antracite); }
+.richiesta__azioni{ margin-top:var(--s-7); display:grid; gap:var(--s-5); justify-items:start; }
+.richiesta__azioni p{ color:var(--c-antracite); }
+.richiesta__azioni a.tel{ font-family:var(--f-mono); font-weight:500; }
+
+/* =========================================================
+   PIÈ DI PAGINA
+   ========================================================= */
+.piede{ background:var(--c-antracite); color:#fff; border-top:var(--corsia) solid var(--c-segnale); }
+.piede__alto{ display:grid; gap:var(--s-7); grid-template-columns:1fr; padding-block:var(--s-8) var(--s-7); }
+@media (min-width:600px){ .piede__alto{ grid-template-columns:1fr 1fr; } }
+@media (min-width:960px){ .piede__alto{ grid-template-columns:minmax(0,4fr) repeat(3,minmax(0,2fr)); } }
+.piede__marchio{ display:grid; gap:var(--s-4); align-content:start; }
+.piede__marchio img{ width:180px; height:auto; }
+.piede__marchio p{ color:var(--c-nebbia); font-size:var(--t-piccolo); max-width:36ch; }
+.piede__marchio .piede__claim{ color:#fff; font-weight:600; }
+.piede__titolo{ font-family:var(--f-mono); font-size:var(--t-etichetta); letter-spacing:.08em; text-transform:uppercase; color:var(--c-segnale); font-weight:500; margin-bottom:var(--s-3); }
+.piede ul{ list-style:none; margin:0; padding:0; display:grid; }
+.piede ul a{ display:inline-flex; min-height:40px; align-items:center; text-decoration:none; color:#fff; }
+.piede ul a:hover{ text-decoration:underline; text-decoration-color:var(--c-segnale); text-decoration-thickness:2px; text-underline-offset:5px; }
+.piede__societa{ display:grid; gap:var(--s-5); grid-template-columns:1fr; padding-block:var(--s-6); border-top:1px solid var(--c-antracite-2); }
+@media (min-width:760px){ .piede__societa{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+.piede__societa address{ font-style:normal; color:var(--c-nebbia); font-size:.875rem; line-height:1.7; }
+.piede__societa address b{ color:#fff; display:block; font-weight:600; font-size:.9375rem; }
+.piede__societa a{ color:#fff; }
+.piede__basso{ border-top:1px solid var(--c-antracite-2); display:flex; flex-wrap:wrap; gap:var(--s-3) var(--s-5); align-items:center; justify-content:space-between; padding-block:var(--s-4) var(--s-5); color:var(--c-nebbia); font-size:.875rem; }
+.piede__basso nav{ display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-4); }
+.piede__basso nav a{ color:#fff; min-height:44px; display:inline-flex; align-items:center; }
+.fine-linea{ display:inline-flex; align-items:center; gap:var(--s-3); min-height:44px; background:transparent; color:#fff; border:0; cursor:pointer; font-family:var(--f-mono); font-size:.8125rem; letter-spacing:.06em; text-transform:uppercase; padding:0; }
+.fine-linea__nodo{ width:28px; height:28px; border-radius:50%; border:3px solid var(--c-segnale); display:grid; place-items:center; transition:background var(--d-2); }
+.fine-linea__nodo svg{ width:12px; height:12px; }
+.fine-linea:hover .fine-linea__nodo{ background:var(--c-segnale); color:var(--c-antracite); }
+
+/* =========================================================
+   AVVISO DI COLLEGAMENTO SEGNAPOSTO (componente nuovo)
+   ========================================================= */
+.avviso{ position:fixed; z-index:95; left:50%; top:calc(var(--testata-h) + 12px); transform:translateX(-50%); width:min(560px, calc(100% - 2 * var(--margine)));
+  background:var(--c-antracite); color:#fff; border-left:var(--corsia) solid var(--c-segnale); border-radius:var(--r-sbavato); box-shadow:var(--ombra-cabina);
+  padding:var(--s-3) var(--s-4); display:grid; grid-template-columns:auto 1fr; gap:var(--s-3); align-items:start; font-size:var(--t-piccolo); line-height:1.45; }
+.avviso[hidden]{ display:none; }
+.avviso__nodo{ width:14px; height:14px; border-radius:50%; border:3px solid var(--c-segnale); margin-top:3px; }
+.avviso code{ font-family:var(--f-mono); color:var(--c-segnale); font-size:.875rem; word-break:break-all; }
+.js-moto .avviso:not([hidden]){ animation:arriva-alto var(--d-3) var(--e-arrivo); }
+@keyframes arriva-alto{ from{ opacity:0; transform:translate(-50%,-12px); } to{ opacity:1; transform:translate(-50%,0); } }
+
+/* =========================================================
+   RIDUCI IL MOVIMENTO
+   ========================================================= */
+.rm *, .rm *::before, .rm *::after{ transition-duration:0s!important; transition-delay:0s!important; animation-duration:0s!important; animation-delay:0s!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
+@media (prefers-reduced-motion:reduce){
+  *, *::before, *::after{ transition-duration:0s!important; transition-delay:0s!important; animation-duration:0s!important; animation-delay:0s!important; scroll-behavior:auto!important; }
+}
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<!-- Barra del mockup: non fa parte del sito -->
+<div class="prova scuro" role="region" aria-label="Comandi del mockup">
+  <div class="contenitore prova__riga">
+    <p class="etichetta">Mockup · design system «Linea di produzione» · questa barra non fa parte del sito</p>
+    <div class="prova__comandi">
+      <button class="interruttore" type="button" id="interruttore-rm" aria-pressed="false"><span class="interruttore__binario" aria-hidden="true"></span>Riduci il movimento</button>
+    </div>
+  </div>
+</div>
+
+<!-- Testata -->
+<header class="testata" id="testata">
+  <div class="contenitore testata__riga">
+    <a class="testata__logo" href="#contenuto" aria-label="GNT Officine Meccaniche, inizio della pagina">
+      <img src="../media/logo/svg/gnt-simbolo-colori.svg" alt="" width="95" height="34">
+    </a>
+    <nav aria-label="Principale">
+      <ul class="testata__menu">
+        <li><a href="/lavorazioni-meccaniche/">Lavorazioni meccaniche</a></li>
+        <li><a href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni</a></li>
+        <li><a href="#sedi">Sedi</a></li>
+        <li><a href="/chi-siamo/">Chi siamo</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+      </ul>
+    </nav>
+    <div class="testata__azioni">
+      <a class="pulsante pulsante--piccolo testata__cta-lungo" href="/richiedi-preventivo/">Richiedi un preventivo<span class="pulsante__freccia" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+      <a class="pulsante pulsante--piccolo pulsante--senza-icona testata__cta-corto" href="/richiedi-preventivo/">Preventivo</a>
+      <button class="bottone-menu" type="button" aria-expanded="false" aria-controls="menu-tel" data-apri-menu><span class="bottone-menu__icona" aria-hidden="true"><i></i><i></i><i></i></span>Menu</button>
+    </div>
+  </div>
+  <div class="nastrino" aria-hidden="true"><div class="nastrino__pieno"></div><div class="nastrino__carrello"></div></div>
+</header>
+
+<main id="contenuto" tabindex="-1">
+
+  <!-- ===== HERO · H1 ===== -->
+  <section class="eroe" aria-labelledby="h1">
+    <div class="eroe__testo">
+      <p class="etichetta">Meccanica industriale B2B · Rovello Porro (CO) · Bolzano (BZ)</p>
+      <h1 class="eroe__titolo" id="h1"><span class="eroe__marchio">GNT Officine Meccaniche:</span> lavorazioni meccaniche e servizi per <em>impianti industriali</em></h1>
+      <p class="eroe__lead">GNT Officine Meccaniche è un fornitore B2B di meccanica industriale che esegue lavorazioni meccaniche conto terzi e interventi su apparecchiature e impianti industriali. Nella sede di Rovello Porro (CO), l'officina realizza componenti a disegno mediante tornitura, fresatura CNC e carpenteria. Con squadre operative dalle sedi di Rovello Porro e Bolzano (BZ), l'azienda svolge montaggi, smontaggi, installazioni e manutenzioni meccaniche presso gli stabilimenti dei clienti.</p>
+      <div class="riga-pulsanti">
+        <a class="pulsante pulsante--grande" href="/richiedi-preventivo/">Richiedi un preventivo<span class="pulsante__freccia" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+      </div>
+      <div class="eroe__collegamenti">
+        <a class="link-freccia" href="#officina"><span class="link-freccia__testo">Scopri le lavorazioni meccaniche</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v13M4 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        <a class="link-freccia" href="#cantiere"><span class="link-freccia__testo">Scopri i servizi in cantiere</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M9 2v13M4 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+      </div>
+    </div>
+    <figure class="eroe__foto">
+      <img src="../media/foto/tornio-cnc-doosan-puma-3100-dall-alto.jpg" alt="Il tornio CNC Doosan Puma 3100 di GNT Officine Meccaniche visto dall'alto nella sede di Rovello Porro, con due operatori al lavoro accanto alla macchina." width="1341" height="1642">
+      <figcaption class="etichetta">Tornio CNC Doosan Puma 3100 ULM · Rovello Porro</figcaption>
+    </figure>
+  </section>
+
+  <!-- ===== 01 · SEED A · LA LINEA DELL'OFFICINA ===== -->
+  <section class="linea is-statica" id="officina" aria-labelledby="officina-t" data-linea style="--n:3">
+    <div class="linea__palco">
+      <div class="contenitore linea__intro">
+        <div>
+          <p class="etichetta">01 · Officina · Rovello Porro (CO)</p>
+          <h2 id="officina-t">Lavorazioni e costruzioni meccaniche conto terzi</h2>
+        </div>
+        <div class="linea__intro-testo">
+          <p>L'officina di GNT Officine Meccaniche, nella sede di Rovello Porro, esegue lavorazioni e costruzioni meccaniche per componenti a disegno, pezzi singoli e piccoli lotti, impiegando torni, fresatrici e attrezzature per carpenteria metallica.</p>
+          <a class="link-freccia" href="/lavorazioni-meccaniche/"><span class="link-freccia__testo">Lavorazioni meccaniche conto terzi</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        </div>
+      </div>
+      <div class="linea__finestra">
+        <div class="linea__binario">
+          <article class="stazione" id="tornitura" aria-labelledby="tornitura-t" data-stazione data-m="0">
+            <div class="stazione__testo">
+              <p><span class="tag tag--attiva">ST 01 / 03 · Officina</span></p>
+              <p class="stazione__nome" aria-hidden="true">Tornitura</p>
+              <h3 id="tornitura-t" class="stazione__titolo">Tornitura meccanica conto terzi</h3>
+              <p class="stazione__desc">Nella sede di Rovello Porro, GNT Officine Meccaniche esegue tornitura CNC e tradizionale di particolari a disegno, dal pezzo singolo al piccolo lotto, anche per pezzi lunghi da lavorare con la lunetta.</p>
+              <ul class="dati-chip">
+                <li><span>Tornio CNC Doosan Puma 3100 ULM</span><b>Asse Z 3.000 mm</b></li>
+                <li><span>Tornio parallelo</span><b>Asse Z 5.000 mm</b></li>
+              </ul>
+              <a class="link-freccia" href="/lavorazioni-meccaniche/tornitura/"><span class="link-freccia__testo">Tornitura meccanica</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+            </div>
+            <figure class="stazione__foto">
+              <img src="../media/foto/tornio-parallelo-x600-z4000-boccole-bronzo.jpg" alt="Tornio parallelo di GNT Officine Meccaniche nella sede di Rovello Porro, con due grandi boccole in bronzo tornite appoggiate su un bancale in primo piano." loading="lazy" width="1187" height="787" style="object-position:30% 60%">
+              <figcaption class="etichetta">Tornio parallelo · boccole in bronzo</figcaption>
+            </figure>
+          </article>
+          <article class="stazione" id="fresatura" aria-labelledby="fresatura-t" data-stazione data-m="0.55">
+            <div class="stazione__testo">
+              <p><span class="tag tag--attiva">ST 02 / 03 · Officina</span></p>
+              <p class="stazione__nome" aria-hidden="true">Fresatura</p>
+              <h3 id="fresatura-t" class="stazione__titolo">Fresatura CNC</h3>
+              <p class="stazione__desc">Nella sede di Rovello Porro, GNT Officine Meccaniche esegue la fresatura su centri di lavoro CNC e su fresa Mecof, anche per particolari di grandi dimensioni.</p>
+              <ul class="dati-chip">
+                <li><span>Fresa Mecof · corsa X</span><b>3.800 mm</b></li>
+                <li><span>Centro di lavoro</span><b>Mikron VC1000</b></li>
+              </ul>
+              <a class="link-freccia" href="/lavorazioni-meccaniche/fresatura-cnc/"><span class="link-freccia__testo">Fresatura CNC</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+            </div>
+            <figure class="stazione__foto">
+              <img src="../media/foto/centro-di-lavoro-mikron-vc1000.jpg" alt="Centro di lavoro CNC Mikron VC1000 di GNT Officine Meccaniche nella sede di Rovello Porro, con il pannello di comando su braccio a lato della macchina." loading="lazy" width="813" height="1083" style="object-position:40% 30%">
+              <figcaption class="etichetta">Centro di lavoro Mikron VC1000</figcaption>
+            </figure>
+          </article>
+          <article class="stazione" id="carpenteria" aria-labelledby="carpenteria-t" data-stazione data-m="1">
+            <div class="stazione__testo">
+              <p><span class="tag tag--attiva">ST 03 / 03 · Officina</span></p>
+              <p class="stazione__nome" aria-hidden="true">Carpenteria</p>
+              <h3 id="carpenteria-t" class="stazione__titolo">Carpenteria metallica industriale</h3>
+              <p class="stazione__desc">Nella sede di Rovello Porro, GNT Officine Meccaniche costruisce carpenterie, manufatti metallici e componenti, con taglio al plasma, ossitaglio e saldatura.</p>
+              <ul class="dati-chip">
+                <li><span>Taglio plasma</span><b>120 A · 1–20 mm</b></li>
+                <li><span>Tavola</span><b>1.500 × 3.000 mm</b></li>
+              </ul>
+              <a class="link-freccia" href="/lavorazioni-meccaniche/carpenteria-metallica/"><span class="link-freccia__testo">Carpenteria metallica industriale</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+            </div>
+            <figure class="stazione__foto">
+              <img src="../media/foto/taglio-plasma-120a-tavola-1500x3000.jpg" alt="Banco di taglio al plasma di GNT Officine Meccaniche nella sede di Rovello Porro, con portale giallo e tavola a griglia." loading="lazy" width="937" height="707">
+              <figcaption class="etichetta">Banco di taglio al plasma · 120 A</figcaption>
+            </figure>
+          </article>
+        </div>
+      </div>
+      <div class="nastro" data-nastro role="group" aria-label="Avanzamento della linea dell'officina">
+        <div class="nastro__piano">
+          <span class="nastro__testa" aria-hidden="true"></span>
+          <div class="nastro__statici" aria-hidden="true" data-statici></div>
+          <div class="nastro__pezzo" aria-hidden="true" data-pezzo-mobile></div>
+          <div class="nastro__cinghia" aria-hidden="true"></div>
+        </div>
+        <ol class="nastro__nodi">
+          <li><button type="button" data-vai="0"><span class="nodo" aria-hidden="true"></span><span><span class="sr">Vai a </span>01 Tornitura</span></button></li>
+          <li><button type="button" data-vai="1"><span class="nodo" aria-hidden="true"></span><span><span class="sr">Vai a </span>02 Fresatura</span></button></li>
+          <li><button type="button" data-vai="2"><span class="nodo" aria-hidden="true"></span><span><span class="sr">Vai a </span>03 Carpenteria</span></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 · SEED B · LA LINEA DEL CANTIERE ===== -->
+  <section class="linea is-statica" id="cantiere" aria-labelledby="cantiere-t" data-linea style="--n:2">
+    <div class="linea__palco">
+      <div class="contenitore linea__intro">
+        <div>
+          <p class="etichetta">02 · Cantiere · da Rovello Porro e Bolzano</p>
+          <h2 id="cantiere-t">Montaggi, installazioni e manutenzioni meccaniche in cantiere</h2>
+        </div>
+        <div class="linea__intro-testo">
+          <p>GNT Officine Meccaniche esegue lavori di montaggio, smontaggio, installazione e manutenzione meccanica di apparecchiature e impianti industriali direttamente presso gli stabilimenti dei clienti. Le squadre dell'azienda partono dalle sedi di Rovello Porro (CO) e Bolzano (BZ).</p>
+          <a class="link-freccia" href="/montaggi-manutenzioni-industriali/"><span class="link-freccia__testo">Montaggi e manutenzioni industriali</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        </div>
+      </div>
+      <div class="linea__finestra">
+        <div class="linea__binario">
+          <article class="stazione" id="montaggio" aria-labelledby="montaggio-t" data-stazione data-m="2">
+            <div class="stazione__testo">
+              <p><span class="tag tag--attiva">ST 01 / 02 · Cantiere</span></p>
+              <p class="stazione__nome" aria-hidden="true">Montaggio</p>
+              <h3 id="montaggio-t" class="stazione__titolo">Montaggio e smontaggio di impianti industriali</h3>
+              <p class="stazione__desc">GNT Officine Meccaniche esegue il montaggio e lo smontaggio meccanico di apparecchiature e impianti presso il vostro stabilimento, compresa l'installazione di nuove apparecchiature.</p>
+              <ul class="dati-chip">
+                <li><span>Dove</span><b>Nel vostro stabilimento</b></li>
+                <li><span>Squadre da</span><b>CO · BZ</b></li>
+              </ul>
+              <a class="link-freccia" href="/montaggi-manutenzioni-industriali/montaggio-smontaggio-impianti/"><span class="link-freccia__testo">Montaggio e smontaggio di impianti industriali</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+            </div>
+            <figure class="stazione__foto">
+              <img src="../media/foto/tubistica-tubazioni-flangiate.jpg" alt="Tubazioni flangiate prefabbricate, verniciate di grigio, appoggiate su travetti di legno prima del montaggio." loading="lazy" width="854" height="572">
+              <figcaption class="etichetta">Tubazioni flangiate pronte per il montaggio</figcaption>
+            </figure>
+          </article>
+          <article class="stazione" id="manutenzione" aria-labelledby="manutenzione-t" data-stazione data-m="3">
+            <div class="stazione__testo">
+              <p><span class="tag tag--attiva">ST 02 / 02 · Cantiere</span></p>
+              <p class="stazione__nome" aria-hidden="true">Manutenzione</p>
+              <h3 id="manutenzione-t" class="stazione__titolo">Manutenzione meccanica industriale</h3>
+              <p class="stazione__desc">GNT Officine Meccaniche esegue interventi di manutenzione meccanica su apparecchiature e impianti produttivi, direttamente nel vostro stabilimento.</p>
+              <ul class="dati-chip">
+                <li><span>Interventi su</span><b>Apparecchiature e impianti</b></li>
+                <li><span>Squadre da</span><b>CO · BZ</b></li>
+              </ul>
+              <a class="link-freccia" href="/montaggi-manutenzioni-industriali/manutenzione-meccanica/"><span class="link-freccia__testo">Manutenzione meccanica industriale</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+            </div>
+            <figure class="stazione__foto">
+              <img src="../media/foto/saldatura-in-cantiere-operatore.jpg" alt="Operatore di GNT Officine Meccaniche, di spalle, salda accovacciato sotto una struttura metallica in cantiere, tra le scintille." loading="lazy" width="857" height="958" style="object-position:40% 40%">
+              <figcaption class="etichetta">Intervento in cantiere · saldatura</figcaption>
+            </figure>
+          </article>
+        </div>
+      </div>
+      <div class="nastro" data-nastro role="group" aria-label="Avanzamento della linea del cantiere">
+        <div class="nastro__piano">
+          <span class="nastro__testa" aria-hidden="true"></span>
+          <div class="nastro__statici" aria-hidden="true" data-statici></div>
+          <div class="nastro__pezzo" aria-hidden="true" data-pezzo-mobile></div>
+          <div class="nastro__cinghia" aria-hidden="true"></div>
+        </div>
+        <ol class="nastro__nodi">
+          <li><button type="button" data-vai="0"><span class="nodo" aria-hidden="true"></span><span><span class="sr">Vai a </span>01 Montaggio</span></button></li>
+          <li><button type="button" data-vai="1"><span class="nodo" aria-hidden="true"></span><span><span class="sr">Vai a </span>02 Manutenzione</span></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 · PONTE OFFICINA–CANTIERE ===== -->
+  <section class="sezione-home ponte" id="officina-cantiere" aria-labelledby="ponte-t">
+    <div class="contenitore">
+      <div class="sezione-home__testa">
+        <p class="etichetta">03 · Officina e cantiere</p>
+        <h2 id="ponte-t">Dalle lavorazioni in officina agli interventi sugli impianti industriali</h2>
+        <p>GNT Officine Meccaniche lavora sia in officina sia sugli impianti industriali, e componenti, apparecchiature e impianti sono collegati: un componente lavorato in officina può far parte di un'apparecchiatura che poi va montata o mantenuta sull'impianto. In una commessa che richiede sia lavorazioni meccaniche sia attività di montaggio, le competenze di officina e cantiere dell'azienda si completano.</p>
+      </div>
+      <div class="ponte__coppia">
+        <div class="ponte__lato" data-arrivo style="--i:0">
+          <figure class="ponte__foto"><img src="../media/foto/componente-meccanico-fresato-su-disegno-tecnico.jpg" alt="Componente meccanico fresato in acciaio, con foro centrale e bracci laterali, appoggiato sul suo disegno tecnico quotato." loading="lazy" width="3024" height="3075" style="object-position:50% 45%"></figure>
+          <div class="ponte__corpo">
+            <span class="tag">Officina</span>
+            <p class="ponte__cosa">Nella sede di Rovello Porro, l'officina di GNT Officine Meccaniche si occupa di lavorazione, costruzione e revisione di componenti meccanici.</p>
+            <a class="link-freccia" href="/lavorazioni-meccaniche/"><span class="link-freccia__testo">Lavorazioni meccaniche conto terzi</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+          </div>
+        </div>
+        <div class="ponte__lato" data-arrivo style="--i:1">
+          <figure class="ponte__foto ponte__foto--contieni"><img src="../media/foto/disegno-3d-apparecchiatura-meccanica.jpg" alt="Disegno 3D a linee di un'apparecchiatura meccanica con telaio, albero e motoriduttore." loading="lazy" width="512" height="693"></figure>
+          <div class="ponte__corpo">
+            <span class="tag">Cantiere</span>
+            <p class="ponte__cosa">GNT Officine Meccaniche si occupa di montaggio, installazione e manutenzione meccanica presso lo stabilimento del cliente.</p>
+            <a class="link-freccia" href="/montaggi-manutenzioni-industriali/"><span class="link-freccia__testo">Montaggi e manutenzioni industriali</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="nastro nastro--ponte" data-ponte style="--n:2" aria-hidden="true">
+        <div class="nastro__piano">
+          <div class="nastro__statici" data-statici-ponte></div>
+          <div class="nastro__pezzo" data-pezzo-ponte></div>
+          <div class="nastro__cinghia"></div>
+        </div>
+        <ol class="nastro__nodi">
+          <li><span class="nastro__nodo-fisso"><span class="nodo"></span>Officina · componente</span></li>
+          <li><span class="nastro__nodo-fisso"><span class="nodo"></span>Cantiere · impianto</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 · MACCHINARI ===== -->
+  <section class="sezione-home" id="macchinari" aria-labelledby="macchinari-t" style="padding-top:0">
+    <div class="contenitore">
+      <div class="sezione-home__testa">
+        <p class="etichetta">04 · Capacità produttive · Rovello Porro</p>
+        <h2 id="macchinari-t">Macchinari e capacità di lavorazione dell'officina GNT</h2>
+        <p>Qui trovate alcuni dati delle macchine che GNT Officine Meccaniche usa nella sede di Rovello Porro, per capire subito se il vostro particolare rientra nelle nostre lavorazioni.</p>
+      </div>
+      <div class="cifre">
+        <div class="cifra"><p class="cifra__valore"><span data-conta="3800">3.800</span><small>mm</small></p><p>Corsa X della fresa Mecof</p></div>
+        <div class="cifra"><p class="cifra__valore"><span data-conta="5000">5.000</span><small>mm</small></p><p>Asse Z del tornio parallelo, con lunetta</p></div>
+        <div class="cifra"><p class="cifra__valore"><span data-conta="3000">3.000</span><small>mm</small></p><p>Asse Z del tornio CNC Doosan Puma 3100 ULM, con lunetta</p></div>
+        <div class="cifra"><p class="cifra__valore"><span data-conta="120">120</span><small>A</small></p><p>Banco di taglio al plasma, tavola 1.500 × 3.000 mm</p></div>
+      </div>
+      <div class="binario-schede">
+        <article class="scheda" data-arrivo style="--i:0" aria-label="Fresa Mecof">
+          <figure class="scheda__foto"><img src="../media/foto/fresa-mecof-controllo-selca-s4000.jpg" alt="Fresa Mecof con grande tavola a T e controllo Selca S4000, delimitata da recinzioni gialle." loading="lazy" width="1070" height="1426" style="object-position:50% 45%"><span class="tag">Fresatura</span></figure>
+          <div class="scheda__corpo"><p class="scheda__nome"><span>Fresatrice</span>Fresa Mecof</p>
+            <dl class="righe-dati"><div><dt>Corsa X</dt><dd>3.800 mm</dd></div><div><dt>Corsa Y</dt><dd>990 mm</dd></div><div><dt>Corsa Z</dt><dd>1.600 mm</dd></div><div><dt>Controllo</dt><dd>Selca S4000</dd></div></dl></div>
+        </article>
+        <article class="scheda" data-arrivo style="--i:1" aria-label="Tornio parallelo">
+          <figure class="scheda__foto"><img src="../media/foto/tornio-parallelo-x700-z5000.jpg" alt="Torni paralleli nell'officina di GNT Officine Meccaniche, nella sede di Rovello Porro: sul fondo il tornio con asse Z da 5.000 mm." loading="lazy" width="1183" height="954"><span class="tag">Tornitura</span></figure>
+          <div class="scheda__corpo"><p class="scheda__nome"><span>Tornio parallelo</span>Asse Z 5.000 mm</p>
+            <dl class="righe-dati"><div><dt>Asse Z</dt><dd>5.000 mm</dd></div><div><dt>Lunetta</dt><dd>Sì</dd></div></dl></div>
+        </article>
+        <article class="scheda" data-arrivo style="--i:2" aria-label="Tornio CNC Doosan Puma 3100 ULM">
+          <figure class="scheda__foto"><img src="../media/foto/tornio-cnc-doosan-puma-3100-fronte.jpg" alt="Tornio CNC Doosan Puma 3100 ULM visto di fronte, con il pannello di controllo." loading="lazy" width="572" height="749" style="object-position:50% 35%"><span class="tag">Tornitura CNC</span></figure>
+          <div class="scheda__corpo"><p class="scheda__nome"><span>Tornio CNC</span>Doosan Puma 3100 ULM</p>
+            <dl class="righe-dati"><div><dt>Asse Z</dt><dd>3.000 mm</dd></div><div><dt>Lunetta</dt><dd>Sì</dd></div></dl></div>
+        </article>
+        <article class="scheda" data-arrivo style="--i:3" aria-label="Banco taglio plasma">
+          <figure class="scheda__foto"><img src="../media/foto/taglio-plasma-120a-tavola-1500x3000.jpg" alt="Banco di taglio al plasma con portale giallo, visto di tre quarti." loading="lazy" width="937" height="707"><span class="tag">Carpenteria</span></figure>
+          <div class="scheda__corpo"><p class="scheda__nome"><span>Banco taglio plasma</span>120 A</p>
+            <dl class="righe-dati"><div><dt>Corrente</dt><dd>120 A</dd></div><div><dt>Spessori dichiarati</dt><dd>1–20 mm</dd></div><div><dt>Tavola</dt><dd>1.500 × 3.000 mm</dd></div></dl></div>
+        </article>
+      </div>
+      <p class="macchinari__nota">I dati dei macchinari di GNT Officine Meccaniche sono caratteristiche dichiarate delle macchine, non le dimensioni massime di qualsiasi componente: per un particolare preciso, mandateci il disegno e vi diciamo come lavorarlo.</p>
+    </div>
+  </section>
+
+  <!-- ===== 05 · SETTORI ===== -->
+  <section class="sezione-home settori" id="settori" aria-labelledby="settori-t">
+    <div class="contenitore settori__griglia">
+      <div class="sezione-home__testa">
+        <p class="etichetta">05 · Settori</p>
+        <h2 id="settori-t">Competenze meccaniche per aziende e impianti industriali</h2>
+        <p>GNT Officine Meccaniche lavora per aziende industriali, come fornitore B2B di lavorazioni e servizi meccanici. Tra le aziende servite ci sono imprese attive in questi settori.</p>
+      </div>
+      <ol class="elenco-linea">
+        <li data-arrivo style="--i:0"><span class="mono">S 01</span><b>Siderurgia e lavorazione dell'acciaio</b></li>
+        <li data-arrivo style="--i:1"><span class="mono">S 02</span><b>Costruzione di macchine e impianti</b></li>
+        <li data-arrivo style="--i:2"><span class="mono">S 03</span><b>Componentistica automotive</b></li>
+        <li data-arrivo style="--i:3"><span class="mono">S 04</span><b>Produzione di film plastici</b></li>
+        <li data-arrivo style="--i:4"><span class="mono">S 05</span><b>Sollevamento e movimentazione</b></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 06 · SEDI ===== -->
+  <section class="sezione-home sedi scuro" id="sedi" aria-labelledby="sedi-t">
+    <div class="contenitore">
+      <div class="sezione-home__testa">
+        <p class="etichetta">06 · Due società, due sedi · CO–BZ</p>
+        <h2 id="sedi-t">GNT Officine Meccaniche a Rovello Porro e Bolzano</h2>
+        <p>Il marchio GNT Officine Meccaniche è usato da due società distinte: GNT S.R.L., a Rovello Porro (CO), e GNT BOLZANO S.R.L., a Bolzano (BZ).</p>
+      </div>
+      <div class="tracciato" data-arrivo-tracciato aria-hidden="true">
+        <svg viewBox="0 0 1000 90" preserveAspectRatio="none">
+          <line x1="20" y1="45" x2="980" y2="45" stroke="#2A3136" stroke-width="10" stroke-linecap="round"/>
+          <path class="tracciato__linea" d="M20 45H980" stroke="#F5C400" stroke-width="4" fill="none" pathLength="1000"/>
+          <circle cx="20" cy="45" r="16" fill="#1C2125" stroke="#F5C400" stroke-width="6"/>
+          <circle cx="980" cy="45" r="16" fill="#F5C400" stroke="#F5C400" stroke-width="6"/>
+        </svg>
+        <div class="tracciato__nomi etichetta"><span>CO · Rovello Porro</span><span>BZ · Bolzano</span></div>
+      </div>
+      <div class="sedi-griglia">
+        <article class="sede" aria-labelledby="sede-co-t">
+          <p class="etichetta sede__sigla">Sede · CO · Lombardia</p>
+          <h3 id="sede-co-t">GNT S.R.L., Rovello Porro</h3>
+          <p class="sede__ruolo">La sede di Rovello Porro è l'officina produttiva di GNT Officine Meccaniche, con macchinari documentati, e la base operativa per i servizi in cantiere.</p>
+          <dl>
+            <div><dt>Indirizzo</dt><dd>Via Giovanni Battista Grassi 5, 22070 Rovello Porro (CO)</dd></div>
+            <div><dt>Telefono</dt><dd><a class="link" href="tel:+390296750206">02 96750206</a></dd></div>
+            <div><dt>Email</dt><dd><a class="link" href="mailto:info@gntmeccanica.com">info@gntmeccanica.com</a></dd></div>
+            <div><dt>Orari</dt><dd>Dal lunedì al venerdì, 8–12 e 13–17</dd></div>
+          </dl>
+          <a class="link-freccia" href="/sedi/rovello-porro/"><span class="link-freccia__testo">Officina GNT a Rovello Porro</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        </article>
+        <article class="sede" aria-labelledby="sede-bz-t">
+          <p class="etichetta sede__sigla">Sede · BZ · Alto Adige</p>
+          <h3 id="sede-bz-t">GNT BOLZANO S.R.L., Bolzano</h3>
+          <p class="sede__ruolo">La sede di Bolzano è il presidio operativo di GNT Officine Meccaniche per i cantieri dell'Alto Adige e del Trentino.</p>
+          <dl>
+            <div><dt>Indirizzo</dt><dd>Via Louis Braille 12, 39100 Bolzano (BZ)</dd></div>
+            <div><dt>Telefono</dt><dd><a class="link" href="tel:+390296750206">02 96750206</a></dd></div>
+            <div><dt>Email</dt><dd><a class="link" href="mailto:info@gntbolzano.com">info@gntbolzano.com</a></dd></div>
+            <div><dt>Orari</dt><dd>Dal lunedì al venerdì, 8–12 e 13–17</dd></div>
+          </dl>
+          <a class="link-freccia" href="/sedi/bolzano/"><span class="link-freccia__testo">GNT Bolzano</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        </article>
+      </div>
+      <p class="sedi__chi"><span>Storia, organizzazione e competenze di GNT Officine Meccaniche:</span><a class="link-freccia" href="/chi-siamo/"><span class="link-freccia__testo">Chi siamo</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></p>
+    </div>
+  </section>
+
+  <!-- ===== 07 · RICHIESTA ===== -->
+  <section class="sezione-home richiesta" id="richiesta" aria-labelledby="richiesta-t">
+    <div class="contenitore">
+      <div class="sezione-home__testa">
+        <p class="etichetta">07 · Fine linea · Preventivo</p>
+        <h2 id="richiesta-t">Come richiedere una lavorazione meccanica o un intervento industriale</h2>
+        <p>Più informazioni date a GNT Officine Meccaniche, più il preventivo per una lavorazione o un intervento è preciso. Ecco cosa è utile indicare, a seconda di cosa vi serve.</p>
+      </div>
+      <div class="richiesta__griglia">
+        <div class="pannello" data-arrivo style="--i:0">
+          <div class="pannello__testa scuro">
+            <div><p class="etichetta">In officina</p><p class="pannello__titolo">Lavorazione meccanica in officina</p></div>
+            <div class="pannello__pezzo" data-pezzo-fermo="1"></div>
+          </div>
+          <div class="pannello__corpo">
+            <ul class="passi">
+              <li><span>Disegno o descrizione del particolare</span></li>
+              <li><span>Materiale</span></li>
+              <li><span>Quantità</span></li>
+              <li><span>Caratteristiche rilevanti</span></li>
+              <li><span>Tempi desiderati</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pannello" data-arrivo style="--i:1">
+          <div class="pannello__testa scuro">
+            <div><p class="etichetta">In cantiere</p><p class="pannello__titolo">Montaggio, smontaggio o manutenzione</p></div>
+            <div class="pannello__pezzo" data-pezzo-fermo="3"></div>
+          </div>
+          <div class="pannello__corpo">
+            <ul class="passi">
+              <li><span>Tipo di impianto</span></li>
+              <li><span>Attività necessaria</span></li>
+              <li><span>Stabilimento interessato</span></li>
+              <li><span>Periodo previsto</span></li>
+              <li><span>Documentazione disponibile</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="richiesta__azioni">
+        <p>Le informazioni elencate non sono campi obbligatori per chiedere un preventivo a GNT Officine Meccaniche: se qualcosa non lo sapete ancora, scrivete quello che avete.</p>
+        <div class="riga-pulsanti">
+          <a class="pulsante pulsante--grande" href="/richiedi-preventivo/">Richiedi un preventivo<span class="pulsante__freccia" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+          <a class="link-freccia" href="/contatti/"><span class="link-freccia__testo">Contatta GNT</span><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        </div>
+        <p>Per parlarne a voce, chiamate GNT Officine Meccaniche allo <a class="link tel" href="tel:+390296750206">02 96750206</a>, dal lunedì al venerdì, 8–12 e 13–17.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Piè di pagina -->
+<footer class="piede scuro">
+  <div class="contenitore piede__alto">
+    <div class="piede__marchio">
+      <img src="../media/logo/svg/gnt-logo-negativo.svg" alt="GNT Officine Meccaniche" width="180" height="81">
+      <p class="piede__claim">Rapidità con attenzione al dettaglio.</p>
+      <p>GNT Officine Meccaniche esegue lavorazioni meccaniche conto terzi in officina e servizi meccanici presso gli impianti industriali, dalle sedi di Rovello Porro e Bolzano.</p>
+    </div>
+    <nav aria-label="Officina (piè di pagina)"><p class="piede__titolo">Officina</p><ul>
+      <li><a href="/lavorazioni-meccaniche/">Lavorazioni meccaniche conto terzi</a></li>
+      <li><a href="/lavorazioni-meccaniche/tornitura/">Tornitura meccanica</a></li>
+      <li><a href="/lavorazioni-meccaniche/fresatura-cnc/">Fresatura CNC</a></li>
+      <li><a href="/lavorazioni-meccaniche/carpenteria-metallica/">Carpenteria metallica industriale</a></li>
+    </ul></nav>
+    <nav aria-label="Cantiere (piè di pagina)"><p class="piede__titolo">Cantiere</p><ul>
+      <li><a href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni industriali</a></li>
+      <li><a href="/montaggi-manutenzioni-industriali/montaggio-smontaggio-impianti/">Montaggio e smontaggio di impianti</a></li>
+      <li><a href="/montaggi-manutenzioni-industriali/manutenzione-meccanica/">Manutenzione meccanica industriale</a></li>
+    </ul></nav>
+    <nav aria-label="Azienda (piè di pagina)"><p class="piede__titolo">Azienda</p><ul>
+      <li><a href="/chi-siamo/">Chi siamo</a></li>
+      <li><a href="/sedi/rovello-porro/">Officina GNT a Rovello Porro</a></li>
+      <li><a href="/sedi/bolzano/">GNT Bolzano</a></li>
+      <li><a href="/contatti/">Contatti</a></li>
+      <li><a href="/richiedi-preventivo/">Richiedi un preventivo</a></li>
+    </ul></nav>
+  </div>
+  <div class="contenitore piede__societa">
+    <address><b>GNT S.R.L.</b>Via Giovanni Battista Grassi 5, 22070 Rovello Porro (CO)<br>P. IVA e C.F. 03702720131 · REA CO-328628<br>Capitale sociale € 100.000,00<br>PEC <a href="mailto:gntsrlmeccanica@pec.it">gntsrlmeccanica@pec.it</a><br><a href="mailto:info@gntmeccanica.com">info@gntmeccanica.com</a></address>
+    <address><b>GNT BOLZANO S.R.L.</b>Via Louis Braille 12, 39100 Bolzano (BZ)<br>P. IVA e C.F. 03129960211 · REA BZ-234580<br>Capitale sociale € 10.000,00<br>PEC <a href="mailto:gntbolzanosrl@legalmail.it">gntbolzanosrl@legalmail.it</a><br><a href="mailto:info@gntbolzano.com">info@gntbolzano.com</a></address>
+    <address><b>Telefono e orari</b><a href="tel:+390296750206">02 96750206</a> · per entrambe le sedi<br>Dal lunedì al venerdì<br>8–12 e 13–17</address>
+  </div>
+  <div class="contenitore piede__basso">
+    <p>© 2026 GNT Officine Meccaniche</p>
+    <nav aria-label="Informative"><a href="/privacy/">Privacy</a><a href="/cookie/">Cookie</a></nav>
+    <button class="fine-linea" type="button" data-inizio><span class="fine-linea__nodo" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 11V1M2 5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>Fine linea · torna all'inizio</button>
+  </div>
+</footer>
+
+<!-- Menu del telefono -->
+<div class="menu-tel scuro" id="menu-tel" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu-tel__testa">
+    <img src="../media/logo/svg/gnt-simbolo-negativo.svg" alt="GNT Officine Meccaniche" width="95" height="34">
+    <button class="menu-tel__chiudi" type="button" data-chiudi-menu>Chiudi <span aria-hidden="true">✕</span></button>
+  </div>
+  <ul class="menu-tel__lista">
+    <li><a href="/lavorazioni-meccaniche/">Lavorazioni meccaniche</a></li>
+    <li><a href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni</a></li>
+    <li><a href="#sedi">Sedi</a></li>
+    <li><a href="/chi-siamo/">Chi siamo</a></li>
+    <li><a href="/contatti/">Contatti</a></li>
+  </ul>
+  <div class="menu-tel__piede">
+    <a class="pulsante pulsante--scuro pulsante--grande" href="/richiedi-preventivo/">Richiedi un preventivo<span class="pulsante__freccia" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></a>
+    <div class="menu-tel__sedi"><p><b>Rovello Porro</b>Como</p><p><b>Bolzano</b>Alto Adige</p><p><b>Telefono</b><a class="link" href="tel:+390296750206">02 96750206</a></p></div>
+  </div>
+</div>
+
+<!-- Avviso per i collegamenti verso pagine non ancora realizzate -->
+<div class="avviso scuro" id="avviso" role="status" aria-live="polite" hidden><span class="avviso__nodo" aria-hidden="true"></span><p></p></div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var forzato = null;
+  function riduci(){ return forzato !== null ? forzato : mq.matches; }
+  function migliaia(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+  function altezzaTestata(){ return parseFloat(getComputedStyle(root).getPropertyValue("--testata-h")) || 68; }
+
+  /* ---------- Il pezzo: un disegno, quattro stati (dal design system) ---------- */
+  var PROFILO = "M18 58H92.03A62 62 0 0 1 207.97 58H282A8 8 0 0 1 290 66V94A8 8 0 0 1 282 102H207.97A62 62 0 0 1 92.03 102H18A8 8 0 0 1 10 94V66A8 8 0 0 1 18 58Z";
+  var FORI = [[38,74],[50,74],[38,86],[50,86],[250,74],[262,74],[250,86],[262,86]];
+  var nId = 0;
+  function hex(cx,cy,r){ var p=[]; for(var i=0;i<6;i++){ var a=Math.PI/3*i+Math.PI/6; p.push((cx+r*Math.cos(a)).toFixed(2)+","+(cy+r*Math.sin(a)).toFixed(2)); } return p.join(" "); }
+  function creaPezzo(contenitore){
+    var id = "pz" + (++nId);
+    var fori = FORI.map(function(f){ return '<circle data-foro cx="'+f[0]+'" cy="'+f[1]+'" r="0" fill="#000"/>'; }).join("");
+    var viti = FORI.map(function(f,i){ return '<g data-vite="'+i+'"><polygon points="'+hex(f[0],f[1],5.2)+'" fill="#2A3136" stroke="#9AA3A7" stroke-width="1"/><circle cx="'+f[0]+'" cy="'+f[1]+'" r="1.6" fill="#9AA3A7"/></g>'; }).join("");
+    contenitore.innerHTML =
+    '<svg class="pezzo" viewBox="0 0 300 190" aria-hidden="true" focusable="false">'+
+      '<defs><linearGradient id="'+id+'g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F3F3"/><stop offset=".45" stop-color="#AEB6B9"/><stop offset=".62" stop-color="#E4E8E9"/><stop offset="1" stop-color="#9AA3A7"/></linearGradient>'+
+      '<mask id="'+id+'m"><rect width="300" height="190" fill="#fff"/><circle data-parte="foro" cx="150" cy="80" r="0" fill="#000"/>'+fori+'</mask></defs>'+
+      '<g><rect x="16" y="150" width="268" height="7" fill="#C9CFCC"/><rect x="26" y="157" width="22" height="13" fill="#8E979B"/><rect x="139" y="157" width="22" height="13" fill="#8E979B"/><rect x="252" y="157" width="22" height="13" fill="#8E979B"/><rect x="16" y="170" width="268" height="6" fill="#C9CFCC"/></g>'+
+      '<g mask="url(#'+id+'m)"><path d="'+PROFILO+'" fill="#8A9296"/><path data-parte="lucido" d="'+PROFILO+'" fill="url(#'+id+'g)" opacity="0"/>'+
+        '<g data-parte="sfrido"><path fill-rule="evenodd" d="M4 14H296V146H4Z '+PROFILO+'" fill="#8A9296"/><path d="M4 14H296V146H4Z" fill="none" stroke="#596166" stroke-width="2" stroke-dasharray="3 5"/></g></g>'+
+      '<circle data-parte="bordo" cx="150" cy="80" r="32" fill="none" stroke="#596166" stroke-width="2.5" opacity="0"/>'+
+      '<g data-parte="boccola" opacity="0"><circle cx="150" cy="80" r="27" fill="none" stroke="#C28F45" stroke-width="10"/><circle cx="150" cy="80" r="31" fill="none" stroke="#E0B670" stroke-width="1.5"/><circle cx="150" cy="80" r="22" fill="none" stroke="#8E6528" stroke-width="1.5"/></g>'+
+      viti+
+      '<g data-parte="reggette" opacity="0"><rect x="76" y="40" width="7" height="110" fill="#F5C400"/><rect x="217" y="40" width="7" height="110" fill="#F5C400"/><rect x="76" y="40" width="7" height="110" fill="none" stroke="#1C2125" stroke-width="1"/><rect x="217" y="40" width="7" height="110" fill="none" stroke="#1C2125" stroke-width="1"/></g>'+
+      '<g data-parte="cartellino" opacity="0"><path d="M286 64 L270 26" stroke="#B9C0C4" stroke-width="1.5" fill="none"/><rect x="226" y="4" width="70" height="24" rx="2" fill="#F5C400"/><circle cx="234" cy="16" r="2.5" fill="#1C2125"/><text x="242" y="20.5" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="600" fill="#1C2125">GNT OK</text></g>'+
+    '</svg>';
+    var s = contenitore.querySelector("svg");
+    return { sfrido:s.querySelector('[data-parte="sfrido"]'), lucido:s.querySelector('[data-parte="lucido"]'), foro:s.querySelector('[data-parte="foro"]'), bordo:s.querySelector('[data-parte="bordo"]'),
+      fori:s.querySelectorAll("[data-foro]"), boccola:s.querySelector('[data-parte="boccola"]'), viti:s.querySelectorAll("[data-vite]"), reggette:s.querySelector('[data-parte="reggette"]'), cartellino:s.querySelector('[data-parte="cartellino"]') };
+  }
+  function tratto(m,a,b){ var t=(m-a)/(b-a); t=t<0?0:t>1?1:t; return t*t*(3-2*t); }
+  function statoPezzo(p,m){
+    var k;
+    k = tratto(m,.12,.7); p.sfrido.setAttribute("opacity",(1-k).toFixed(3));
+    p.sfrido.setAttribute("transform","translate(150 80) scale("+(1+.06*k).toFixed(3)+") translate(-150 -80)");
+    p.lucido.setAttribute("opacity",tratto(m,.3,.9).toFixed(3));
+    p.foro.setAttribute("r",(32*tratto(m,.45,.95)).toFixed(2));
+    p.bordo.setAttribute("opacity",tratto(m,.85,1).toFixed(3));
+    var kf=tratto(m,.7,1); for(var i=0;i<p.fori.length;i++) p.fori[i].setAttribute("r",(3.5*kf).toFixed(2));
+    k = tratto(m,1.25,1.75); p.boccola.setAttribute("opacity",k.toFixed(3));
+    p.boccola.setAttribute("transform","translate(150 80) scale("+(1.35-.35*k).toFixed(3)+") translate(-150 -80)");
+    for(var j=0;j<p.viti.length;j++){ var kv=tratto(m,1.4+j*.05,1.7+j*.05); p.viti[j].setAttribute("opacity",kv.toFixed(3)); p.viti[j].setAttribute("transform","translate(0 "+(-16*(1-kv)).toFixed(2)+")"); }
+    k = tratto(m,2.2,2.7); p.reggette.setAttribute("opacity",k.toFixed(3)); p.reggette.setAttribute("transform","translate(0 150) scale(1 "+Math.max(k,.001).toFixed(3)+") translate(0 -150)");
+    k = tratto(m,2.55,2.95); p.cartellino.setAttribute("opacity",k.toFixed(3)); p.cartellino.setAttribute("transform","rotate("+(-12*(1-k)).toFixed(2)+" 286 64)");
+  }
+  function statici(el, stati){
+    el.innerHTML = "";
+    stati.forEach(function(m){ var d=document.createElement("div"); el.appendChild(d); statoPezzo(creaPezzo(d), m); d.firstChild.style.width="min(150px,88%)"; d.firstChild.style.marginInline="auto"; });
+  }
+  document.querySelectorAll("[data-pezzo-fermo]").forEach(function(el){ statoPezzo(creaPezzo(el), +el.getAttribute("data-pezzo-fermo")); });
+
+  /* ---------- Le linee (officina, cantiere): avanzamento a passo ---------- */
+  function Linea(el){
+    var nastro = el.querySelector("[data-nastro]");
+    var palco = el.querySelector(".linea__palco");
+    var stazioni = Array.prototype.slice.call(el.querySelectorAll("[data-stazione]"));
+    var nodi = Array.prototype.slice.call(el.querySelectorAll("[data-vai]"));
+    var N = stazioni.length, modo = "", attiva = -1;
+    var stati = stazioni.map(function(s){ return +s.getAttribute("data-m"); });
+    var pezzo = creaPezzo(el.querySelector("[data-pezzo-mobile]"));
+    statici(el.querySelector("[data-statici]"), stati);
+
+    function statoDa(p){ var i=Math.min(Math.floor(p),N-2), f=p-i; if(N<2) return stati[0]; return stati[i]+(stati[i+1]-stati[i])*Math.max(0,Math.min(1,f)); }
+    function passo(p){ var seg=Math.min(Math.floor(p),N-2), f=p-seg; var t=(f-.3)/.6; t=t<0?0:t>1?1:t; t = t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; return seg+t; }
+    function segnaNodi(p){
+      var a = Math.round(p); if(a===attiva) return; attiva=a;
+      nodi.forEach(function(n,i){ if(i===a) n.setAttribute("aria-current","step"); else n.removeAttribute("aria-current"); n.classList.toggle("is-fatto", i<a); });
+      nastro.style.setProperty("--attiva-n", a);
+    }
+    function scegliModo(){
+      var nuovo = riduci() ? "statica" : (window.innerWidth >= 960 ? "fissata" : "impilata");
+      if(nuovo === modo) return;
+      modo = nuovo;
+      el.classList.remove("is-statica","is-fissata","is-impilata"); el.classList.add("is-"+modo);
+      nastro.classList.toggle("nastro--statico", modo==="statica");
+      if(modo!=="fissata") el.style.removeProperty("--pos");
+      attiva = -1;
+    }
+    function aggiorna(){
+      var vh = window.innerHeight, p = 0, belt = 0;
+      if(modo==="fissata"){
+        var r = el.getBoundingClientRect(), tot = el.offsetHeight - palco.offsetHeight;
+        var prog = Math.max(0, Math.min(1, (altezzaTestata() - r.top) / tot));
+        p = passo(prog*(N-1));
+        el.style.setProperty("--pos", p.toFixed(4));
+        belt = prog*1400;
+        stazioni.forEach(function(s,i){ s.style.setProperty("--riempi", (1-Math.min(1,Math.abs(p-i)*1.6)).toFixed(3)); });
+      } else if(modo==="impilata"){
+        var c = vh*.5, centri = stazioni.map(function(s){ var b=s.getBoundingClientRect(); return b.top+b.height*.5; });
+        if(c<=centri[0]) p=0; else if(c>=centri[N-1]) p=N-1;
+        else { for(var i=0;i<N-1;i++){ if(c>=centri[i] && c<centri[i+1]){ p = passo(i+(c-centri[i])/(centri[i+1]-centri[i])); break; } } }
+        belt = -el.getBoundingClientRect().top*.8;
+      } else { p = N-1; }
+      p = Math.max(0, Math.min(N-1, p));
+      nastro.style.setProperty("--pos", p.toFixed(4));
+      nastro.style.setProperty("--belt", (-belt).toFixed(1)+"px");
+      statoPezzo(pezzo, statoDa(p));
+      if(modo!=="statica") segnaNodi(p); else { nodi.forEach(function(n){ n.removeAttribute("aria-current"); n.classList.remove("is-fatto"); }); attiva=-1; }
+    }
+    function yStazione(i){
+      var th = altezzaTestata();
+      if(modo==="fissata"){ var tot = el.offsetHeight - palco.offsetHeight; var top = el.getBoundingClientRect().top + window.scrollY - th; return top + tot*(N>1 ? i/(N-1) : 0) + 2; }
+      return stazioni[i].getBoundingClientRect().top + window.scrollY - th - 8;
+    }
+    nodi.forEach(function(n){ n.addEventListener("click", function(){ window.scrollTo({ top:yStazione(+n.getAttribute("data-vai")), behavior: riduci() ? "auto" : "smooth" }); }); });
+    stazioni.forEach(function(s,i){ s.addEventListener("focusin", function(){ if(modo==="fissata"){ var y=yStazione(i); if(Math.abs(window.scrollY-y)>4) window.scrollTo({top:y, behavior:"auto"}); } }); });
+    return { scegliModo:scegliModo, aggiorna:aggiorna };
+  }
+  var linee = Array.prototype.slice.call(document.querySelectorAll("[data-linea]")).map(Linea);
+
+  /* ---------- Ponte officina–cantiere: il pezzo passa da una parte all'altra ---------- */
+  var ponte = document.querySelector("[data-ponte]");
+  var pezzoPonte = creaPezzo(ponte.querySelector("[data-pezzo-ponte]"));
+  statici(ponte.querySelector("[data-statici-ponte]"), [1, 2]);
+  function aggiornaPonte(){
+    ponte.classList.toggle("nastro--statico", riduci());
+    if(riduci()) return;
+    var r = ponte.getBoundingClientRect(), vh = window.innerHeight;
+    var p = (vh*.9 - r.top) / (vh*.55); p = Math.max(0, Math.min(1, p));
+    var t = p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2;
+    ponte.style.setProperty("--pos", t.toFixed(4));
+    ponte.style.setProperty("--belt", (-(p*600)).toFixed(1)+"px");
+    statoPezzo(pezzoPonte, 1 + t);
+  }
+
+  /* ---------- Nastro sottile della testata ---------- */
+  var testata = document.getElementById("testata");
+  function aggiornaTestata(){
+    var tot = document.documentElement.scrollHeight - window.innerHeight;
+    testata.style.setProperty("--avanz", (tot>0 ? Math.max(0, Math.min(1, window.scrollY/tot)) : 0).toFixed(4));
+  }
+
+  var inCoda = false;
+  function aggiorna(){ inCoda=false; linee.forEach(function(l){ l.aggiorna(); }); aggiornaPonte(); aggiornaTestata(); }
+  function chiedi(){ if(!inCoda){ inCoda=true; requestAnimationFrame(aggiorna); } }
+  window.addEventListener("scroll", chiedi, { passive:true });
+  window.addEventListener("resize", function(){ linee.forEach(function(l){ l.scegliModo(); }); chiedi(); });
+
+  /* ---------- Arrivi, contatori, tracciato ---------- */
+  var osserva = ("IntersectionObserver" in window) ? new IntersectionObserver(function(voci){
+    voci.forEach(function(v){ if(!v.isIntersecting) return; var el=v.target; el.classList.add("is-dentro"); osserva.unobserve(el); if(el.hasAttribute("data-conta") && !riduci()) conta(el); });
+  }, { rootMargin:"0px 0px -10% 0px", threshold:.05 }) : null;
+  function conta(el){
+    var fine = +el.getAttribute("data-conta"), t0 = null;
+    function f(t){ if(!t0) t0=t; var k=Math.min(1,(t-t0)/900); k=1-Math.pow(1-k,3); el.textContent = migliaia(Math.round(fine*k)); if(k<1) requestAnimationFrame(f); else el.textContent = migliaia(fine); }
+    el.textContent = "0"; requestAnimationFrame(f);
+  }
+  var daOsservare = document.querySelectorAll("[data-arrivo], [data-arrivo-tracciato], [data-conta], .stazione");
+  daOsservare.forEach(function(el){ if(el.hasAttribute("data-arrivo-tracciato")) el.classList.add("tracciato"); });
+  if(osserva) daOsservare.forEach(function(el){ osserva.observe(el); }); else daOsservare.forEach(function(el){ el.classList.add("is-dentro"); });
+
+  /* ---------- Riduci il movimento (impostazione di sistema o interruttore del mockup) ---------- */
+  var interr = document.getElementById("interruttore-rm");
+  function applicaMoto(){
+    var r = riduci();
+    root.classList.toggle("rm", r); root.classList.toggle("js-moto", !r);
+    interr.setAttribute("aria-pressed", r ? "true" : "false");
+    if(r) document.querySelectorAll("[data-conta]").forEach(function(el){ el.textContent = migliaia(el.getAttribute("data-conta")); });
+    linee.forEach(function(l){ l.scegliModo(); });
+    aggiorna();
+  }
+  interr.addEventListener("click", function(){ forzato = !riduci(); applicaMoto(); });
+  if(mq.addEventListener) mq.addEventListener("change", function(){ forzato=null; applicaMoto(); });
+
+  /* ---------- Menu del telefono ---------- */
+  var menu = document.getElementById("menu-tel"), apriBtn = null;
+  function focusabili(){ return Array.prototype.slice.call(menu.querySelectorAll("a[href],button")); }
+  function apriMenu(btn){ apriBtn=btn; menu.classList.add("is-aperto"); document.querySelectorAll("[data-apri-menu]").forEach(function(b){ b.setAttribute("aria-expanded","true"); }); document.body.style.overflow="hidden"; setTimeout(function(){ focusabili()[1].focus(); }, 30); }
+  function chiudiMenu(ritorna){ menu.classList.remove("is-aperto"); document.querySelectorAll("[data-apri-menu]").forEach(function(b){ b.setAttribute("aria-expanded","false"); }); document.body.style.overflow=""; if(ritorna!==false && apriBtn) apriBtn.focus(); }
+  document.querySelectorAll("[data-apri-menu]").forEach(function(b){ b.addEventListener("click", function(){ apriMenu(b); }); });
+  menu.querySelector("[data-chiudi-menu]").addEventListener("click", function(){ chiudiMenu(); });
+  menu.querySelectorAll(".menu-tel__lista a, .menu-tel__piede a").forEach(function(a){ a.addEventListener("click", function(){ chiudiMenu(a.getAttribute("href").charAt(0) === "/"); }); });
+  menu.addEventListener("keydown", function(e){
+    if(e.key==="Escape"){ chiudiMenu(); return; }
+    if(e.key!=="Tab") return;
+    var f=focusabili(), primo=f[0], ultimo=f[f.length-1];
+    if(e.shiftKey && document.activeElement===primo){ e.preventDefault(); ultimo.focus(); }
+    else if(!e.shiftKey && document.activeElement===ultimo){ e.preventDefault(); primo.focus(); }
+  });
+
+  /* ---------- Collegamenti segnaposto verso pagine non ancora realizzate ---------- */
+  var avviso = document.getElementById("avviso"), timer = null;
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      var p = avviso.querySelector("p");
+      p.innerHTML = "Collegamento segnaposto: la pagina <code></code> non esiste ancora. Nel sito vero questo collegamento la apre.";
+      p.querySelector("code").textContent = a.getAttribute("href");
+      avviso.hidden = false;
+      clearTimeout(timer); timer = setTimeout(function(){ avviso.hidden = true; }, 4500);
+    });
+  });
+
+  /* ---------- Fine linea: torna all'inizio ---------- */
+  document.querySelector("[data-inizio]").addEventListener("click", function(){
+    window.scrollTo({ top:0, behavior: riduci() ? "auto" : "smooth" });
+    document.querySelector(".testata__logo").focus({ preventScroll:true });
+  });
+
+  /* ---------- Avvio ---------- */
+  applicaMoto();
+})();
+</script>
+
+<a href="../" class="gnt-anteprima-ritorno" style="position:fixed;left:12px;bottom:12px;z-index:2147483647;padding:10px 14px;border-radius:999px;background:rgba(20,20,20,.88);color:#fff;font:600 14px/1.2 system-ui,-apple-system,Segoe UI,Arial,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.25)">&larr; Tutte le versioni</a>
+</body>
+</html>

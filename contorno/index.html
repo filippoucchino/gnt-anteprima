@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GNT Officine Meccaniche | Lavorazioni e servizi industriali</title>
+<meta name="description" content="GNT Officine Meccaniche: tornitura, fresatura CNC e carpenteria a Rovello Porro; montaggi, installazioni e manutenzioni industriali a Rovello Porro e Bolzano.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   GNT Officine Meccaniche · homepage · design system CONTORNO
+   Mockup fase 09. Token, componenti e movimento presi da
+   stages/04_direzione-creativa/output/design-system-contorno.html.
+   I componenti nuovi sono marcati «NUOVO» nei commenti.
+   ========================================================= */
+:root{
+  /* Colori */
+  --nero:#231F20; --nero-2:#2E2A2B; --nero-3:#3D3839;
+  --bianco:#FFFFFF; --grigio:#B9B4B5;
+  --rosso:#ED1C24; --rosso-chiaro:#FF6B70; --carta:#F4F2EF;
+  /* Colori su fondo chiaro (dal design system: etichette e numeri delle sezioni chiare) */
+  --chiaro-testo-2:#4A4546; --chiaro-label:#5A5658; --chiaro-rosso:#C4161C;
+  /* Caratteri */
+  --f:"Archivo","Arial Black",Arial,sans-serif;
+  --largo:125%; --normale:100%;
+  --t-12:.75rem; --t-14:.875rem; --t-17:1.0625rem; --t-20:1.25rem;
+  --t-28:clamp(1.4rem,1.1rem + 1.2vw,1.75rem);
+  --t-40:clamp(1.9rem,1.2rem + 2.8vw,2.5rem);
+  --t-64:clamp(2.4rem,1.2rem + 5vw,4rem);
+  --t-96:clamp(3rem,1rem + 8vw,6rem);
+  /* Spazi: passo 8 */
+  --s-1:4px; --s-2:8px; --s-3:16px; --s-4:24px; --s-5:40px; --s-6:56px; --s-7:80px; --s-8:120px;
+  /* Forme */
+  --r-s:8px; --r-m:16px; --r-l:32px; --r-pillola:999px;
+  --barra:6px;
+  --contorno:0 0 0 4px var(--bianco),0 0 0 10px var(--rosso);
+  --contorno-sottile:0 0 0 2px var(--bianco),0 0 0 5px var(--rosso);
+  /* Movimento «slancio» */
+  --d-scatto:160ms; --d-media:420ms; --d-slancio:800ms;
+  --e-slancio:cubic-bezier(.16,1,.3,1);
+  --e-netto:cubic-bezier(.7,0,.2,1);
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--nero);color:var(--bianco);font:400 var(--t-17)/1.6 var(--f);font-stretch:var(--normale);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:none;box-shadow:var(--contorno-sottile);border-radius:var(--r-s)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+@media (min-width:720px){.wrap{padding:0 40px}}
+h1,h2,h3,h4,.tit{margin:0;font-stretch:var(--largo);font-weight:800;line-height:1.02;letter-spacing:-.015em;overflow-wrap:break-word}
+p{margin:0}
+.label{font:600 var(--t-12)/1.2 var(--f);font-stretch:var(--largo);letter-spacing:.12em;text-transform:uppercase;color:var(--grigio)}
+.barra{display:block;height:var(--barra);width:72px;background:var(--rosso);border-radius:2px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.salta{position:absolute;left:16px;top:-100px;z-index:200;background:var(--bianco);color:var(--nero);padding:14px 20px;border-radius:var(--r-m);font-weight:700;text-decoration:none}
+.salta:focus{top:12px}
+
+/* ---------- NUOVO · barra del mockup (strumento di revisione, non fa parte del sito) ---------- */
+.mock{background:#000;color:var(--grigio);font-size:var(--t-12);border-bottom:1px solid var(--nero-3)}
+.mock .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding-top:8px;padding-bottom:8px}
+.avviso{position:fixed;left:16px;right:16px;bottom:16px;z-index:300;max-width:520px;margin:0 auto;background:var(--bianco);color:var(--nero);border-radius:var(--r-m);padding:14px 18px;font-size:var(--t-14);box-shadow:0 0 0 3px var(--nero),0 0 0 7px var(--rosso);transform:translateY(160%);transition:transform var(--d-media) var(--e-slancio)}
+.avviso:not(.su){visibility:hidden;transition:transform var(--d-media) var(--e-slancio),visibility 0s var(--d-media)}
+.avviso.su{transform:none}
+.avviso code{font-weight:700}
+
+/* ---------- Testata (dall'esempio applicato del design system) ---------- */
+.testata{position:sticky;top:0;z-index:100;background:rgba(35,31,32,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--nero-3)}
+.testata .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);height:68px}
+@media (min-width:1100px){.testata .wrap{height:84px}}
+.testata .marchio{display:block;flex:none;border-radius:var(--r-s)}
+.testata .marchio img{height:40px;width:auto}
+@media (min-width:1100px){.testata .marchio img{height:52px}}
+.menu-desk{display:none;gap:var(--s-4);margin-left:auto}
+.menu-desk a{text-decoration:none;font:700 var(--t-14)/1 var(--f);font-stretch:var(--largo);padding:14px 0;position:relative;white-space:nowrap}
+.menu-desk a::after{content:"";position:absolute;left:0;bottom:4px;height:4px;width:0;background:var(--rosso);border-radius:1px;transition:width var(--d-media) var(--e-slancio)}
+.menu-desk a:hover::after{width:100%}
+@media (min-width:1100px){.menu-desk{display:flex}}
+.testata .azioni{display:flex;align-items:center;gap:var(--s-2)}
+.testata .btn{min-height:44px;padding:0 16px;font-size:var(--t-14)}
+.testata .btn.btn-primario{margin:0 8px 0 4px}
+.menu-btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border-radius:var(--r-m);background:transparent;color:var(--bianco);border:2px solid var(--nero-3);font:700 var(--t-14)/1 var(--f);font-stretch:var(--largo);cursor:pointer}
+.menu-btn .ic{display:flex;flex-direction:column;gap:5px;width:22px}
+.menu-btn .ic i{display:block;height:4px;background:var(--rosso);border-radius:1px;transition:transform var(--d-scatto)}
+.menu-btn .ic i+i{width:14px;margin-left:8px}
+.menu-btn[aria-expanded="true"] .ic i{width:22px;margin:0}
+.menu-btn[aria-expanded="true"] .ic i:first-child{transform:translateY(4.5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .ic i+i{transform:translateY(-4.5px) rotate(-45deg)}
+@media (min-width:1100px){.menu-btn{display:none}}
+.menu-mob{border-top:1px solid var(--nero-3);background:var(--nero)}
+.menu-mob[hidden]{display:none}
+.menu-mob ul{list-style:none;margin:0;padding:var(--s-3) 0 var(--s-5)}
+.menu-mob a{display:flex;align-items:center;min-height:56px;text-decoration:none;font:800 var(--t-20)/1.1 var(--f);font-stretch:var(--largo);border-bottom:1px solid var(--nero-3)}
+@media (min-width:1100px){.menu-mob{display:none!important}}
+@media (max-width:389px){.testata .btn-pre{display:none}}
+
+/* ---------- Bottoni e link (design system) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 26px;border-radius:var(--r-m);font:800 var(--t-17)/1.1 var(--f);font-stretch:var(--largo);text-decoration:none;cursor:pointer;border:0;text-align:center;transition:box-shadow var(--d-scatto),transform var(--d-scatto),background var(--d-scatto),color var(--d-scatto)}
+.btn-primario{background:var(--bianco);color:var(--nero);box-shadow:0 0 0 3px var(--nero),0 0 0 7px var(--rosso);margin:7px}
+.btn-primario:hover{box-shadow:0 0 0 4px var(--nero),0 0 0 10px var(--rosso);transform:translateY(-1px)}
+.btn-primario:active{transform:translateY(1px);box-shadow:0 0 0 2px var(--nero),0 0 0 5px var(--rosso)}
+.btn-primario:focus-visible{box-shadow:0 0 0 3px var(--nero),0 0 0 7px var(--rosso),0 0 0 10px var(--bianco);border-radius:var(--r-m)}
+.btn-rosso{background:var(--rosso);color:var(--bianco);font-size:var(--t-20);font-weight:800}
+.btn-rosso:hover{background:#D3141B}
+.btn-secondario{background:transparent;color:var(--bianco);box-shadow:inset 0 0 0 2px var(--bianco)}
+.btn-secondario:hover{background:var(--bianco);color:var(--nero)}
+.btn-secondario:focus-visible{box-shadow:inset 0 0 0 2px var(--bianco),var(--contorno-sottile);border-radius:var(--r-m)}
+.btn .fr{display:inline-block;width:22px;height:4px;background:currentColor;position:relative;border-radius:1px;transition:width var(--d-scatto);flex:none}
+.btn .fr::after{content:"";position:absolute;right:-1px;top:-5px;width:10px;height:10px;border-top:4px solid currentColor;border-right:4px solid currentColor;transform:rotate(45deg);border-radius:1px}
+.btn:hover .fr{width:30px}
+.btn-primario .fr{background:var(--rosso)} .btn-primario .fr::after{border-color:var(--rosso)}
+.link-barra{display:inline-flex;flex-direction:column;gap:6px;font:700 var(--t-17)/1.25 var(--f);font-stretch:var(--largo);text-decoration:none;padding:10px 0;min-height:44px}
+.link-barra::after{content:"";height:4px;width:32px;background:var(--rosso);border-radius:1px;transition:width var(--d-media) var(--e-slancio)}
+.link-barra:hover::after,.link-barra:focus-visible::after{width:100%}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:var(--r-pillola);background:var(--nero);border:2px solid var(--nero-3);font:700 var(--t-12)/1 var(--f);font-stretch:var(--largo);letter-spacing:.08em;text-transform:uppercase;color:var(--bianco)}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--rosso);flex:none}
+.riga{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-5);align-items:center}
+
+/* ---------- Apertura (H1) ---------- */
+.hero{position:relative;display:grid;border-bottom:0}
+@media (min-width:1000px){.hero{grid-template-columns:1.3fr 1fr;min-height:680px}}
+.hero>*{min-width:0}
+.hero .tx{padding:var(--s-6) 16px var(--s-6);display:flex;flex-direction:column;justify-content:center;gap:var(--s-4)}
+@media (min-width:720px){.hero .tx{padding:var(--s-7) 40px}}
+@media (min-width:1000px){.hero .tx{padding:var(--s-6) var(--s-6) var(--s-6) max(40px,calc((100vw - var(--max))/2 + 40px))}}
+.hero h1{display:flex;flex-direction:column;gap:var(--s-3)}
+.hero h1 .h1-marchio{font-size:var(--t-28);font-weight:800;color:var(--bianco)}
+.hero h1 .h1-offerta{font-size:clamp(2.1rem,1.2rem + 2.9vw,3.5rem);font-weight:900;line-height:1;letter-spacing:-.025em}
+.hero h1 .r{color:var(--rosso)}
+.hero .intro-h{font-size:var(--t-17);line-height:1.6;color:var(--grigio);max-width:66ch}
+@media (min-width:720px) and (max-width:999px){.hero .intro-h{font-size:var(--t-20);line-height:1.55}}
+.hero .intro-h strong{color:var(--bianco);font-weight:600}
+.hero .cta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-3)}
+.hero .secondari{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5)}
+.claim{display:flex;align-items:center;gap:12px;margin-top:var(--s-2)}
+.claim i{display:block;width:28px;height:var(--barra);background:var(--rosso);border-radius:1px;flex:none}
+.hero .foto{position:relative;min-height:440px;background:var(--nero)}
+@media (min-width:720px){.hero .foto{min-height:560px}}
+.hero .foto .f-main{position:absolute;inset:0}
+.hero .foto .f-main img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.hero .foto .tag{position:absolute;left:16px;top:16px;z-index:3}
+/* NUOVO · riquadro del cantiere sopra la foto d'apertura */
+.hero .inset{display:none}
+@media (min-width:720px){
+  .hero .inset{display:block;position:absolute;left:24px;bottom:24px;width:min(38%,260px);aspect-ratio:4/5;z-index:3;border-radius:var(--r-m);overflow:hidden;box-shadow:0 0 0 4px var(--nero)}
+  .hero .inset img{width:100%;height:100%;object-fit:cover}
+  .hero .inset .chip{position:absolute;left:10px;bottom:10px;z-index:3}
+}
+.sticker{position:absolute;right:16px;bottom:16px;width:132px;z-index:4;transform:rotate(-4deg)}
+@media (min-width:1000px){.sticker{width:190px;right:32px;bottom:32px}}
+.js .sticker[data-anim]{transform:rotate(-20deg) scale(.4);opacity:0}
+.sticker.in{transform:rotate(-4deg) scale(1)!important;opacity:1!important;transition:transform .7s cubic-bezier(.34,1.56,.64,1) .9s,opacity .2s .9s}
+
+/* ---------- Nastro dei servizi ---------- */
+.nastro{background:var(--rosso);overflow:hidden;padding:16px 0;white-space:nowrap}
+.nastro .tr{display:inline-flex;gap:40px;font:900 var(--t-28)/1 var(--f);font-stretch:var(--largo);text-transform:lowercase;will-change:transform}
+.nastro .tr span::after{content:"";display:inline-block;width:28px;height:6px;background:var(--bianco);vertical-align:middle;margin-left:40px;border-radius:1px}
+
+/* ---------- Sezioni ---------- */
+.sez{padding:var(--s-7) 0}
+@media (min-width:900px){.sez{padding:var(--s-8) 0}}
+.sez.alt{background:var(--nero-2)}
+.sez.chiara{background:var(--carta);color:var(--nero)}
+.sez.chiara .label{color:var(--chiaro-label)}
+.sez-testa{margin-bottom:var(--s-6);max-width:880px}
+.sez-testa .num{display:block;font:800 var(--t-14)/1 var(--f);font-stretch:var(--largo);color:var(--rosso-chiaro);letter-spacing:.08em;text-transform:uppercase;margin-bottom:var(--s-4)}
+.sez.chiara .sez-testa .num{color:var(--chiaro-rosso)}
+.sez-testa h2{font-size:clamp(1.85rem,1.05rem + 3.3vw,3.4rem);margin:var(--s-4) 0}
+.intro{font-size:var(--t-17);line-height:1.6;color:var(--grigio);max-width:64ch}
+@media (min-width:720px){.intro{font-size:var(--t-20);line-height:1.5}}
+.intro+.intro{margin-top:var(--s-3)}
+.sez.chiara .intro{color:var(--chiaro-testo-2)}
+.sez-piede{margin-top:var(--s-6);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-5)}
+
+/* ---------- Scheda servizio (design system) + NUOVO: variante con foto ---------- */
+.griglia-3{display:grid;gap:var(--s-4)}
+@media (min-width:760px){.griglia-3{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.griglia-3{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:760px) and (max-width:1099px){.griglia-3>:nth-child(3){grid-column:1/-1}.griglia-3>:nth-child(3) .ft{aspect-ratio:16/7}}
+.griglia-3>*{min-width:0}
+.servizio{background:var(--nero-2);border-radius:var(--r-l);padding:var(--s-4);display:flex;flex-direction:column;gap:var(--s-3);color:var(--bianco);position:relative;transition:box-shadow var(--d-media) var(--e-slancio),transform var(--d-media) var(--e-slancio)}
+.sez.alt .servizio{background:var(--nero)}
+.servizio:hover,.servizio:focus-within{box-shadow:var(--contorno);transform:translateY(-4px)}
+.servizio .top{position:absolute;top:0;left:var(--s-5);width:64px;height:var(--barra);background:var(--rosso);border-radius:0 0 2px 2px;transition:width var(--d-media) var(--e-slancio);z-index:3}
+.servizio:hover .top,.servizio:focus-within .top{width:calc(100% - 80px)}
+.servizio .n{font:900 var(--t-64)/.8 var(--f);font-stretch:var(--largo);color:transparent;-webkit-text-stroke:2px var(--rosso);display:block}
+.servizio h3{font-size:var(--t-28);line-height:1.08}
+.servizio p{color:var(--grigio)}
+.servizio .link-barra{margin-top:auto}
+.servizio .esteso::before{content:"";position:absolute;inset:0;border-radius:var(--r-l);z-index:2}
+.servizio .esteso:focus-visible{box-shadow:none}
+.servizio .ft{border-radius:var(--r-m);aspect-ratio:4/3;margin-bottom:var(--s-2)}
+.servizio .ft img{width:100%;height:100%;object-fit:cover}
+.servizio .testa-s{display:flex;align-items:flex-end;gap:var(--s-3)}
+.servizio .testa-s .n{flex:none}
+
+/* ---------- Blocco cantiere (design system) ---------- */
+.cantiere{display:grid;gap:var(--s-5)}
+@media (min-width:1000px){.cantiere{grid-template-columns:1fr 1fr;align-items:stretch}}
+.cantiere>*{min-width:0}
+.cantiere .ft{border-radius:var(--r-l);aspect-ratio:1/1;position:relative}
+@media (min-width:1000px){.cantiere .ft{aspect-ratio:auto;min-height:100%}}
+.cantiere .ft img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.cantiere .ft .chip{position:absolute;left:16px;bottom:16px;z-index:3}
+.colonna{display:grid;gap:var(--s-4);align-content:start}
+.colonna .servizio{min-height:0}
+
+/* ---------- NUOVO · Ponte officina–cantiere ---------- */
+.ponte{display:grid;gap:0;align-items:stretch}
+@media (min-width:900px){.ponte{grid-template-columns:1fr 120px 1fr}}
+.ponte>*{min-width:0}
+.polo{background:var(--bianco);border-radius:var(--r-l);padding:var(--s-5) var(--s-4) var(--s-4);position:relative;box-shadow:inset 0 0 0 1px #E2DEDA;display:flex;flex-direction:column;gap:var(--s-3)}
+@media (min-width:720px){.polo{padding:var(--s-5)}}
+.polo .label{color:var(--chiaro-label)}
+.polo .tit{font-size:var(--t-40);color:var(--nero)}
+.polo p{color:var(--chiaro-testo-2);font-size:var(--t-17)}
+.polo .top{position:absolute;top:0;left:var(--s-5);width:64px;height:var(--barra);background:var(--rosso);border-radius:0 0 2px 2px}
+.polo .link-barra{margin-top:auto;color:var(--nero)}
+.giunto{display:flex;align-items:center;justify-content:center;min-height:72px;position:relative}
+.giunto .asta{position:absolute;background:var(--rosso);border-radius:2px;left:50%;top:0;bottom:0;width:var(--barra);transform:translateX(-50%)}
+@media (min-width:900px){.giunto .asta{left:0;right:0;top:50%;bottom:auto;width:auto;height:var(--barra);transform:translateY(-50%)}}
+.giunto .nodo{position:relative;z-index:2;width:48px;height:48px;border-radius:var(--r-m);background:var(--nero);box-shadow:0 0 0 4px var(--carta),0 0 0 8px var(--rosso);display:grid;place-items:center}
+.giunto .nodo::before,.giunto .nodo::after{content:"";position:absolute;width:20px;height:4px;background:var(--bianco);border-radius:1px}
+.giunto .nodo::after{transform:rotate(90deg)}
+.js [data-anim="giunto"] .asta{transform:translateX(-50%) scaleY(0);transform-origin:top}
+[data-anim="giunto"].in .asta{transform:translateX(-50%) scaleY(1);transition:transform var(--d-slancio) var(--e-netto) .2s}
+@media (min-width:900px){
+  .js [data-anim="giunto"] .asta{transform:translateY(-50%) scaleX(0);transform-origin:left}
+  [data-anim="giunto"].in .asta{transform:translateY(-50%) scaleX(1)}
+}
+.js [data-anim="giunto"] .nodo{transform:scale(.3) rotate(-45deg);opacity:0}
+[data-anim="giunto"].in .nodo{transform:none;opacity:1;transition:transform .6s cubic-bezier(.34,1.56,.64,1) .8s,opacity .2s .8s}
+
+/* ---------- Scheda macchina (design system) ---------- */
+.parco{display:grid;gap:var(--s-4)}
+@media (min-width:640px){.parco{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.parco .macchina{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.parco .macchina .tenda{aspect-ratio:auto;min-height:280px}.parco .macchina .mc{padding:var(--s-5) var(--s-4);align-content:center}}
+.parco>*{min-width:0}
+.macchina{background:var(--nero-2);border-radius:var(--r-l);overflow:hidden;display:flex;flex-direction:column}
+.macchina .tenda{aspect-ratio:4/3}
+.macchina .tenda img{width:100%;height:100%;object-fit:cover}
+.macchina .mc{padding:var(--s-4);display:grid;gap:8px;align-content:start}
+.macchina .grande{font:900 var(--t-40)/1 var(--f);font-stretch:var(--largo);letter-spacing:-.02em;white-space:nowrap}
+@media (min-width:640px) and (max-width:1099px){.macchina .grande{font-size:clamp(1.6rem,.4rem + 2.6vw,2.2rem)}}
+.macchina .grande.lungo{font-size:clamp(1.5rem,.9rem + 1.6vw,2rem);white-space:normal}
+@media (min-width:1100px){.macchina .grande.lungo{font-size:1.6rem}}
+.macchina .grande small{font-size:.45em;font-weight:700;color:var(--grigio);margin-left:4px}
+.macchina .asse{font:700 var(--t-14)/1.3 var(--f);color:var(--rosso-chiaro);letter-spacing:.04em}
+.macchina .tit{font-size:var(--t-20);font-weight:800;line-height:1.15;margin-top:4px}
+.macchina .sub{color:var(--grigio);font-size:var(--t-14)}
+.nota-dati{margin-top:var(--s-5);font-size:var(--t-14);color:var(--grigio);max-width:72ch;display:flex;gap:12px}
+.nota-dati i{display:block;width:6px;flex:none;background:var(--rosso);border-radius:2px}
+
+/* ---------- NUOVO · Elenco settori ---------- */
+.settori-g{display:grid;gap:var(--s-5)}
+@media (min-width:1000px){.settori-g{grid-template-columns:1.3fr 1fr;align-items:center}}
+.settori-g>*{min-width:0}
+.settori{list-style:none;margin:0;padding:0;border-top:2px solid var(--nero)}
+.settori li{display:flex;align-items:center;gap:var(--s-3);padding:20px 0;border-bottom:1px solid #D6D1CD;font:800 var(--t-28)/1.15 var(--f);font-stretch:var(--largo);color:var(--nero)}
+.settori li .k{font:800 var(--t-14)/1 var(--f);font-stretch:var(--largo);color:var(--chiaro-rosso);letter-spacing:.08em;min-width:2.4em}
+.settori li::after{content:"";margin-left:auto;width:0;height:var(--barra);background:var(--rosso);border-radius:1px;flex:none;transition:width var(--d-slancio) var(--e-slancio) .25s}
+.settori li.in::after,.no-anim .settori li::after{width:40px}
+.disegno{background:#000;border-radius:var(--r-l);overflow:hidden;padding:var(--s-4);display:grid;place-items:center}
+.disegno img{max-height:520px;width:auto}
+.disegno figcaption{color:var(--grigio);font-size:var(--t-14);margin-top:var(--s-3);justify-self:start}
+
+/* ---------- Sedi (design system) ---------- */
+.sedi{display:grid;gap:var(--s-4)}
+@media (min-width:860px){.sedi{grid-template-columns:1fr 1fr}}
+.sedi>*{min-width:0}
+.sede{border-radius:var(--r-l);padding:var(--s-5) var(--s-4) var(--s-4);background:var(--nero);box-shadow:inset 0 0 0 2px var(--nero-3);display:flex;flex-direction:column;gap:var(--s-3);position:relative;transition:box-shadow var(--d-media) var(--e-slancio)}
+@media (min-width:720px){.sede{padding:var(--s-5)}}
+.sede:hover,.sede:focus-within{box-shadow:inset 0 0 0 2px var(--nero-3),var(--contorno)}
+.sede .sigla{font:900 var(--t-96)/.8 var(--f);font-stretch:var(--largo);color:transparent;-webkit-text-stroke:2px var(--rosso)}
+.sede h3{font-size:var(--t-28);line-height:1.1}
+.sede h3 .soc{display:block}
+.sede h3 .luogo{display:block;font-size:.62em;color:var(--grigio);font-weight:700;margin-top:8px}
+.sede p{color:var(--grigio)}
+.sede address{font-style:normal;color:var(--bianco)}
+.recapiti{list-style:none;margin:0;padding:var(--s-3) 0 0;border-top:1px solid var(--nero-3);display:grid;gap:6px;font-size:var(--t-17)}
+.recapiti a{text-decoration:none;border-bottom:2px solid var(--rosso);padding:6px 0;display:inline-block}
+.recapiti span.k{display:inline-block;min-width:4.6em;color:var(--grigio);font-size:var(--t-14)}
+.sede .link-barra{margin-top:auto}
+
+/* ---------- NUOVO · Schede «cosa indicare» per la richiesta ---------- */
+.richiesta{display:grid;gap:var(--s-4)}
+@media (min-width:860px){.richiesta{grid-template-columns:1fr 1fr}}
+.richiesta>*{min-width:0}
+.cosa{background:var(--nero-2);border-radius:var(--r-l);padding:var(--s-5) var(--s-4) var(--s-4);position:relative}
+@media (min-width:720px){.cosa{padding:var(--s-5)}}
+.cosa .top{position:absolute;top:0;left:var(--s-5);width:64px;height:var(--barra);background:var(--rosso);border-radius:0 0 2px 2px}
+.cosa .tit{font-size:var(--t-28);line-height:1.1;margin-bottom:var(--s-4)}
+.cosa ol{list-style:none;margin:0;padding:0;counter-reset:c}
+.cosa li{counter-increment:c;display:flex;gap:var(--s-3);padding:12px 0;border-top:1px solid var(--nero-3);color:var(--bianco)}
+.cosa li::before{content:counter(c,decimal-leading-zero);font:800 var(--t-14)/1.6 var(--f);font-stretch:var(--largo);color:var(--rosso-chiaro);min-width:2em}
+.chiusura{margin-top:var(--s-6);display:grid;gap:var(--s-5);align-items:center}
+.chiusura .nota{color:var(--grigio);font-size:var(--t-14);max-width:60ch}
+.chiusura .azioni{display:flex;flex-wrap:wrap;gap:var(--s-4);align-items:center}
+
+/* ---------- Piede (design system: piede bianco, logo a colori, due barre) ---------- */
+.piede{background:var(--bianco);color:var(--nero);padding:var(--s-7) 0 var(--s-5)}
+.piede .alto{display:grid;gap:var(--s-5);padding-bottom:var(--s-5);border-bottom:1px solid #DDD8D4}
+@media (min-width:860px){.piede .alto{grid-template-columns:auto 1fr;align-items:end}}
+.piede .alto img{height:72px;width:auto}
+.piede .barre{display:flex;flex-direction:column;gap:8px;justify-self:end}
+.piede .barre i{display:block;height:6px;width:96px;background:var(--rosso);border-radius:1px}
+.piede .barre i+i{margin-left:28px}
+.piede .cols{display:grid;gap:var(--s-5);padding:var(--s-5) 0}
+@media (min-width:700px){.piede .cols{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1100px){.piede .cols{grid-template-columns:1.2fr 1.2fr 1fr 1fr}}
+.piede .tit{font-size:var(--t-14);letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:var(--s-3);color:var(--chiaro-rosso)}
+.piede p,.piede li,.piede address{font-size:var(--t-14);line-height:1.65;color:#3A3536;font-style:normal}
+.piede strong{color:var(--nero)}
+.piede ul{list-style:none;margin:0;padding:0}
+.piede ul a{display:inline-block;padding:6px 0;text-decoration:none;border-bottom:1px solid transparent}
+.piede ul a:hover{border-bottom-color:var(--rosso)}
+.piede .tel{font:800 var(--t-20)/1.2 var(--f);font-stretch:var(--largo);text-decoration:none;display:inline-block;padding:4px 0;border-bottom:3px solid var(--rosso)}
+.piede .basso{display:flex;flex-wrap:wrap;gap:var(--s-2) var(--s-5);justify-content:space-between;padding-top:var(--s-4);border-top:1px solid #DDD8D4;font-size:var(--t-12);color:var(--chiaro-label)}
+.piede .basso a{color:var(--chiaro-label)}
+.piede :focus-visible{box-shadow:0 0 0 2px var(--nero),0 0 0 5px var(--rosso)}
+
+/* ---------- Animazioni d'entrata (design system «slancio») ---------- */
+.js [data-anim="titolo"] .barra{transform:scaleX(0);transform-origin:left}
+.js [data-anim="titolo"] h2,.js [data-anim="titolo"] h1{clip-path:inset(0 100% 0 0);transform:translateX(-24px)}
+[data-anim="titolo"].in .barra{transform:none;transition:transform var(--d-media) var(--e-netto)}
+[data-anim="titolo"].in h2,[data-anim="titolo"].in h1{clip-path:inset(-10% -2% -10% 0);transform:none;transition:clip-path var(--d-slancio) var(--e-slancio) .2s,transform var(--d-slancio) var(--e-slancio) .2s}
+.tenda{position:relative;overflow:hidden}
+.tenda::after{content:"";position:absolute;inset:0;background:var(--rosso);transform:scaleX(0);transform-origin:left;pointer-events:none;z-index:2}
+.js .tenda[data-anim] img{opacity:0}
+.tenda.in::after{animation:tenda 1s var(--e-netto) forwards}
+.js .tenda.in img{opacity:1;transition:opacity 0s .5s}
+@keyframes tenda{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}50.1%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+.js [data-anim="accendi"]{opacity:0;transform:translateY(24px) scale(.98)}
+[data-anim="accendi"].in{opacity:1;transform:none;transition:opacity var(--d-media) ease,transform var(--d-slancio) var(--e-slancio),box-shadow var(--d-media) var(--e-slancio)}
+[data-anim="accendi"].in.lampo{animation:lampo 1.2s var(--e-netto) .3s}
+@keyframes lampo{0%{box-shadow:0 0 0 0 var(--bianco),0 0 0 0 var(--rosso)}40%{box-shadow:var(--contorno)}100%{box-shadow:0 0 0 0 transparent,0 0 0 0 transparent}}
+.js [data-anim="conta"]{opacity:0}
+[data-anim="conta"].in{opacity:1;transition:opacity .2s}
+.js [data-anim="sale"]{opacity:0;transform:translateY(32px)}
+[data-anim="sale"].in{opacity:1;transform:none;transition:opacity var(--d-media) ease,transform var(--d-slancio) var(--e-slancio)}
+/* NUOVO · righe in sequenza (settori): ogni riga entra da sinistra con un piccolo ritardo */
+.js [data-anim="riga"]{opacity:0;transform:translateX(-32px)}
+[data-anim="riga"].in{opacity:1;transform:none;transition:opacity var(--d-media) ease,transform var(--d-slancio) var(--e-slancio)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+  .js [data-anim],.js [data-anim] *{opacity:1!important;transform:none!important;clip-path:none!important}
+  .js .sticker[data-anim]{transform:rotate(-4deg)!important}
+  .js [data-anim="giunto"] .asta{transform:translateX(-50%)!important}
+  .tenda::after{display:none}
+  .nastro .tr{transform:none!important}
+  .settori li::after{width:40px}
+  .servizio:hover,.servizio:focus-within{transform:none}
+}
+@media (prefers-reduced-motion:reduce) and (min-width:900px){
+  .js [data-anim="giunto"] .asta{transform:translateY(-50%)!important}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<!-- Barra del mockup: strumento di revisione per il titolare, non fa parte del sito -->
+<div class="mock" role="region" aria-label="Strumenti del mockup">
+  <div class="wrap">
+    <span>Mockup homepage · design system Contorno · fase 09</span>
+  </div>
+</div>
+
+<header class="testata">
+  <div class="wrap">
+    <a class="marchio" href="#contenuto" aria-label="GNT Officine Meccaniche, inizio pagina"><img src="../media/logo/svg/gnt-logo-negativo.svg" alt="GNT Officine Meccaniche" width="114" height="52"></a>
+    <nav class="menu-desk" aria-label="Menu principale">
+      <a href="/lavorazioni-meccaniche/">Lavorazioni meccaniche</a>
+      <a href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni</a>
+      <a href="#sedi">Sedi</a>
+      <a href="/chi-siamo/">Chi siamo</a>
+      <a href="/contatti/">Contatti</a>
+    </nav>
+    <div class="azioni">
+      <a class="btn btn-secondario btn-pre" id="testata-cta" href="/richiedi-preventivo/">Preventivo</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mob"><span class="ic" aria-hidden="true"><i></i><i></i></span>Menu</button>
+    </div>
+  </div>
+  <nav class="menu-mob" id="menu-mob" aria-label="Menu principale" hidden>
+    <div class="wrap">
+      <ul>
+        <li><a href="/lavorazioni-meccaniche/">Lavorazioni meccaniche</a></li>
+        <li><a href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni</a></li>
+        <li><a href="#sedi">Sedi</a></li>
+        <li><a href="/chi-siamo/">Chi siamo</a></li>
+        <li><a href="/contatti/">Contatti</a></li>
+        <li><a href="/richiedi-preventivo/">Richiedi un preventivo</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="contenuto" tabindex="-1">
+
+<!-- ======================= APERTURA · H1 ======================= -->
+<section class="hero" aria-labelledby="h1">
+  <div class="tx">
+    <div data-anim="titolo">
+      <span class="barra"></span>
+      <h1 id="h1" style="margin-top:var(--s-4)"><span class="h1-marchio">GNT Officine Meccaniche:</span> <span class="h1-offerta">lavorazioni meccaniche e servizi per <span class="r">impianti industriali</span></span></h1>
+    </div>
+    <p class="intro-h" data-anim="sale">GNT Officine Meccaniche è un fornitore B2B di meccanica industriale che esegue lavorazioni meccaniche conto terzi e interventi su apparecchiature e impianti industriali. Nella sede di <strong>Rovello Porro (CO)</strong> l'officina realizza componenti a disegno mediante tornitura, fresatura CNC e carpenteria. Con squadre operative dalle sedi di <strong>Rovello Porro e Bolzano (BZ)</strong> l'azienda svolge montaggi, smontaggi, installazioni e manutenzioni meccaniche presso gli stabilimenti dei clienti.</p>
+    <div class="cta" data-anim="sale">
+      <a class="btn btn-primario js-primario" href="/richiedi-preventivo/">Richiedi un preventivo <span class="fr" aria-hidden="true"></span></a>
+      <div class="secondari">
+        <a class="link-barra" href="/lavorazioni-meccaniche/">Scopri le lavorazioni meccaniche</a>
+        <a class="link-barra" href="/montaggi-manutenzioni-industriali/">Scopri i servizi in cantiere</a>
+      </div>
+    </div>
+    <p class="claim label" data-anim="sale"><i aria-hidden="true"></i>Rapidità con attenzione al dettaglio</p>
+  </div>
+  <div class="foto">
+    <div class="tenda f-main" data-anim><img src="../media/foto/tornio-cnc-doosan-puma-3100-dall-alto.jpg" alt="Officina di GNT Officine Meccaniche nella sede di Rovello Porro: tornio CNC Doosan Puma 3100 visto dall'alto, con due tecnici al lavoro" width="1341" height="1642"></div>
+    <span class="chip tag"><i></i>Officina · Rovello Porro</span>
+    <figure class="inset tenda" data-anim style="margin:0"><img src="../media/foto/saldatura-in-cantiere-operatore.jpg" alt="Operatore di GNT Officine Meccaniche che salda in cantiere" width="857" height="958"><span class="chip"><i></i>Cantiere</span></figure>
+    <img class="sticker" data-anim src="../media/logo/svg/gnt-simbolo-sticker.svg" alt="">
+  </div>
+</section>
+
+<!-- Nastro dei servizi: decorativo, i servizi sono scritti nelle sezioni che seguono -->
+<div class="nastro" aria-hidden="true">
+  <div class="tr" id="nastro"><span>tornitura</span><span>fresatura cnc</span><span>carpenteria</span><span>saldatura</span><span>taglio al plasma</span><span>ossitaglio</span><span>montaggi</span><span>smontaggi</span><span>installazioni</span><span>manutenzioni</span><span>tornitura</span><span>fresatura cnc</span><span>carpenteria</span><span>saldatura</span><span>taglio al plasma</span><span>ossitaglio</span><span>montaggi</span><span>smontaggi</span><span>installazioni</span><span>manutenzioni</span></div>
+</div>
+
+<!-- ======================= 01 · SEED A ======================= -->
+<section class="sez" id="officina" aria-labelledby="h-officina">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">01 · In officina</span>
+        <span class="barra"></span>
+        <h2 id="h-officina">Lavorazioni e costruzioni meccaniche conto terzi</h2>
+      </div>
+      <p class="intro" data-anim="sale">Nella sede di Rovello Porro, GNT Officine Meccaniche esegue lavorazioni e costruzioni meccaniche per componenti a disegno, pezzi singoli e piccoli lotti, impiegando torni, fresatrici e attrezzature per carpenteria metallica.</p>
+      <p class="intro" data-anim="sale">Nell'officina di GNT Officine Meccaniche saldatura, taglio al plasma e ossitaglio completano le lavorazioni e servono anche alla costruzione di componenti.</p>
+    </div>
+    <div class="griglia-3">
+      <article class="servizio" data-anim="accendi">
+        <span class="top"></span>
+        <div class="ft tenda" data-anim><img src="../media/foto/tornio-parallelo-x600-z4000-boccole-bronzo.jpg" alt="Tornio parallelo di GNT Officine Meccaniche con boccole in bronzo in primo piano" loading="lazy" width="1187" height="787"></div>
+        <div class="testa-s"><span class="n" aria-hidden="true">01</span></div>
+        <h3>Tornitura meccanica conto terzi</h3>
+        <p>GNT Officine Meccaniche esegue nella sede di Rovello Porro la tornitura CNC e tradizionale di particolari a disegno, anche lunghi, su torni con lunetta.</p>
+        <a class="link-barra esteso" href="/lavorazioni-meccaniche/tornitura/">Tornitura meccanica</a>
+      </article>
+      <article class="servizio" data-anim="accendi">
+        <span class="top"></span>
+        <div class="ft tenda" data-anim><img src="../media/foto/componente-meccanico-fresato-dettaglio.jpg" alt="Componente meccanico fresato da GNT Officine Meccaniche, dettaglio delle superfici lavorate" loading="lazy" width="3024" height="3075" style="object-position:50% 45%"></div>
+        <div class="testa-s"><span class="n" aria-hidden="true">02</span></div>
+        <h3>Fresatura CNC</h3>
+        <p>GNT Officine Meccaniche esegue nella sede di Rovello Porro lavorazioni di fresatura su centri di lavoro CNC, anche per particolari di grandi dimensioni.</p>
+        <a class="link-barra esteso" href="/lavorazioni-meccaniche/fresatura-cnc/">Fresatura CNC</a>
+      </article>
+      <article class="servizio" data-anim="accendi">
+        <span class="top"></span>
+        <div class="ft tenda" data-anim><img src="../media/foto/tubistica-tubazioni-flangiate.jpg" alt="Tubazioni flangiate prefabbricate nell'officina di GNT Officine Meccaniche" loading="lazy" width="854" height="572"></div>
+        <div class="testa-s"><span class="n" aria-hidden="true">03</span></div>
+        <h3>Carpenteria metallica industriale</h3>
+        <p>GNT Officine Meccaniche costruisce nella sede di Rovello Porro carpenterie e manufatti metallici, con taglio al plasma, ossitaglio e saldatura.</p>
+        <a class="link-barra esteso" href="/lavorazioni-meccaniche/carpenteria-metallica/">Carpenteria metallica industriale</a>
+      </article>
+    </div>
+    <div class="sez-piede" data-anim="sale">
+      <a class="link-barra" href="/lavorazioni-meccaniche/">Lavorazioni meccaniche conto terzi</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 02 · SEED B ======================= -->
+<section class="sez alt" id="cantiere" aria-labelledby="h-cantiere">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">02 · In cantiere</span>
+        <span class="barra"></span>
+        <h2 id="h-cantiere">Montaggi, installazioni e manutenzioni meccaniche in cantiere</h2>
+      </div>
+      <p class="intro" data-anim="sale">GNT Officine Meccaniche esegue lavori di montaggio, smontaggio, installazione e manutenzione meccanica di apparecchiature e impianti industriali direttamente presso gli stabilimenti dei clienti.</p>
+      <p class="intro" data-anim="sale">Le squadre operative di GNT Officine Meccaniche che eseguono montaggi e manutenzioni in cantiere partono dalle sedi di Rovello Porro (CO) e Bolzano (BZ).</p>
+    </div>
+    <div class="cantiere">
+      <div class="ft tenda" data-anim><img src="../media/foto/saldatura-in-cantiere-operatore.jpg" alt="Operatore di GNT Officine Meccaniche che salda in cantiere, accovacciato accanto a una struttura metallica" loading="lazy" width="857" height="958"><span class="chip"><i></i>Presso lo stabilimento</span></div>
+      <div class="colonna">
+        <article class="servizio" data-anim="accendi">
+          <span class="top"></span>
+          <div class="testa-s"><span class="n" aria-hidden="true">01</span></div>
+          <h3>Montaggio e smontaggio di impianti industriali</h3>
+          <p>GNT Officine Meccaniche esegue il montaggio e lo smontaggio meccanico di apparecchiature e impianti presso lo stabilimento del cliente, compresa la loro installazione.</p>
+          <a class="link-barra esteso" href="/montaggi-manutenzioni-industriali/montaggio-smontaggio-impianti/">Montaggio e smontaggio di impianti industriali</a>
+        </article>
+        <article class="servizio" data-anim="accendi">
+          <span class="top"></span>
+          <div class="testa-s"><span class="n" aria-hidden="true">02</span></div>
+          <h3>Manutenzione meccanica industriale</h3>
+          <p>GNT Officine Meccaniche esegue interventi di manutenzione meccanica su apparecchiature e impianti produttivi, presso gli stabilimenti dei clienti.</p>
+          <a class="link-barra esteso" href="/montaggi-manutenzioni-industriali/manutenzione-meccanica/">Manutenzione meccanica industriale</a>
+        </article>
+      </div>
+    </div>
+    <div class="sez-piede" data-anim="sale">
+      <a class="link-barra" href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni industriali</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 · PONTE ======================= -->
+<section class="sez chiara" id="ponte" aria-labelledby="h-ponte">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">03 · Officina e cantiere</span>
+        <span class="barra"></span>
+        <h2 id="h-ponte">Dalle lavorazioni in officina agli interventi sugli impianti industriali</h2>
+      </div>
+      <p class="intro" data-anim="sale">Per GNT Officine Meccaniche componenti, apparecchiature e impianti sono parti della stessa catena. Quando una commessa richiede sia lavorazioni meccaniche sia attività di montaggio, le competenze di officina e di cantiere dell'azienda si completano a vicenda.</p>
+    </div>
+    <div class="ponte" data-anim="giunto">
+      <div class="polo" data-anim="sale">
+        <span class="top"></span>
+        <p class="tit">Officina</p>
+        <p>Nella sede di Rovello Porro, GNT Officine Meccaniche si occupa di lavorazione, costruzione e revisione di componenti meccanici.</p>
+        <a class="link-barra" href="/lavorazioni-meccaniche/">Lavorazioni meccaniche conto terzi</a>
+      </div>
+      <div class="giunto" aria-hidden="true"><span class="asta"></span><span class="nodo"></span></div>
+      <div class="polo" data-anim="sale">
+        <span class="top"></span>
+        <p class="tit">Cantiere</p>
+        <p>GNT Officine Meccaniche si occupa di montaggio, installazione e manutenzione meccanica presso lo stabilimento del cliente.</p>
+        <a class="link-barra" href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni industriali</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 · CAPACITÀ ======================= -->
+<section class="sez" id="macchinari" aria-labelledby="h-macchinari">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">04 · Parco macchine</span>
+        <span class="barra"></span>
+        <h2 id="h-macchinari">Macchinari e capacità di lavorazione dell'officina GNT</h2>
+      </div>
+      <p class="intro" data-anim="sale">GNT Officine Meccaniche presenta alcune macchine dell'officina nella sede di Rovello Porro, ciascuna con il dato che conta di più per chi deve far lavorare un pezzo.</p>
+    </div>
+    <div class="parco">
+      <article class="macchina" data-anim="sale">
+        <div class="tenda" data-anim><img src="../media/foto/fresa-mecof-controllo-selca-s4000.jpg" alt="Fresa Mecof con tavola e controllo Selca S4000 nell'officina di GNT Officine Meccaniche" loading="lazy" width="1070" height="1426" style="object-position:50% 60%"></div>
+        <div class="mc">
+          <span class="grande"><span data-anim="conta" data-a="3800" data-fmt="1">3.800</span><small>mm</small></span>
+          <span class="asse">Corsa X</span>
+          <p class="tit">Fresa Mecof</p>
+          <span class="sub">Corsa X 3.800 × Y 990 × Z 1.600 mm</span>
+        </div>
+      </article>
+      <article class="macchina" data-anim="sale">
+        <div class="tenda" data-anim><img src="../media/foto/tornio-parallelo-x700-z5000.jpg" alt="Tornio parallelo con lunetta nell'officina di GNT Officine Meccaniche" loading="lazy" width="1183" height="954"></div>
+        <div class="mc">
+          <span class="grande"><span data-anim="conta" data-a="5000" data-fmt="1">5.000</span><small>mm</small></span>
+          <span class="asse">Asse Z</span>
+          <p class="tit">Tornio parallelo</p>
+          <span class="sub">Asse Z 5.000 mm con lunetta</span>
+        </div>
+      </article>
+      <article class="macchina" data-anim="sale">
+        <div class="tenda" data-anim><img src="../media/foto/tornio-cnc-doosan-puma-3100-fronte.jpg" alt="Tornio CNC Doosan Puma 3100 dell'officina di GNT Officine Meccaniche, visto di fronte" loading="lazy" width="572" height="749" style="object-position:50% 40%"></div>
+        <div class="mc">
+          <span class="grande"><span data-anim="conta" data-a="3000" data-fmt="1">3.000</span><small>mm</small></span>
+          <span class="asse">Asse Z</span>
+          <p class="tit">Tornio CNC Doosan Puma 3100 ULM</p>
+          <span class="sub">Asse Z 3.000 mm con lunetta</span>
+        </div>
+      </article>
+      <article class="macchina" data-anim="sale">
+        <div class="tenda" data-anim><img src="../media/foto/taglio-plasma-120a-tavola-1500x3000.jpg" alt="Banco di taglio al plasma dell'officina di GNT Officine Meccaniche" loading="lazy" width="937" height="707"></div>
+        <div class="mc">
+          <span class="grande lungo"><span data-anim="conta" data-a="1500" data-fmt="1">1.500</span>×<span data-anim="conta" data-a="3000" data-fmt="1">3.000</span><small>mm</small></span>
+          <span class="asse">Tavola</span>
+          <p class="tit">Banco taglio plasma</p>
+          <span class="sub">120 A, spessori dichiarati 1–20 mm, tavola 1.500 × 3.000 mm</span>
+        </div>
+      </article>
+    </div>
+    <p class="nota-dati" data-anim="sale"><i aria-hidden="true"></i><span>I valori indicati sono caratteristiche dichiarate dei macchinari di GNT Officine Meccaniche, non le dimensioni massime di qualsiasi componente realizzabile. Per un particolare specifico conviene inviare il disegno all'officina.</span></p>
+  </div>
+</section>
+
+<!-- ======================= 05 · SETTORI ======================= -->
+<section class="sez chiara" id="settori" aria-labelledby="h-settori">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">05 · Settori</span>
+        <span class="barra"></span>
+        <h2 id="h-settori">Competenze meccaniche per aziende e impianti industriali</h2>
+      </div>
+      <p class="intro" data-anim="sale">GNT Officine Meccaniche lavora solo per aziende: uffici tecnici, manutenzione e acquisti che cercano un fornitore per componenti a disegno o per interventi sui propri impianti. Fra le referenze dell'officina ci sono aziende attive nei settori seguenti.</p>
+    </div>
+    <div class="settori-g">
+      <ul class="settori">
+        <li data-anim="riga"><span class="k" aria-hidden="true">01</span>Siderurgia e lavorazione dell'acciaio</li>
+        <li data-anim="riga"><span class="k" aria-hidden="true">02</span>Costruzione di macchine e impianti</li>
+        <li data-anim="riga"><span class="k" aria-hidden="true">03</span>Componentistica automotive</li>
+        <li data-anim="riga"><span class="k" aria-hidden="true">04</span>Produzione di film plastici</li>
+        <li data-anim="riga"><span class="k" aria-hidden="true">05</span>Sollevamento e movimentazione</li>
+      </ul>
+      <figure class="disegno tenda" data-anim style="margin:0">
+        <img src="../media/foto/disegno-3d-apparecchiatura-meccanica.jpg" alt="Vista 3D a linee di un'apparecchiatura meccanica con motoriduttore" loading="lazy" width="512" height="693">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 · SEDI ======================= -->
+<section class="sez alt" id="sedi" aria-labelledby="h-sedi">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">06 · Due società, due sedi</span>
+        <span class="barra"></span>
+        <h2 id="h-sedi">GNT Officine Meccaniche a Rovello Porro e Bolzano</h2>
+      </div>
+      <p class="intro" data-anim="sale">Il marchio GNT Officine Meccaniche è utilizzato da due società distinte: GNT S.R.L., con sede a Rovello Porro, e GNT BOLZANO S.R.L., con sede a Bolzano.</p>
+    </div>
+    <div class="sedi">
+      <article class="sede" data-anim="accendi">
+        <span class="sigla" aria-hidden="true">CO</span>
+        <h3><span class="soc">GNT S.R.L.</span><span class="vh">, </span><span class="luogo">Rovello Porro</span></h3>
+        <address>Via Giovanni Battista Grassi 5<br>22070 Rovello Porro (CO)</address>
+        <p>La sede di Rovello Porro è l'officina produttiva di GNT Officine Meccaniche, con macchinari documentati, e la base operativa per i servizi in cantiere.</p>
+        <ul class="recapiti">
+          <li><span class="k">Telefono</span> <a href="tel:+390296750206">02 96750206</a></li>
+          <li><span class="k">Email</span> <a href="mailto:info@gntmeccanica.com">info@gntmeccanica.com</a></li>
+        </ul>
+        <a class="link-barra" href="/sedi/rovello-porro/">Officina GNT a Rovello Porro</a>
+      </article>
+      <article class="sede" data-anim="accendi">
+        <span class="sigla" aria-hidden="true">BZ</span>
+        <h3><span class="soc">GNT BOLZANO S.R.L.</span><span class="vh">, </span><span class="luogo">Bolzano</span></h3>
+        <address>Via Louis Braille 12<br>39100 Bolzano (BZ)</address>
+        <p>La sede di Bolzano è il presidio operativo di GNT Officine Meccaniche per i cantieri dell'Alto Adige e del Trentino.</p>
+        <ul class="recapiti">
+          <li><span class="k">Telefono</span> <a href="tel:+390296750206">02 96750206</a></li>
+          <li><span class="k">Email</span> <a href="mailto:info@gntbolzano.com">info@gntbolzano.com</a></li>
+        </ul>
+        <a class="link-barra" href="/sedi/bolzano/">GNT Bolzano</a>
+      </article>
+    </div>
+    <div class="sez-piede" data-anim="sale">
+      <a class="link-barra" href="/chi-siamo/">Chi siamo</a>
+      <span class="label" style="text-transform:none;letter-spacing:.02em;font-size:var(--t-14)">Storia, organizzazione e competenze di GNT Officine Meccaniche</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 07 · PREVENTIVO ======================= -->
+<section class="sez" id="preventivo" aria-labelledby="h-preventivo">
+  <div class="wrap">
+    <div class="sez-testa">
+      <div data-anim="titolo">
+        <span class="num">07 · Preventivo</span>
+        <span class="barra"></span>
+        <h2 id="h-preventivo">Come richiedere una lavorazione meccanica o un intervento industriale</h2>
+      </div>
+      <p class="intro" data-anim="sale">Per una prima valutazione di una lavorazione meccanica o di un intervento industriale, a GNT Officine Meccaniche bastano poche informazioni. Ecco cosa è utile indicare, secondo il tipo di richiesta.</p>
+    </div>
+    <div class="richiesta">
+      <article class="cosa" data-anim="sale">
+        <span class="top"></span>
+        <p class="tit">Lavorazione meccanica in officina</p>
+        <ol>
+          <li>Disegno o descrizione del particolare</li>
+          <li>Materiale</li>
+          <li>Quantità</li>
+          <li>Caratteristiche rilevanti</li>
+          <li>Tempi desiderati</li>
+        </ol>
+      </article>
+      <article class="cosa" data-anim="sale">
+        <span class="top"></span>
+        <p class="tit">Montaggio, smontaggio o manutenzione</p>
+        <ol>
+          <li>Tipo di impianto</li>
+          <li>Attività necessaria</li>
+          <li>Stabilimento interessato</li>
+          <li>Periodo previsto</li>
+          <li>Documentazione disponibile</li>
+        </ol>
+      </article>
+    </div>
+    <div class="chiusura">
+      <p class="nota" data-anim="sale">GNT Officine Meccaniche propone queste indicazioni per facilitare la richiesta, non come requisiti obbligatori: se qualcosa manca, l'officina aiuta a completarla.</p>
+      <div class="azioni" data-anim="sale">
+        <a class="btn btn-primario js-primario" href="/richiedi-preventivo/">Richiedi un preventivo <span class="fr" aria-hidden="true"></span></a>
+        <a class="btn btn-rosso" href="tel:+390296750206">Chiama 02 96750206</a>
+        <a class="link-barra" href="/contatti/">Contatta GNT</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ======================= PIEDE ======================= -->
+<footer class="piede">
+  <div class="wrap">
+    <div class="alto">
+      <img src="../media/logo/svg/gnt-logo-colori.svg" alt="GNT Officine Meccaniche" width="158" height="72">
+      <div class="barre" aria-hidden="true"><i></i><i></i></div>
+    </div>
+    <div class="cols">
+      <div>
+        <p class="tit">GNT S.R.L.</p>
+        <address>Via Giovanni Battista Grassi 5<br>22070 Rovello Porro (CO)<br><a href="mailto:info@gntmeccanica.com">info@gntmeccanica.com</a></address>
+        <p>P. IVA e C.F. 03702720131<br>REA CO-328628<br>Capitale sociale € 100.000,00<br>PEC <a href="mailto:gntsrlmeccanica@pec.it">gntsrlmeccanica@pec.it</a></p>
+      </div>
+      <div>
+        <p class="tit">GNT BOLZANO S.R.L.</p>
+        <address>Via Louis Braille 12<br>39100 Bolzano (BZ)<br><a href="mailto:info@gntbolzano.com">info@gntbolzano.com</a></address>
+        <p>P. IVA e C.F. 03129960211<br>REA BZ-234580<br>Capitale sociale € 10.000,00<br>PEC <a href="mailto:gntbolzanosrl@legalmail.it">gntbolzanosrl@legalmail.it</a></p>
+      </div>
+      <div>
+        <p class="tit">Contatti</p>
+        <a class="tel" href="tel:+390296750206">02 96750206</a>
+        <p style="margin-top:8px">Un solo numero di GNT Officine Meccaniche per le sedi di Rovello Porro e Bolzano.<br>Dal lunedì al venerdì, 8–12 e 13–17.</p>
+      </div>
+      <div>
+        <p class="tit">Navigazione</p>
+        <ul>
+          <li><a href="/lavorazioni-meccaniche/">Lavorazioni meccaniche</a></li>
+          <li><a href="/montaggi-manutenzioni-industriali/">Montaggi e manutenzioni</a></li>
+          <li><a href="/sedi/rovello-porro/">Sede di Rovello Porro</a></li>
+          <li><a href="/sedi/bolzano/">Sede di Bolzano</a></li>
+          <li><a href="/chi-siamo/">Chi siamo</a></li>
+          <li><a href="/contatti/">Contatti</a></li>
+          <li><a href="/richiedi-preventivo/">Richiedi un preventivo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="basso">
+      <span>© 2026 GNT S.R.L. e GNT BOLZANO S.R.L. · GNT Officine Meccaniche è il marchio commerciale di entrambe le società.</span>
+      <span><a href="/privacy/">Informativa privacy</a> · <a href="/cookie/">Informativa cookie</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="avviso" id="avviso" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var doc=document.documentElement;
+  var reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) doc.classList.add('no-anim');
+
+  /* ---- Entrate «slancio» ---- */
+  function fmt(n,dot){ n=Math.round(n); return dot ? n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.') : String(n); }
+  function conta(el){
+    var a=+el.getAttribute('data-a'), dot=el.hasAttribute('data-fmt'), t0=null, D=1200;
+    if(reduce){ el.textContent=fmt(a,dot); return; }
+    function step(t){ if(!t0)t0=t; var p=Math.min((t-t0)/D,1), e=1-Math.pow(1-p,4); el.textContent=fmt(a*e,dot); if(p<1)requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function attiva(el){
+    el.classList.add('in');
+    if(el.getAttribute('data-anim')==='conta') conta(el);
+  }
+  /* righe dei settori: piccolo ritardo in sequenza */
+  document.querySelectorAll('[data-anim="riga"]').forEach(function(el,i){ el.style.transitionDelay=(i%5)*90+'ms'; });
+  var els=document.querySelectorAll('[data-anim]');
+  if(reduce || !('IntersectionObserver' in window)){ els.forEach(attiva); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ attiva(e.target); io.unobserve(e.target);} }); },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- Nastro dei servizi: scorre con lo scroll ---- */
+  var n=document.getElementById('nastro');
+  if(n && !reduce){
+    var tick=false;
+    function muovi(){ var meta=n.scrollWidth/2; var x=(window.scrollY*0.5)%meta; n.style.transform='translateX('+(-x)+'px)'; tick=false; }
+    window.addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(muovi);} },{passive:true});
+    muovi();
+  }
+
+  /* ---- Un solo contorno per schermata: il bottone della testata diventa primario
+          solo quando nessun altro bottone primario è visibile ---- */
+  var cta=document.getElementById('testata-cta');
+  var prim=document.querySelectorAll('.js-primario');
+  if(cta && 'IntersectionObserver' in window){
+    var vis=new Set();
+    var io2=new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting) vis.add(e.target); else vis.delete(e.target); });
+      var p = vis.size===0;
+      cta.classList.toggle('btn-primario',p); cta.classList.toggle('btn-secondario',!p);
+    },{threshold:0});
+    prim.forEach(function(el){ io2.observe(el); });
+  }
+
+  /* ---- Menu su telefono e tablet ---- */
+  var mb=document.querySelector('.menu-btn'), mm=document.getElementById('menu-mob');
+  function chiudi(){ mb.setAttribute('aria-expanded','false'); mm.hidden=true; }
+  mb.addEventListener('click',function(){
+    var aperto=mb.getAttribute('aria-expanded')==='true';
+    mb.setAttribute('aria-expanded',String(!aperto)); mm.hidden=aperto;
+    if(!aperto){ var f=mm.querySelector('a'); if(f) f.focus(); }
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !mm.hidden){ chiudi(); mb.focus(); } });
+  mm.addEventListener('click',function(e){ if(e.target.closest('a')) chiudi(); });
+
+  /* ---- Mockup: link segnaposto verso pagine non ancora esistenti ---- */
+  var av=document.getElementById('avviso'), tmr;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="/"]'); if(!a) return;
+    e.preventDefault();
+    av.innerHTML='Collegamento segnaposto: la pagina <code>'+a.getAttribute('href')+'</code> non esiste ancora.';
+    av.classList.add('su'); clearTimeout(tmr); tmr=setTimeout(function(){ av.classList.remove('su'); },3500);
+  });
+})();
+</script>
+
+<a href="../" class="gnt-anteprima-ritorno" style="position:fixed;left:12px;bottom:12px;z-index:2147483647;padding:10px 14px;border-radius:999px;background:rgba(20,20,20,.88);color:#fff;font:600 14px/1.2 system-ui,-apple-system,Segoe UI,Arial,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,0,0,.25)">&larr; Tutte le versioni</a>
+</body>
+</html>
